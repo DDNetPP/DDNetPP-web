@@ -1,0 +1,21 @@
+#!/usr/bin/expect 
+#Where the script should be run from.
+
+#If it all goes pear shaped the script will timeout after 20 seconds.
+set timeout 20
+#Third argument is assigned to the variable password
+set password CENSORED_PASSWORD
+#This spawns the telnet program and connects it to the variable name
+spawn telnet 149.202.127.134 1337
+#The script expects Password
+expect "Enter password:"
+#The script sends the password variable
+send "$password\n"
+
+sleep 4
+send "say hello world c:\n"
+
+#this shoulnnt be executed because last command bugs
+sleep 2
+send "say WARNING something went wrong please report to an admin"
+
