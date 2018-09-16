@@ -73,12 +73,19 @@ if ($rows)
         {
             $out = shell_exec("cat " . SCRIPTS_PATH . "/status_restart_*.log");
         }
+        else if ($action === "start_github")
+        {
+            $cmd = "cd " . SCRIPTS_PATH . ";sudo -u " . DDPP_USER . " " . SCRIPTS_PATH . "/github_update.sh";
+            echo "cmd: <br/>$cmd<br/>";
+            $out = shell_exec($cmd);
+        }
         echo "Output:<br/>$out";
     }
 ?>
         <br/><input type="button" value="start restart.sh" onclick="window.location.href='server_panel.php?action=start_restart'"/>
         <br/><input type="button" value="stop restart.sh" onclick="window.location.href='server_panel.php?action=stop_restart'"/>
         <br/><input type="button" value="status restart.sh" onclick="window.location.href='server_panel.php?action=status_restart'"/>
+        <br/><input type="button" value="start github_update.sh" onclick="window.location.href='server_panel.php?action=start_github'"/>
 <?php
 
 
