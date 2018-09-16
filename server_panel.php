@@ -79,6 +79,18 @@ if ($rows)
             echo "cmd: <br/>$cmd<br/>";
             $out = shell_exec($cmd);
         }
+        else if ($action === "restart_chillerbot_bl")
+        {
+            $cmd = "cd " . SCRIPTS_PATH . ";sudo -u " . DDPP_USER . " " . SCRIPTS_PATH . "/restart_bot_bl.sh";
+            echo "cmd: <br/>$cmd<br/>";
+            $out = shell_exec($cmd);
+        }
+        else if ($action === "restart_chillerbot_cb")
+        {
+            $cmd = "cd " . SCRIPTS_PATH . ";sudo -u " . DDPP_USER . " " . SCRIPTS_PATH . "/restart_bot_cb.sh";
+            echo "cmd: <br/>$cmd<br/>";
+            $out = shell_exec($cmd);
+        }
         echo "Output:<br/>$out";
     }
 ?>
@@ -86,6 +98,9 @@ if ($rows)
         <br/><input type="button" value="stop restart.sh" onclick="window.location.href='server_panel.php?action=stop_restart'"/>
         <br/><input type="button" value="status restart.sh" onclick="window.location.href='server_panel.php?action=status_restart'"/>
         <br/><input type="button" value="start github_update.sh" onclick="window.location.href='server_panel.php?action=start_github'"/>
+<br/><br/>
+        <br/><input type="button" value="restart chillerbot BlmapChill" onclick="window.location.href='server_panel.php?action=restart_chillerbot_bl'"/>
+        <br/><input type="button" value="restart chillerbot ChillBlock5" onclick="window.location.href='server_panel.php?action=restart_chillerbot_cb'"/>
 <?php
 
 
