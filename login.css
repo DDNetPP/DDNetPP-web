@@ -46,7 +46,7 @@ body{
     text-align:center;
 }
 
-input[type=text] {
+input[type=text], input[type=password] {
     border-radius: 4px;
     margin: 8px 0;
     width: 315px;

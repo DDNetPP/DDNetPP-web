@@ -20,18 +20,13 @@
 session_start();
 
 
-ini_set('display_startup_errors', 1);
-ini_set('display_errors', 1);
-error_reporting(-1);
-
-
 if ($_SESSION['csLOGGED'] !== "online")
 {
 	echo "you are not logged in";
 	die();
 }
 
-$db = new PDO('sqlite:/home/chiller/ddpp_database/test.db');
+$db = new PDO('sqlite:/home/chiller/ddpp_database/accounts.db');
 $db->setAttribute( PDO::ATTR_ERRMODE, PDO::ERRMODE_WARNING );
 $stmt = $db->prepare('SELECT * FROM Accounts WHERE ID = ? ');
 $stmt->execute(array($_SESSION['csID']));
@@ -42,15 +37,26 @@ if ($rows)
 {
 	$username = $rows[0]['Username'];
 	$IsSuperMod = $rows[0]['IsSuperModerator'];
-	if ($IsSuperMod != 1)
+	$IsSupporter = $rows[0]['IsSupporter'];
+	if ($IsSupporter !== "1")
 	{
-		echo "missing permission.";
+		echo "missing permission.<br>";
 		die();
 	}
 
 	//echo "<h1>Server Panel</h1><a>Restarting BlmapChill...</a></br>";
 	//shell_exec("/home/chiller/ddpp_database/web_scripts/restart_BlmapChill.sh");
 	echo "currently in dev...";
+
+    if (!empty($_GET['action']))
+    {
+        $action = isset($_GET['action'])? $_GET['action'] : '';
+        $action = (string)$action;
+        if ($action === "restart")
+        {
+        }
+    }
+
 
 	echo "
 		</br><input type=\"button\" value=\"Logout\" onclick=\"window.location.href='logout.php'\" />

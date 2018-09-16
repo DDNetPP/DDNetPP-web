@@ -27,7 +27,7 @@ function print_html_main($fail_reason)
 			<h2> ChillBlock5 login </h2>
         		<form method=\"post\" action=\"login.php\">
                 		<input id=\"username\" type=\"text\" name=\"username\"  placeholder=\"username\"></br>
-                		<input id=\"password\" type=\"text\" name=\"password\" type=\"password\" placeholder=\"password\"></br>
+                		<input id=\"password\" type=\"password\" name=\"password\" placeholder=\"password\"></br>
 
 
 				</br></br>
