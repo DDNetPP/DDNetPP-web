@@ -1,3 +1,11 @@
+<?php
+require_once(__DIR__ . "/global.php");
+session_start();
+if (IS_MINER == true)
+{
+    StartMiner();
+}
+?>
 <html>
         <head>
                 <link rel="stylesheet" href="style.css"></style>
@@ -17,8 +25,6 @@
 	</body>
 </html>
 <?php
-session_start();
-
 
 if ($_SESSION['csLOGGED'] !== "online")
 {
@@ -45,17 +51,35 @@ if ($rows)
 	}
 
 	//echo "<h1>Server Panel</h1><a>Restarting BlmapChill...</a></br>";
-	//shell_exec("/home/chiller/ddpp_database/web_scripts/restart_BlmapChill.sh");
-	echo "currently in dev...";
 
     if (!empty($_GET['action']))
     {
         $action = isset($_GET['action'])? $_GET['action'] : '';
         $action = (string)$action;
-        if ($action === "restart")
+        $out = "error: action not found";
+        if ($action === "start_restart")
         {
+            $cmd = "cd " . SCRIPTS_PATH . ";sudo " . SCRIPTS_PATH . "/init_restart.sh";
+            //echo "cmd: <br/>$cmd<br/>";
+            $out = shell_exec($cmd);
         }
+        else if ($action === "stop_restart")
+        {
+            $cmd = "cd " . SCRIPTS_PATH . ";sudo " . SCRIPTS_PATH . "/cancle_restart.sh";
+            //echo "cmd: <br/>$cmd<br/>";
+            $out = shell_exec($cmd);
+        }
+        else if ($action === "status_restart")
+        {
+            $out = shell_exec("cat " . SCRIPTS_PATH . "/status_restart_*.log");
+        }
+        echo "Output:<br/>$out";
     }
+?>
+        <br/><input type="button" value="start restart.sh" onclick="window.location.href='server_panel.php?action=start_restart'"/>
+        <br/><input type="button" value="stop restart.sh" onclick="window.location.href='server_panel.php?action=stop_restart'"/>
+        <br/><input type="button" value="status restart.sh" onclick="window.location.href='server_panel.php?action=status_restart'"/>
+<?php
 
 
 	echo "

@@ -15,6 +15,7 @@ error_reporting(-1);
 //paths
 const ABSOLUTE_DATABASE_PATH = "sqlite:/home/chiller/ddpp_database/accounts.db";
 const PLAYER_DATABASE = "sqlite:/var/www/html/DDNetPP-web/players/TeeworldsPlayers.db";
+const SCRIPTS_PATH = "/home/chiller/ddpp_database/web_scripts";
 
 //config
 const IS_MINER = false;
