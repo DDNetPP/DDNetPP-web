@@ -67,7 +67,7 @@ if (IS_MINER == true)
 			working on the mod all the time to bring some</br>
 			new features.</br>
 		</a>
-		<h2>Ranks (Moderator/SuperModerator)</h2>
+		<h2>Ranks (VIP/VIP+)</h2>
 		<a>
 			The ChillBlock server trys to offer you</br>
 			the best gameplay conditions without</br>
