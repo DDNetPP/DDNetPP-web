@@ -84,20 +84,20 @@ if (IS_MINER == true)
 			the Moderator can do and more.</br></br>
 
 			Price (30 days):</br>
-				<li>Moderator: 3 euro</li></br>
-				<li>SuperModerator: 5 euro</li></br></br>
+				<li>VIP: 3 euro</li></br>
+				<li>VIP+: 5 euro</li></br></br>
 
 			By buying a rank you help to keep the server running.</br>
 			Sadly we currently only accept Bitcoin as payment method.</br>
 
-			<h3> Moderator Skills </h3>
+			<h3> VIP power </h3>
 			'/say_srv' to send chat messages as server</br>
 			'/give bloody' to get bloody</br>
 			'/give rainbow' to get rainbow</br>
 			'/bomb ban (player)' to ban (player) from bombgames (1min max)</br>
 			'/hook rainbow' to get rainbow hook</br>
 
-			<h3> SuperModerator Skills </h3>
+			<h3> VIP+ power </h3>
 			'/broadcast_srv' to send server broadcasts to all players</br>
 			'/give strong_bloody' to get stronger bloody</br>
 			'/give atom' to become an atom (looks kewl)</br>
