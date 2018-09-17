@@ -100,14 +100,16 @@ if ($rows)
         echo "Output:<br/>$out";
     }
 ?>
-        <br/><input type="button" value="start restart.sh" onclick="window.location.href='server_panel.php?action=start_restart'"/>
-        <br/><input type="button" value="stop restart.sh" onclick="window.location.href='server_panel.php?action=stop_restart'"/>
-        <br/><input type="button" value="status restart.sh" onclick="window.location.href='server_panel.php?action=status_restart'"/>
-        <br/><input type="button" value="start github_update.sh" onclick="window.location.href='server_panel.php?action=start_github'"/>
-        <br/><input type="button" value="update scripts/cfgs" onclick="window.location.href='server_panel.php?action=update_ddpp_scripts'"/>
+        <form>
+        <br/><input type="submit" value="start restart.sh" onclick="window.location.href='server_panel.php?action=start_restart'"/>
+        <br/><input type="submit" value="stop restart.sh" onclick="window.location.href='server_panel.php?action=stop_restart'"/>
+        <br/><input type="submit" value="status restart.sh" onclick="window.location.href='server_panel.php?action=status_restart'"/>
+        <br/><input type="submit" value="start github_update.sh" onclick="window.location.href='server_panel.php?action=start_github'"/>
+        <br/><input type="submit" value="update scripts/cfgs" onclick="window.location.href='server_panel.php?action=update_ddpp_scripts'"/>
 <br/><br/>
-        <br/><input type="button" value="restart chillerbot BlmapChill" onclick="window.location.href='server_panel.php?action=restart_chillerbot_bl'"/>
-        <br/><input type="button" value="restart chillerbot ChillBlock5" onclick="window.location.href='server_panel.php?action=restart_chillerbot_cb'"/>
+        <br/><input type="submit" value="restart chillerbot BlmapChill" onclick="window.location.href='server_panel.php?action=restart_chillerbot_bl'"/>
+        <br/><input type="submit" value="restart chillerbot ChillBlock5" onclick="window.location.href='server_panel.php?action=restart_chillerbot_cb'"/>
+        </form>
 <?php
 
 
