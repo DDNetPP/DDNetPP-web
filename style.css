@@ -10,6 +10,22 @@ input[type="button"], input[type="submit"] {
     cursor:pointer;
 }
 
+#zone-night {
+    color: #777;
+}
+
+#zone-github {
+    color: #12D05E;
+}
+
+#zone-danger {
+    color: #f3115c;
+}
+
+#btn-danger {
+    background: #f3115c;
+}
+
 ul {
     list-style-type: none;
     margin: 0;

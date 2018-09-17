@@ -101,14 +101,18 @@ if ($rows)
     }
 ?>
         <form>
+        <h1 id="zone-night">Night restart</h1>
         <br/><input type="submit" value="start restart.sh" onclick="window.location.href='server_panel.php?action=start_restart'"/>
         <br/><input type="submit" value="stop restart.sh" onclick="window.location.href='server_panel.php?action=stop_restart'"/>
         <br/><input type="submit" value="status restart.sh" onclick="window.location.href='server_panel.php?action=status_restart'"/>
+        <h1 id="zone-github">Github updates</h1>
         <br/><input type="submit" value="start github_update.sh" onclick="window.location.href='server_panel.php?action=start_github'"/>
         <br/><input type="submit" value="update scripts/cfgs" onclick="window.location.href='server_panel.php?action=update_ddpp_scripts'"/>
 <br/><br/>
-        <br/><input type="submit" value="restart chillerbot BlmapChill" onclick="window.location.href='server_panel.php?action=restart_chillerbot_bl'"/>
-        <br/><input type="submit" value="restart chillerbot ChillBlock5" onclick="window.location.href='server_panel.php?action=restart_chillerbot_cb'"/>
+        <h1 id="zone-danger">Force server restart NOW</h1>
+        <h2 id="zone-danger">WARNING DANGER ZONE</h2>
+        <br/><input type="submit" id="btn-danger" value="restart chillerbot/srv BlmapChill" onclick="window.location.href='server_panel.php?action=restart_chillerbot_bl'"/>
+        <br/><input type="submit" id="btn-danger" value="restart chillerbot/srv ChillBlock5" onclick="window.location.href='server_panel.php?action=restart_chillerbot_cb'"/>
         </form>
 <?php
 
