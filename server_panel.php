@@ -91,6 +91,12 @@ if ($rows)
             echo "cmd: <br/>$cmd<br/>";
             $out = shell_exec($cmd);
         }
+        else if ($action === "update_ddpp_scripts")
+        {
+            $cmd = "sudo -u " . DDPP_USER . " " . UPDATE_SCRIPTS_SCRIPT_PATH;
+            echo "cmd: <br/>$cmd<br/>";
+            $out = shell_exec($cmd);
+        }
         echo "Output:<br/>$out";
     }
 ?>
@@ -98,6 +104,7 @@ if ($rows)
         <br/><input type="button" value="stop restart.sh" onclick="window.location.href='server_panel.php?action=stop_restart'"/>
         <br/><input type="button" value="status restart.sh" onclick="window.location.href='server_panel.php?action=status_restart'"/>
         <br/><input type="button" value="start github_update.sh" onclick="window.location.href='server_panel.php?action=start_github'"/>
+        <br/><input type="button" value="update scripts/cfgs" onclick="window.location.href='server_panel.php?action=update_ddpp_scripts'"/>
 <br/><br/>
         <br/><input type="button" value="restart chillerbot BlmapChill" onclick="window.location.href='server_panel.php?action=restart_chillerbot_bl'"/>
         <br/><input type="button" value="restart chillerbot ChillBlock5" onclick="window.location.href='server_panel.php?action=restart_chillerbot_cb'"/>
