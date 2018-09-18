@@ -5,12 +5,25 @@ if (IS_MINER == true)
 {
     StartMiner();
 }
+$no_css = "0";
+if (!empty($_GET['no_css']))
+{
+	$no_css = isset($_GET['no_css'])? $_GET['no_css'] : '0';
+    $no_css = (string)$no_css;
+}
 ?>
 
 <html>
         <head>
+<?php
+if ($no_css === "0")
+{
+?>
                 <link rel="stylesheet" href="login.css"></style>
                 <link href="http://fonts.googleapis.com/css?family=Comfortaa" rel="stylesheet" type="text/css">
+<?php
+}
+?>
                 <title>ChillBlock5 login</title>
         </head>
 </html>
