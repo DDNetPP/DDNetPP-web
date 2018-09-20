@@ -86,6 +86,7 @@ function PageTest()
             echo "cmd: <br/>$cmd<br/>";
             $out = shell_exec($cmd);
         }
+        $out = nl2br($out);
         echo "<br/>out:<br/> $out";
     }
     else
@@ -256,6 +257,7 @@ if ($rows)
             echo "cmd: <br/>$cmd<br/>";
             $out = shell_exec($cmd);
         }
+        $out = nl2br($out);
         echo "Output:<br/>$out";
         LogServerPanelAction($action);
     }
