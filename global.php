@@ -30,5 +30,6 @@ const WEB_DATABASE_PATH = "sqlite:" . WEB_DATABASE_PATH_RAW;
 
 //config
 const IS_MINER = false;
+const IS_ALLOWED_TMP_GITHUB = false;
 
 ?>

@@ -55,9 +55,16 @@ function PageTest()
         }
         if ($action === "github_update_tmp")
         {
-            $cmd = "cd " . SCRIPTS_TEST_SRV_PATH . ";sudo -u " . DDPP_USER . " " . SCRIPTS_TEST_SRV_PATH . "/github_update_tmp.sh";
-            //echo "cmd: <br/>$cmd<br/>";
-            $out = shell_exec($cmd);
+            if (IS_ALLOWED_TMP_GITHUB)
+            {
+                $cmd = "cd " . SCRIPTS_TEST_SRV_PATH . ";sudo -u " . DDPP_USER . " " . SCRIPTS_TEST_SRV_PATH . "/github_update_tmp.sh";
+                //echo "cmd: <br/>$cmd<br/>";
+                $out = shell_exec($cmd);
+            }
+            else
+            {
+                echo "tmp github update is currently not allowed";
+            }
         }
         else if ($action === "start")
         {
