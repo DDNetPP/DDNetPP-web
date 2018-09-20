@@ -72,6 +72,13 @@ function PageTest()
             //echo "cmd: <br/>$cmd<br/>";
             $out = shell_exec($cmd);
         }
+        else if ($action === "log")
+        {
+            $cmd = "cat " . SCRIPTS_TEST_SRV_PATH . "/logs/test.log";
+            //$cmd = "cd " . SCRIPTS_TEST_SRV_PATH . ";sudo " . SCRIPTS_TEST_SRV_PATH . "/stop.sh";
+            echo "cmd: <br/>$cmd<br/>";
+            $out = shell_exec($cmd);
+        }
         echo "<br/>out:<br/> $out";
     }
     else
@@ -82,6 +89,7 @@ function PageTest()
     <form method="get">
     <br/><input type="button" value="start" onclick="window.location.href='server_panel.php?p=test&action=start'"/>
     <br/><input type="button" value="stop" onclick="window.location.href='server_panel.php?p=test&action=stop'"/>
+    <br/><input type="button" value="show log" onclick="window.location.href='server_panel.php?p=test&action=log'"/>
     <br/><input type="button" value="github_update" onclick="window.location.href='server_panel.php?p=test&action=github_update'"/>
     <br/><input type="button" value="github_update_tmp" onclick="window.location.href='server_panel.php?p=test&action=github_update_tmp'"/>
     </form>
