@@ -27,7 +27,8 @@ if (IS_MINER == true)
 </html>
 
 <ul>
-    <li><a href="server_panel.php?p=home">Actions</a></li>
+    <li><a href="server_panel.php?p=home">Main</a></li>
+    <li><a href="server_panel.php?p=test">Test</a></li>
     <li><a href="server_panel.php?p=logs">Logs</a></li>
 </ul>
 <?php
@@ -36,6 +37,48 @@ if (empty($_SESSION['csLOGGED']) || $_SESSION['csLOGGED'] !== "online")
 {
 	echo "you are not logged in";
 	die();
+}
+
+function PageTest()
+{
+    echo "<h1>Test server</h1>";
+    if (!empty($_GET['action']))
+    {
+        $action = isset($_GET['action'])? $_GET['action'] : '';
+        $action = (string)$action;
+        $out = "error: action not found";
+        if ($action === "github_update")
+        {
+            $cmd = "cd " . SCRIPTS_TEST_SRV_PATH . ";sudo -u " . DDPP_USER . " " . SCRIPTS_TEST_SRV_PATH . "/github_update.sh";
+            //echo "cmd: <br/>$cmd<br/>";
+            $out = shell_exec($cmd);
+        }
+        else if ($action === "start")
+        {
+            $cmd = "cd " . SCRIPTS_TEST_SRV_PATH . ";sudo -u " . DDPP_USER . " " . SCRIPTS_TEST_SRV_PATH . "/start.sh";
+            echo "cmd: <br/>$cmd<br/>";
+            $out = shell_exec($cmd);
+        }
+        else if ($action === "stop")
+        {
+            $cmd = "cd " . SCRIPTS_TEST_SRV_PATH . ";sudo -u " . DDPP_USER . " " . SCRIPTS_TEST_SRV_PATH . "/stop.sh";
+            //$cmd = "cd " . SCRIPTS_TEST_SRV_PATH . ";sudo " . SCRIPTS_TEST_SRV_PATH . "/stop.sh";
+            //echo "cmd: <br/>$cmd<br/>";
+            $out = shell_exec($cmd);
+        }
+        echo "<br/>out:<br/> $out";
+    }
+    else
+    {
+        //echo "no action";
+    }
+?>
+    <form method="get">
+    <br/><input type="button" value="start" onclick="window.location.href='server_panel.php?p=test&action=start'"/>
+    <br/><input type="button" value="stop" onclick="window.location.href='server_panel.php?p=test&action=stop'"/>
+    <br/><input type="button" value="github_update" onclick="window.location.href='server_panel.php?p=test&action=github_update'"/>
+    </form>
+<?php
 }
 
 function ShowLogs()
@@ -115,6 +158,11 @@ if ($rows)
             ShowLogs();
             die();
         }
+        else if ($page === "test")
+        {
+            PageTest();
+            die();
+        }
     }
 
     if (!empty($_GET['action']))
@@ -190,25 +238,25 @@ if ($rows)
         LogServerPanelAction($action);
     }
 ?>
-        <form method="get">
-        <h1 id="zone-night">Night restart (FORCE)</h1>
-        <br/><input type="button" value="start restart.sh" onclick="window.location.href='server_panel.php?action=start_restart'"/>
-        <br/><input type="button" value="stop restart.sh" onclick="window.location.href='server_panel.php?action=stop_restart'"/>
-        <br/><input type="button" value="status restart.sh" onclick="window.location.href='server_panel.php?action=status_restart'"/>
-        <h1 id="zone-github">Night(02:00) veto vote shutdown (restart)</h1>
-        <br/><input type="button" value="start chillblock" onclick="window.location.href='server_panel.php?action=ddpp_shutdown_cb_on'"/>
-        <br/><input type="button" value="stop chillblock" onclick="window.location.href='server_panel.php?action=ddpp_shutdown_cb_off'"/>
-        <br/><input type="button" value="start blmapchill" onclick="window.location.href='server_panel.php?action=ddpp_shutdown_bl_on'"/>
-        <br/><input type="button" value="stop blmapchill" onclick="window.location.href='server_panel.php?action=ddpp_shutdown_bl_off'"/>
-        <h1 id="zone-github">Github updates</h1>
-        <br/><input type="button" value="start github_update.sh" onclick="window.location.href='server_panel.php?action=start_github'"/>
-        <br/><input type="button" value="update scripts/cfgs" onclick="window.location.href='server_panel.php?action=update_ddpp_scripts'"/>
+    <form method="get">
+    <h1 id="zone-night">Night restart (FORCE)</h1>
+    <br/><input type="button" value="start restart.sh" onclick="window.location.href='server_panel.php?action=start_restart'"/>
+    <br/><input type="button" value="stop restart.sh" onclick="window.location.href='server_panel.php?action=stop_restart'"/>
+    <br/><input type="button" value="status restart.sh" onclick="window.location.href='server_panel.php?action=status_restart'"/>
+    <h1 id="zone-github">Night(02:00) veto vote shutdown (restart)</h1>
+    <br/><input type="button" value="start chillblock" onclick="window.location.href='server_panel.php?action=ddpp_shutdown_cb_on'"/>
+    <br/><input type="button" value="stop chillblock" onclick="window.location.href='server_panel.php?action=ddpp_shutdown_cb_off'"/>
+    <br/><input type="button" value="start blmapchill" onclick="window.location.href='server_panel.php?action=ddpp_shutdown_bl_on'"/>
+    <br/><input type="button" value="stop blmapchill" onclick="window.location.href='server_panel.php?action=ddpp_shutdown_bl_off'"/>
+    <h1 id="zone-github">Github updates</h1>
+    <br/><input type="button" value="start github_update.sh" onclick="window.location.href='server_panel.php?action=start_github'"/>
+    <br/><input type="button" value="update scripts/cfgs" onclick="window.location.href='server_panel.php?action=update_ddpp_scripts'"/>
 <br/><br/>
-        <h1 id="zone-danger">Force server restart NOW</h1>
-        <h2 id="zone-danger">WARNING DANGER ZONE</h2>
-        <br/><input type="button" id="btn-danger" value="restart chillerbot/srv BlmapChill" onclick="window.location.href='server_panel.php?action=restart_chillerbot_bl'"/>
-        <br/><input type="button" id="btn-danger" value="restart chillerbot/srv ChillBlock5" onclick="window.location.href='server_panel.php?action=restart_chillerbot_cb'"/>
-        </form>
+    <h1 id="zone-danger">Force server restart NOW</h1>
+    <h2 id="zone-danger">WARNING DANGER ZONE</h2>
+    <br/><input type="button" id="btn-danger" value="restart chillerbot/srv BlmapChill" onclick="window.location.href='server_panel.php?action=restart_chillerbot_bl'"/>
+    <br/><input type="button" id="btn-danger" value="restart chillerbot/srv ChillBlock5" onclick="window.location.href='server_panel.php?action=restart_chillerbot_cb'"/>
+    </form>
 <?php
 
 
