@@ -25,12 +25,41 @@ if (IS_MINER == true)
                 </ul>
 	</body>
 </html>
+
+<ul>
+    <li><a href="server_panel.php?p=home">Actions</a></li>
+    <li><a href="server_panel.php?p=logs">Logs</a></li>
+</ul>
 <?php
 
-if ($_SESSION['csLOGGED'] !== "online")
+if (empty($_SESSION['csLOGGED']) || $_SESSION['csLOGGED'] !== "online")
 {
 	echo "you are not logged in";
 	die();
+}
+
+function ShowLogs()
+{
+    $db = new PDO(WEB_DATABASE_PATH);
+    $db->setAttribute( PDO::ATTR_ERRMODE, PDO::ERRMODE_WARNING );
+    $rows = $db->query('SELECT * FROM ServerPanel ORDER BY ID DESC LIMIT 10');
+
+    if ($rows)
+    {
+        echo "<h2>Last 10 server panel actions</h2>";
+        $rows = $rows->fetchAll();
+        foreach($rows as $row)
+        {
+            $username = $row['Username'];
+            $action = $row['Action'];
+            $time = $row['TimeStamp'];
+            echo "[$time] <b>$username</b>: $action<br/>";
+        }
+    }
+    else
+    {
+        echo "No logs yet.";
+    }
 }
 
 function LogServerPanelAction($action)
@@ -76,7 +105,17 @@ if ($rows)
 		die();
 	}
 
-	//echo "<h1>Server Panel</h1><a>Restarting BlmapChill...</a></br>";
+
+    if (!empty($_GET['p']))
+    {
+        $page = isset($_GET['p'])? $_GET['p'] : '';
+        $page = (string)$page;
+        if ($page === "logs")
+        {
+            ShowLogs();
+            die();
+        }
+    }
 
     if (!empty($_GET['action']))
     {
