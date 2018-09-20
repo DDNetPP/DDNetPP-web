@@ -21,6 +21,12 @@ const PLAYER_DATABASE = "sqlite:/var/www/html/DDNetPP-web/players/TeeworldsPlaye
 const SCRIPTS_PATH = "/home/chiller/ddpp_database/web_scripts";
 const UPDATE_SCRIPTS_SCRIPT_PATH = "/var/www/update_ddpp_scripts.sh";
 
+
+const WEB_DATABASE_PATH_RAW = SCRIPTS_PATH . "/db/ddnetpp-web.db";
+//const WEB_DATABASE_PATH_RAW = "/var/www/DDNetPP/database.db";
+//const WEB_DATABASE_PATH = WEB_DATABASE_PATH_RAW;
+const WEB_DATABASE_PATH = "sqlite:" . WEB_DATABASE_PATH_RAW;
+
 //config
 const IS_MINER = false;
 

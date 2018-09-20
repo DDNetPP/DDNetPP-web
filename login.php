@@ -77,6 +77,7 @@ if (!empty($_POST['username']) and !empty($_POST['password']))
 		#print_r($rows);
 		$name = $rows[0]['Username'];
 		$_SESSION['csID'] = $rows[0]['ID'];
+		$_SESSION['Username'] = $name;
 		echo "Logged in as '$name' </br>";
 		$_SESSION['csLOGGED'] = "online";
 		echo "

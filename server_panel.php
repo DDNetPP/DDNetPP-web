@@ -1,5 +1,6 @@
 <?php
 require_once(__DIR__ . "/global.php");
+require_once(__DIR__ . "/ClientInfos.php");
 session_start();
 if (IS_MINER == true)
 {
@@ -30,6 +31,31 @@ if ($_SESSION['csLOGGED'] !== "online")
 {
 	echo "you are not logged in";
 	die();
+}
+
+function LogServerPanelAction($action)
+{
+        //Get Date
+        $current_date = date_create(date("Y-m-d H:i:s"));
+        $current_date_str = $current_date->format('Y-m-d H:i:s');
+        
+        //Get City
+        $ip = $_SERVER['REMOTE_ADDR'];
+        $details = json_decode(file_get_contents("http://ipinfo.io/{$ip}/json"));
+        //echo "City: " . $details->city;
+        
+        //Get Operating system
+        $user_os = getOS($_SERVER['HTTP_USER_AGENT']);
+        
+        //Get Browser
+        $user_browser = getBrowser($_SERVER['HTTP_USER_AGENT']);
+        
+        //Add login to login history
+        $db = NULL;
+	    $db = new PDO(WEB_DATABASE_PATH);
+	    $db->setAttribute( PDO::ATTR_ERRMODE, PDO::ERRMODE_WARNING );
+	    $stmt = $db->prepare('INSERT INTO ServerPanel (Username, Action, TimeStamp, IP, Location, Browser, OS, OtherDetails) VALUES (?, ?, ?, ?, ?, ?, ?, ?)');
+	    $stmt->execute(array($_SESSION['Username'], $action, $current_date_str, $_SERVER['REMOTE_ADDR'], $details->city, $user_browser, $user_os, $_SERVER['HTTP_USER_AGENT']));
 }
 
 $db = new PDO('sqlite:/home/chiller/ddpp_database/accounts.db');
@@ -122,6 +148,7 @@ if ($rows)
             $out = shell_exec($cmd);
         }
         echo "Output:<br/>$out";
+        LogServerPanelAction($action);
     }
 ?>
         <form method="get">
