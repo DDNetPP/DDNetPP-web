@@ -195,13 +195,13 @@ if ($rows)
         $out = "error: action not found";
         if ($action === "start_restart")
         {
-            $cmd = "cd " . SCRIPTS_PATH . ";sudo " . SCRIPTS_PATH . "/init_restart.sh";
+            $cmd = "cd " . SCRIPTS_PATH . ";sudo -u " . DDPP_USER . " " . SCRIPTS_PATH . "/init_restart.sh";
             //echo "cmd: <br/>$cmd<br/>";
             $out = shell_exec($cmd);
         }
         else if ($action === "stop_restart")
         {
-            $cmd = "cd " . SCRIPTS_PATH . ";sudo " . SCRIPTS_PATH . "/cancle_restart.sh";
+            $cmd = "cd " . SCRIPTS_PATH . ";sudo -u " . DDPP_USER . " " . SCRIPTS_PATH . "/cancle_restart.sh";
             //echo "cmd: <br/>$cmd<br/>";
             $out = shell_exec($cmd);
         }
