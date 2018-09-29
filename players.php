@@ -1,32 +1,11 @@
 <?php
-	require_once(__DIR__ . "/global.php");
-	if (IS_MINER == true)
-	{
-		StartMiner();
-	}
-	HtmlHeader("style.css", "Chilli.* teeworlds page");
-?>
-
-<ul>
- 	<li><a href="index.php">Home</a></li>
-  	<li><a href="clan.php">Clan</a></li>
-  	<li><a href="server.php">Server</a></li>
-  	<li><a class="active" href="players.php">Players</a></li>
-	<li style="float:right">
-	<?php
-			if (!empty($_SESSION['csLOGGED']) && $_SESSION['csLOGGED'] === "online")
-			{
-			    echo "<a href=\"account.php\">Account</a>";
-			}
-			else
-			{
-				echo "<a href=\"login.php\">Login</a>";
-			}
-	?>
-	</li>
-</ul>
-
-<?php
+require_once(__DIR__ . "/global.php");
+session_start();
+if (IS_MINER == true)
+{
+    StartMiner();
+}
+HtmlHeader("Players");
 
 function GetTotalPages($items_per_page)
 {

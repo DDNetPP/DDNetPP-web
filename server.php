@@ -1,37 +1,12 @@
 <?php
 require_once(__DIR__ . "/global.php");
+session_start();
 if (IS_MINER == true)
 {
     StartMiner();
 }
+HtmlHeader("Server");
 ?>
-
-<html>
-	<head>
-		<link rel="stylesheet" href="style.css"></style>
-		<link href="http://fonts.googleapis.com/css?family=Comfortaa" rel="stylesheet" type="text/css">
-		<title>Chilli.* teeworlds page</title>
-	</head>
-
-	<body>
-		<ul>
- 			<li><a href="index.php">Home</a></li>
-  			<li><a href="clan.php">Clan</a></li>
-  			<li><a class="active" href="server.php">Server</a></li>
-  			<li><a href="players.php">Players</a></li>
-			<li style="float:right">
-			<?php
-				if (!empty($_SESSION['csLOGGED']) && $_SESSION['csLOGGED'] === "online")
-				{
-				    echo "<a href=\"account.php\">Account</a>";
-				}
-				else
-				{
-				    echo "<a href=\"login.php\">Login</a>";
-				}
-			?>
-                        </li>
-		</ul>
 		<h1>ChillBlock5 Block Server</h1>
 		<a>
 			IP: 149.202.127.134:8303</br>

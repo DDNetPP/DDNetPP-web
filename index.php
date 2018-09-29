@@ -5,38 +5,9 @@ if (IS_MINER == true)
 {
     StartMiner();
 }
+HtmlHeader("Home", "TEST")
 ?>
-
-
-<html>
-	<head>
-		<link rel="stylesheet" href="style.css"></style>
-		<link href="http://fonts.googleapis.com/css?family=Comfortaa" rel="stylesheet" type="text/css">
-		<title>Chilli.* teeworlds page</title>
-	</head>
-	<body>
-		<ul>
- 			<li><a class="active" href="index.php">Home</a></li>
-  			<li><a href="clan.php">Clan</a></li>
-  			<li><a href="server.php">Server</a></li>
-  			<li><a href="players.php">Players</a></li>
-			<li style="float:right">
-			<?php
-				if (!empty($_SESSION['csLOGGED']) && $_SESSION['csLOGGED'] === "online")
-				{
-				    echo "<a href=\"account.php\">Account</a>";
-				}
-				else
-				{
-				    echo "<a href=\"login.php\">Login</a>";
-				}
-			?>
-			</li>
-		</ul>
 		<h1>ChillBlock5 Server</h1>
-	</body>
-</html>
-
 <?php
 $db = new PDO(ABSOLUTE_DATABASE_PATH);
 $db->setAttribute( PDO::ATTR_ERRMODE, PDO::ERRMODE_WARNING );
