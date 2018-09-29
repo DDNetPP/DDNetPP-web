@@ -71,4 +71,5 @@ if ($rowsPOINTS)
                 echo $i+1 . ". $username - $points </br>";
         }
 }
+fok();
 ?>

@@ -85,5 +85,4 @@ HtmlHeader("Server");
 			'/room kick (player)' to kick (player) out of the room</br>
 			'/togglespawn' to change spawnpoint between normal and supermod</br>
 		</a>
-	</body>
-</html>
+<?php fok(); ?>

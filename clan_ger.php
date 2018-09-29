@@ -4,34 +4,8 @@ if (IS_MINER == true)
 {
     StartMiner();
 }
+HtmlHeader("Clan");
 ?>
-
-<html>
-	<head>
-		<link rel="stylesheet" href="style.css"></style>
-		<link href="http://fonts.googleapis.com/css?family=Comfortaa" rel="stylesheet" type="text/css">
-		<title>Chilli.* teeworlds page</title>
-	</head>
-
-	<body>
-		<ul>
- 			<li><a href="index.php">Home</a></li>
-  			<li><a class="active" href="clan.php">Clan</a></li>
-  			<li><a href="server.php">Server</a></li>
-  			<li><a href="players.php">Players</a></li>
-                        <li style="float:right">
-			<?php
-				if (!empty($_SESSION['csLOGGED']) && $_SESSION['csLOGGED'] === "online")
-				{
-				    echo "<a href=\"account.php\">Account</a>";
-				}
-				else
-				{
-				    echo "<a href=\"login.php\">Login</a>";
-				}
-			?>
-                        </li>
-		</ul>
 		</br>
 		<form>
 			<input type="button" value="English version" onclick="window.location.href='clan.php'" />
@@ -84,5 +58,4 @@ if (IS_MINER == true)
 			Bitte Fälle wie auf einem blockserver geblockt werden</br>
 			NICHT melden.</br></br>
 		</a>
-	</body>
-</html>
+<?php fok(); ?>

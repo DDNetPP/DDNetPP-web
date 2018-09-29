@@ -59,5 +59,4 @@ if (IS_MINER == true)
 			Please don't report cases like getting blocked by clanmates</br>
 			on a blockserver.</br></br>
 		</a>
-	</body>
-</html>
+<?php fok(); ?>
