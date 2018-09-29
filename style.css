@@ -10,6 +10,12 @@ input[type="button"], input[type="submit"] {
     cursor:pointer;
 }
 
+#header-nav {
+    position: fixed;
+    width: 100%;
+    top: 0;
+}
+
 #zone-night {
     color: #777;
 }
@@ -29,7 +35,7 @@ input[type="button"], input[type="submit"] {
 .main-content {
     padding: 5%;
     padding-top: 2%;
-    margin-top: 2%;
+    margin-top: 5%;
     margin-bottom: 5%;
     margin-right: 10%;
     margin-left: 10%;
@@ -38,6 +44,7 @@ input[type="button"], input[type="submit"] {
     /*border-bottom-right-radius: 16px;*/
     border-radius: 10px;
     box-shadow: 10px 10px 8px #888888;
+    background: white;
 }
 
 ul {
@@ -73,4 +80,27 @@ body{
     margin:0px;
     padding:0px;
     font-family: 'Comfortaa', cursive;
+    background-attachment: fixed !important; /* override the fixed state from the background color gradients */
+    /*background: black;*/
+    /*background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, rgba(51,86,167,1)), color-stop(100%, rgba(158,181,214,1)));*/
+    /*background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, rgba(51,86,167,1)), color-stop(27%, rgba(158,181,214,1)));*/
+
+    /* browser support lul */
+    /* wrong gradient xd (repate) */
+    /*background: -moz-linear-gradient(270deg, rgba(51,86,167,1) 0%, rgba(158,181,214,1) 20%, rgba(158,181,214,1) 80%, rgba(51,86,167,1) 100%); */ /* ff3.6+ */
+    /*background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, rgba(51,86,167,1)), color-stop(20%, rgba(158,181,214,1)), color-stop(80%, rgba(158,181,214,1)), color-stop(100%, rgba(51,86,167,1))); */ /* safari4+,chrome */
+    /*background: -webkit-linear-gradient(270deg, rgba(51,86,167,1) 0%, rgba(158,181,214,1) 20%, rgba(158,181,214,1) 80%, rgba(51,86,167,1) 100%); */ /* safari5.1+,chrome10+ */
+    /*background: -o-linear-gradient(270deg, rgba(51,86,167,1) 0%, rgba(158,181,214,1) 20%, rgba(158,181,214,1) 80%, rgba(51,86,167,1) 100%); */ /* opera 11.10+ */
+    /*background: -ms-linear-gradient(270deg, rgba(51,86,167,1) 0%, rgba(158,181,214,1) 20%, rgba(158,181,214,1) 80%, rgba(51,86,167,1) 100%); */ /* ie10+ */
+    /*background: linear-gradient(180deg, rgba(51,86,167,1) 0%, rgba(158,181,214,1) 20%, rgba(158,181,214,1) 80%, rgba(51,86,167,1) 100%); */ /* w3c */
+    /*filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#3356a7', endColorstr='#3356a7',GradientType=0 ); */ /* ie6-9 */
+
+    /* correct gradient */
+    background: -moz-linear-gradient(270deg, rgba(51,86,167,1) 0%, rgba(158,181,214,1) 20%); /* ff3.6+ */
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, rgba(51,86,167,1)), color-stop(20%, rgba(158,181,214,1))); /* safari4+,chrome */
+    background: -webkit-linear-gradient(270deg, rgba(51,86,167,1) 0%, rgba(158,181,214,1) 20%); /* safari5.1+,chrome10+ */
+    background: -o-linear-gradient(270deg, rgba(51,86,167,1) 0%, rgba(158,181,214,1) 20%); /* opera 11.10+ */
+    background: -ms-linear-gradient(270deg, rgba(51,86,167,1) 0%, rgba(158,181,214,1) 20%); /* ie10+ */
+    background: linear-gradient(180deg, rgba(51,86,167,1) 0%, rgba(158,181,214,1) 20%); /* w3c */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#3356a7', endColorstr='#9eb5d6',GradientType=0 ); /* ie6-9 */
 }

@@ -30,24 +30,26 @@ function HtmlHeader($page, $title = "Chilli.* teeworlds page")
         <title><?php echo $title; ?></title>
 	</head>
 	<body>
-		<ul>
- 			<li><a <?php if ($page === "Home") { echo 'class="active"'; } ?> href="index.php">Home</a></li>
-  			<li><a <?php if ($page === "Clan") { echo 'class="active"'; } ?>href="clan.php">Clan</a></li>
-  			<li><a <?php if ($page === "Server") { echo 'class="active"'; } ?>href="server.php">Server</a></li>
-  			<li><a <?php if ($page === "Players") { echo 'class="active"'; } ?>href="players.php">Players</a></li>
-			<li style="float:right">
-			<?php
-				if (!empty($_SESSION['csLOGGED']) && $_SESSION['csLOGGED'] === "online")
-				{
-				    echo "<a href=\"account.php\">Account</a>";
-				}
-				else
-				{
-				    echo "<a href=\"login.php\">Login</a>";
-				}
-			?>
-			</li>
-		</ul>
+        <div id="header-nav">
+            <ul>
+                <li><a <?php if ($page === "Home") { echo 'class="active"'; } ?> href="index.php">Home</a></li>
+                <li><a <?php if ($page === "Clan") { echo 'class="active"'; } ?>href="clan.php">Clan</a></li>
+                <li><a <?php if ($page === "Server") { echo 'class="active"'; } ?>href="server.php">Server</a></li>
+                <li><a <?php if ($page === "Players") { echo 'class="active"'; } ?>href="players.php">Players</a></li>
+                <li style="float:right">
+                <?php
+                    if (!empty($_SESSION['csLOGGED']) && $_SESSION['csLOGGED'] === "online")
+                    {
+                        echo "<a href=\"account.php\">Account</a>";
+                    }
+                    else
+                    {
+                        echo "<a href=\"login.php\">Login</a>";
+                    }
+                ?>
+                </li>
+            </ul>
+        </div> <!-- header-nav -->
         <div class="main-content">
 <?php
 }
