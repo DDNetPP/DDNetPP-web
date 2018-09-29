@@ -5,7 +5,7 @@ if (IS_MINER == true)
 {
     StartMiner();
 }
-HtmlHeader("Players");
+HtmlHeader("Players", "jungle.css");
 
 function GetTotalPages($items_per_page)
 {
