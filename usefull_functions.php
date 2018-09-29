@@ -19,13 +19,13 @@ function fok()
 	die();
 }
 
-function HtmlHeader($page, $title = "Chilli.* teeworlds page")
+function HtmlHeader($page, $title = "Chilli.* teeworlds page", $style = "style.css")
 {
 ?>
 <!DOCTYPE html>
 <html>
 	<head>
-		<link rel="stylesheet" href="style.css"></style>
+		<link rel="stylesheet" href="<?php echo $style; ?>"></style>
 		<link href="http://fonts.googleapis.com/css?family=Comfortaa" rel="stylesheet" type="text/css">
         <title><?php echo $title; ?></title>
 	</head>

@@ -1,0 +1,104 @@
+input[type="button"], input[type="submit"] {
+    padding:10px;
+    color:#fff;
+    background:#0098cb;
+    width:320px;
+    margin:20px auto;
+    margin-top:0px;
+    border:0px;
+    border-radius:3px;
+    cursor:pointer;
+}
+
+#header-nav {
+    position: fixed;
+    width: 100%;
+    top: 0;
+}
+
+.jungle-mid-light-green {
+    position: fixed;
+    z-index: -2;
+    top: 0;
+    height: 100%;
+    width: 100%;
+    background-image: url("img/jungle_midground_light_green_left.png");
+    background-repeat: repeat-y;
+    /*background-size: 761px 379px;*/
+}
+
+.jungle-background {
+    position: fixed;
+    z-index: -2;
+    top: 0;
+    height: 100%;
+    width: 100%;
+    background-image: url("img/jungle_background_green.png");
+    background-size: auto 100%;
+    background-repeat: repeat-x;
+}
+
+.cloud {
+    display: none
+}
+
+.main-content {
+    padding: 5%;
+    padding-top: 2%;
+    margin-top: 5%;
+    margin-bottom: 5%;
+
+    /* old */
+    /*margin-right: 20%;*/
+    /*margin-left: 20%;*/
+
+    /* new */
+    min-width: 200px;
+    max-width: 700px;
+    margin-right: auto;
+    margin-left: auto;
+
+    border: 3px solid lightgrey;
+    /*border-bottom-left-radius: 16px;*/
+    /*border-bottom-right-radius: 16px;*/
+    border-radius: 10px;
+    box-shadow: 10px 10px 8px #888888;
+    background: white;
+}
+
+ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: #0098cb;
+}
+
+li {
+    float: left;
+}
+
+li a {
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+    font-family: 'Comfortaa', cursive;
+}
+
+li a:hover {
+    background-color: #00b8e0;
+}
+
+.active {
+    background-color: #00b8eb;
+}
+
+body{
+    margin:0px;
+    padding:0px;
+    font-family: 'Comfortaa', cursive;
+    background-attachment: fixed !important; /* override the fixed state from the background color gradients */
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, rgba(160,215,115,1)), color-stop(27%, rgba(195,255,185,1)));
+}
