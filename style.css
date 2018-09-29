@@ -23,6 +23,7 @@ input[type="button"], input[type="submit"] {
     animation-duration: 8s;
     animation-iteration-count: infinite;
     animation-timing-function: linear;
+    animation-delay: -5s; /* dive right into the action */
 }
 
 #cloud1 {
