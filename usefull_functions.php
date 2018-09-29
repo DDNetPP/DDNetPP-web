@@ -7,6 +7,7 @@
 function HtmlFooter()
 {
 ?>
+    </div>
 	</body>
 </html>
 <?php
@@ -47,6 +48,7 @@ function HtmlHeader($page, $title = "Chilli.* teeworlds page")
 			?>
 			</li>
 		</ul>
+        <div class="main-content">
 <?php
 }
 

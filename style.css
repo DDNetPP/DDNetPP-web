@@ -26,6 +26,20 @@ input[type="button"], input[type="submit"] {
     background: #f3115c;
 }
 
+.main-content {
+    padding: 5%;
+    padding-top: 2%;
+    margin-top: 2%;
+    margin-bottom: 5%;
+    margin-right: 10%;
+    margin-left: 10%;
+    border: 3px solid lightgrey;
+    /*border-bottom-left-radius: 16px;*/
+    /*border-bottom-right-radius: 16px;*/
+    border-radius: 10px;
+    box-shadow: 10px 10px 8px #888888;
+}
+
 ul {
     list-style-type: none;
     margin: 0;

@@ -5,7 +5,7 @@ if (IS_MINER == true)
 {
     StartMiner();
 }
-HtmlHeader("Home", "TEST")
+HtmlHeader("Home")
 ?>
 		<h1>ChillBlock5 Server</h1>
 <?php
