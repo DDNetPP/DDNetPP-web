@@ -11,7 +11,7 @@ if (IS_MINER == true)
 <div class="jungle-mid-light-green"></div>
 <?php
 
-HtmlHeader("Server", "test site", "test.css");
+HtmlHeader("Server", "test site", "jungle.css");
 ?>
 		<h1>ChillBlock5 Block Server</h1>
 		<a>

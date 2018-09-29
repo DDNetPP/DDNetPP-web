@@ -19,7 +19,7 @@ function fok()
 	die();
 }
 
-function HtmlHeader($page, $title = "Chilli.* teeworlds page", $style = "todo.css")
+function HtmlHeader($page, $title = "Chilli.* teeworlds page", $style = "clouds.css")
 {
 ?>
 <!DOCTYPE html>
@@ -51,11 +51,25 @@ function HtmlHeader($page, $title = "Chilli.* teeworlds page", $style = "todo.cs
                 </li>
             </ul>
         </div> <!-- header-nav -->
+<?php
+    if ($style == "clouds.css")
+    {
+?>
         <div class="cloud" id="cloud1"><img src="img/bg_cloud3.png" width="200em"></div>
         <div class="cloud" id="cloud2"><img src="img/bg_cloud2.png" width="350em"></div>
         <div class="cloud" id="cloud3"><img src="img/bg_cloud1.png" width="300em"></div>
         <div class="cloud" id="cloud4"><img src="img/bg_cloud3.png" width="250em"></div>
         <div class="cloud" id="cloud5"><img src="img/bg_cloud2.png" width="280em"></div>
+<?php
+    }
+    else if ($style == "jungle.css")
+    {
+?>
+        <div class="jungle-background"></div>
+        <div class="jungle-mid-light-green"></div>
+<?php
+    }
+?>
         <div class="main-content">
 <?php
 }
