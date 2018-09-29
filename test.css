@@ -58,12 +58,12 @@ input[type="button"], input[type="submit"] {
     margin-right: auto;
     margin-left: auto;
 
-    border: 3px solid lightgrey;
+    border: 2px solid darkgrey;
     /*border-bottom-left-radius: 16px;*/
     /*border-bottom-right-radius: 16px;*/
     border-radius: 10px;
-    box-shadow: 10px 10px 8px #888888;
-    background: white;
+    background: rgba(77,77,77,0.5);
+    box-shadow: 0 3px 5px rgba(0, 0, 0, 0.3);
 }
 
 ul {
