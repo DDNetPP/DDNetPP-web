@@ -50,6 +50,7 @@ function HtmlHeader($page, $title = "Chilli.* teeworlds page")
                 </li>
             </ul>
         </div> <!-- header-nav -->
+        <div class="cloud"><img src="img/bg_cloud3.png"></div>
         <div class="main-content">
 <?php
 }

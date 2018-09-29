@@ -10,6 +10,29 @@ input[type="button"], input[type="submit"] {
     cursor:pointer;
 }
 
+.cloud {
+    /*height: 20em;*/
+    /*width: 20em;*/
+    /*background: white;*/
+    position: absolute;
+    left: 0px;
+    top: 0px;
+    z-index: -1;
+    margin: 8%;
+    animation-name: moveX;
+    animation-duration: 8s;
+    animation-iteration-count: infinite;
+}
+
+@keyFrames moveX {
+    0% {
+        transform: translateX(-200%);
+    }
+    100% {
+        transform: translateX(500%);
+    }
+}
+
 #header-nav {
     position: fixed;
     width: 100%;
@@ -37,8 +60,17 @@ input[type="button"], input[type="submit"] {
     padding-top: 2%;
     margin-top: 5%;
     margin-bottom: 5%;
-    margin-right: 10%;
-    margin-left: 10%;
+
+    /* old */
+    /*margin-right: 20%;*/
+    /*margin-left: 20%;*/
+
+    /* new */
+    min-width: 200px;
+    max-width: 600px;
+    margin-right: auto;
+    margin-left: auto;
+
     border: 3px solid lightgrey;
     /*border-bottom-left-radius: 16px;*/
     /*border-bottom-right-radius: 16px;*/
