@@ -71,6 +71,7 @@ HtmlHeader("Server");
 			'/give rainbow' to get rainbow</br>
 			'/bomb ban (player)' to ban (player) from bombgames (1min max)</br>
 			'/hook rainbow' to get rainbow hook</br>
+            +1 money and +1 xp more per second (moneytiles)</br> 
 
 			<h3> VIP+ power </h3>
 			'/broadcast_srv' to send server broadcasts to all players</br>
@@ -84,5 +85,6 @@ HtmlHeader("Server");
 			'/room invite (player)' to invite (player) to the special room (under the spawn)</br>
 			'/room kick (player)' to kick (player) out of the room</br>
 			'/togglespawn' to change spawnpoint between normal and supermod</br>
+            +2 money and +2 xp more per second (moneytiles)</br> 
 		</a>
 <?php fok(); ?>
