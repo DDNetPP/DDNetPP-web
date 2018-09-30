@@ -16,13 +16,14 @@ function HtmlFooter()
 function fok()
 {
 ?>
-    <script src="design/clouds.js"></script>
+    <!-- new line -->
+    <script src="design/js_clouds.js"></script>
 <?php
 	HtmlFooter();
 	die();
 }
 
-function HtmlHeader($page, $style = "clouds.css", $style2 = "")
+function HtmlHeader($page, $style = "js_clouds.css", $style2 = "")
 {
 ?>
 <!DOCTYPE html>
@@ -79,7 +80,11 @@ function HtmlHeader($page, $style = "clouds.css", $style2 = "")
 ?>
         <!-- JavaScript clouds -->
         <div class="cloud" id="cloud1" style="left: 120px;"></div>
-        <div class="cloud" id="cloud2" style="left: 50px;"></div> 
+        <div class="cloud" id="cloud2" style="left: 300px;"></div>
+        <div class="cloud" id="cloud3" style="left: 50px;"></div>
+        <div class="cloud" id="cloud4" style="left: 50px;"></div>
+        <div class="cloud" id="cloud5" style="left: 50px;"></div>
+        <div class="cloud" id="cloud6" style="left: 50px;"></div>
 <?php
     }
     else if ($style == "jungle.css")
