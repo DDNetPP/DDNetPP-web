@@ -8,11 +8,14 @@ if (IS_MINER == true)
 }
 HtmlHeader("ServerPanel");
 ?>
-<ul>
-    <li><a href="server_panel.php?p=home">Main</a></li>
-    <li><a href="server_panel.php?p=test">Test</a></li>
-    <li><a href="server_panel.php?p=logs">Logs</a></li>
-</ul>
+        <link rel="stylesheet" href="design/server_panel.css"></style>
+        <div id="panel-nav">
+            <ul id="panel-list">
+                <li><a href="server_panel.php?p=home">Main</a></li>
+                <li><a href="server_panel.php?p=test">Test</a></li>
+                <li><a href="server_panel.php?p=logs">Logs</a></li>
+            </ul>
+        </div>
 <?php
 
 if (empty($_SESSION['csLOGGED']) || $_SESSION['csLOGGED'] !== "online")

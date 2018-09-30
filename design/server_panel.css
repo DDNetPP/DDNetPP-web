@@ -1,0 +1,31 @@
+/* server panel CSS
+ *
+ * Only used by serverpanel navigation bar
+ * by ChillerDragon
+ *
+ */
+
+#panel-list li a:hover {
+    background-color: lightgrey;
+}
+
+#panel-list li a {
+    display: block;
+    color: black;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+}
+
+#panel-list {
+    background: darkgrey;
+    border-radius: 10px;
+    border: 2px solid darkgrey;
+    color: grey;
+}
+
+#panel-nav {
+    /*z-index: 420;*/
+    /*position: fixed;*/
+    width: 100%;
+}
