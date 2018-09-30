@@ -1,0 +1,3 @@
+[submodule "TeeworldsDB"]
+	path = TeeworldsDB
+	url = https://github.com/ChillerDragon/TeeworldsDB
