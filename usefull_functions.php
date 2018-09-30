@@ -59,7 +59,6 @@ function HtmlHeader($page, $style = "js_clouds.css", $style2 = "")
 <!DOCTYPE html>
 <html>
 	<head>
-        <script src="hotkeys.js"></script>
 		<link href="http://fonts.googleapis.com/css?family=Comfortaa" rel="stylesheet" type="text/css">
         <link rel="stylesheet" href="design/style.css"></style>
 		<link rel="stylesheet" href="<?php echo "design/$style"; ?>"></style>
@@ -68,6 +67,12 @@ function HtmlHeader($page, $style = "js_clouds.css", $style2 = "")
     {
 ?>
 		<link rel="stylesheet" href="<?php echo "design/$style2"; ?>"></style>
+<?php
+    }
+    if ($page === "Home" or $page === "Clan" or $page === "Server" or $page === "Players" or $page === "Account" or $page === "ServerPanel")
+    {
+?>
+        <script src="hotkeys.js"></script>
 <?php
     }
 ?>
