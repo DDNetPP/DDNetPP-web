@@ -19,7 +19,7 @@ if (!empty($_GET['no_css']))
 if ($no_css === "0")
 {
 ?>
-                <link rel="stylesheet" href="login.css"></style>
+                <link rel="stylesheet" href="design/login.css"></style>
                 <link href="http://fonts.googleapis.com/css?family=Comfortaa" rel="stylesheet" type="text/css">
 <?php
 }

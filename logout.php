@@ -1,5 +1,5 @@
 <head>
-    <link rel="stylesheet" href="style.css"></style>
+    <link rel="stylesheet" href="design/style.css"></style>
     <link href="http://fonts.googleapis.com/css?family=Comfortaa" rel="stylesheet" type="text/css">
     <title>Chilli.* teeworlds page (logout)</title>
 </head>
