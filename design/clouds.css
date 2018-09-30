@@ -1,4 +1,6 @@
 /* nice css clouds by ChillerDragon */
+/* they get resettet on page switch */
+/* that's why we moved to js clouds */
 
 .cloud {
     /*height: 20em;*/

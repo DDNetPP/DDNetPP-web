@@ -23,7 +23,7 @@ var cloud4Speed     = 2;
 
 var cloud5          = document.getElementById("cloud5");
 var cloud5StartPos  = typeof sessionStorage['cloud5Pos'] == "undefined" ? cloud5.style.left : sessionStorage['cloud5Pos'];
-var cloud5Speed     = 2;
+var cloud5Speed     = 1;
 
 
 window.onbeforeunload = function() {
