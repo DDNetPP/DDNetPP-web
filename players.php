@@ -115,7 +115,7 @@ function GetTotalPages($items_per_page)
 echo "
         <style>
         .tee div,.template {
-          background-image: url(players/skin/$skin_name.png);
+          background-image: url(TeeworldsDB/skins/$skin_name.png);
         }
         </style>
 ";
