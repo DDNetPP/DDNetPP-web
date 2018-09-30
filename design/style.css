@@ -10,54 +10,6 @@ input[type="button"], input[type="submit"] {
     cursor:pointer;
 }
 
-.cloud {
-    /*height: 20em;*/
-    /*width: 20em;*/
-    /*background: white;*/
-    position: fixed;
-    left: 0px;
-    top: 0px;
-    z-index: -1;
-    margin: 8%;
-    animation-name: moveX;
-    animation-duration: 8s;
-    animation-iteration-count: infinite;
-    animation-timing-function: linear;
-    animation-delay: -5s; /* dive right into the action */
-}
-
-#cloud1 {
-    animation-duration: 30s;
-}
-
-#cloud2 {
-    animation-duration: 15s;
-}
-
-#cloud3 {
-    top: 30%;
-    animation-duration: 20s;
-}
-
-#cloud4 {
-    top: 50%;
-    animation-duration: 25s;
-}
-
-#cloud5 {
-    top: 55%;
-    animation-duration: 18s;
-}
-
-@keyFrames moveX {
-    0% {
-        transform: translateX(-50em);
-    }
-    100% {
-        transform: translateX(100em);
-    }
-}
-
 #header-nav {
     position: fixed;
     width: 100%;

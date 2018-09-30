@@ -1,0 +1,21 @@
+.cloud {
+    position: fixed;
+    z-index: -1;
+    margin: 8%;
+}
+
+#cloud1 {
+    top: 0px;
+    background-image: url("img/bg_cloud1.png");
+    background-size: 512px 256px;
+    width: 512px;
+    height: 256px;
+}
+
+#cloud2 {
+    top: 200px;
+    background-image: url("img/bg_cloud2.png");
+    background-size: 512px 256px;
+    width: 512px;
+    height: 256px;
+}

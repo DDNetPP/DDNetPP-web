@@ -15,16 +15,20 @@ function HtmlFooter()
 
 function fok()
 {
+?>
+        <script src="design/clouds.js"></script>
+<?php
 	HtmlFooter();
 	die();
 }
 
-function HtmlHeader($page, $style = "clouds.css", $style2 = "")
+function HtmlHeader($page, $style = "js_clouds.css", $style2 = "")
 {
 ?>
 <!DOCTYPE html>
 <html>
 	<head>
+		<link href="http://fonts.googleapis.com/css?family=Comfortaa" rel="stylesheet" type="text/css">
         <link rel="stylesheet" href="design/style.css"></style>
 		<link rel="stylesheet" href="<?php echo "design/$style"; ?>"></style>
 <?php
@@ -35,7 +39,6 @@ function HtmlHeader($page, $style = "clouds.css", $style2 = "")
 <?php
     }
 ?>
-		<link href="http://fonts.googleapis.com/css?family=Comfortaa" rel="stylesheet" type="text/css">
         <title><?php echo "Chilli.* - $page"; ?></title>
 	</head>
 	<body>
@@ -63,11 +66,16 @@ function HtmlHeader($page, $style = "clouds.css", $style2 = "")
     if ($style == "clouds.css")
     {
 ?>
+        <!-- CSS clouds
         <div class="cloud" id="cloud1"><img src="design/img/bg_cloud3.png" width="200em"></div>
         <div class="cloud" id="cloud2"><img src="design/img/bg_cloud2.png" width="350em"></div>
         <div class="cloud" id="cloud3"><img src="design/img/bg_cloud1.png" width="300em"></div>
         <div class="cloud" id="cloud4"><img src="design/img/bg_cloud3.png" width="250em"></div>
         <div class="cloud" id="cloud5"><img src="design/img/bg_cloud2.png" width="280em"></div>
+        -->
+        <!-- JavaScript clouds -->
+        <div class="cloud" id="cloud1" style="left: 120px;"></div>
+        <div class="cloud" id="cloud2" style="left: 50px;"></div> 
 <?php
     }
     else if ($style == "jungle.css")
