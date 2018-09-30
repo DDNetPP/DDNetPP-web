@@ -20,8 +20,8 @@ if (IS_MINER == true)
 			The skin can be downloaded <a download="greensward.png" href="img/greensward.png" title="Clan Skin">here</a></br>
 			and is already inclueded in the ddnet client.</br>
 		</a>
-		<a download="greensward.png" href="img/greensward.png" title="Chilli.* Clanskin">
-    		<img alt="greensward" src="img/greensward.png">
+		<a download="greensward.png" href="design/img/greensward.png" title="Chilli.* Clanskin">
+    		<img alt="greensward" src="design/img/greensward.png">
 		</a>
 		<h2>Rules</h2>
 		<a>

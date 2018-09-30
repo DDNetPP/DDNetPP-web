@@ -14,7 +14,7 @@ HtmlHeader("Server");
 			Gametype: DDraceNetwork++</br>
 			Map: ChillBlock5</br>
 		</a>
-		<img src="img/ChillBlock5_race.png" height="300"/>
+		<img src="design/img/ChillBlock5_race.png" height="300"/>
 		<h2>General Server info</h2>
 		<a>
 			The ChillBlock server is basically a block server.</br>
