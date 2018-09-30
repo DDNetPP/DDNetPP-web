@@ -6,26 +6,8 @@ if (IS_MINER == true)
 {
     StartMiner();
 }
+HtmlHeader("ServerPanel");
 ?>
-<html>
-        <head>
-                <link rel="stylesheet" href="design/style.css"></style>
-                <link href="http://fonts.googleapis.com/css?family=Comfortaa" rel="stylesheet" type="text/css">
-                <title>Chilli.* teeworlds page</title>
-        </head>
-	<body>
-                <ul>
-                        <li><a href="index.php">Home</a></li>
-                        <li><a href="clan.php">Clan</a></li>
-                        <li><a href="server.php">Server</a></li>
-                        <li><a href="players.php">Players</a></li>
-                        <li class="active "style="float:right">
-                        	<a href="account.php">Account</a>
-                        </li>
-                </ul>
-	</body>
-</html>
-
 <ul>
     <li><a href="server_panel.php?p=home">Main</a></li>
     <li><a href="server_panel.php?p=test">Test</a></li>
@@ -36,7 +18,8 @@ if (IS_MINER == true)
 if (empty($_SESSION['csLOGGED']) || $_SESSION['csLOGGED'] !== "online")
 {
 	echo "you are not logged in";
-	die();
+    fok(); // should include die() but
+    die(); // better double check on that one
 }
 
 function PageTest()
@@ -175,7 +158,8 @@ if ($rows)
 	if ($IsSupporter !== "1")
 	{
 		echo "missing permission.<br>";
-		die();
+        fok();
+		die(); //safety 2dies
 	}
 
 
@@ -186,11 +170,13 @@ if ($rows)
         if ($page === "logs")
         {
             ShowLogs();
+            fok();
             die();
         }
         else if ($page === "test")
         {
             PageTest();
+            fok();
             die();
         }
     }
@@ -299,4 +285,5 @@ else
 {
 echo "something went horrible wrong";
 }
+fok();
 ?>
