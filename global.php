@@ -16,8 +16,17 @@ error_reporting(-1);
 const DDPP_USER = "chiller";
 
 //paths
-const ABSOLUTE_DATABASE_PATH = "sqlite:/home/chiller/ddpp_database/accounts.db";
+/*
+    PLAYER_DATABASE is also used for the edit requests
+    The Status column holds release state and stuff
+    Status states:
+        0 = Archived/deleted (also blocks user form from adding this name agian)
+        1 = Currently being edited
+        2 = Finished edit pullrequest
+        3 = Released
+*/
 const PLAYER_DATABASE = "sqlite:/var/www/html/DDNetPP-web/players/TeeworldsPlayers.db";
+const ABSOLUTE_DATABASE_PATH = "sqlite:/home/chiller/ddpp_database/accounts.db";
 const SCRIPTS_PATH = "/home/chiller/ddpp_database/web_scripts";
 const SCRIPTS_TEST_SRV_PATH = "/home/chiller/ddpp_database/web_scripts/test_srv";
 const UPDATE_SCRIPTS_SCRIPT_PATH = "/var/www/update_ddpp_scripts.sh";
