@@ -16,7 +16,7 @@ function HtmlFooter()
 function fok()
 {
 ?>
-        <!-- <script src="design/clouds.js"></script> -->
+    <script src="design/clouds.js"></script>
 <?php
 	HtmlFooter();
 	die();
@@ -72,11 +72,14 @@ function HtmlHeader($page, $style = "clouds.css", $style2 = "")
         <div class="cloud" id="cloud3"><img src="design/img/bg_cloud1.png" width="300em"></div>
         <div class="cloud" id="cloud4"><img src="design/img/bg_cloud3.png" width="250em"></div>
         <div class="cloud" id="cloud5"><img src="design/img/bg_cloud2.png" width="280em"></div>
+<?php
+    }
+    else if ($style == "js_clouds.css")
+    {
+?>
         <!-- JavaScript clouds -->
-        <!--
         <div class="cloud" id="cloud1" style="left: 120px;"></div>
         <div class="cloud" id="cloud2" style="left: 50px;"></div> 
-        -->
 <?php
     }
     else if ($style == "jungle.css")
