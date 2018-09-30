@@ -119,7 +119,14 @@ function ShowLogs()
             $username = $row['Username'];
             $action = $row['Action'];
             $time = $row['TimeStamp'];
-            echo "[$time] <b>$username</b>: $action<br/>";
+            if(strpos($action, "restart_chillerbot_") !== FALSE)
+            {
+                echo "[$time] <font color=\"red\"><b>$username</b>: $action<br/></font>";
+            }
+            else
+            {
+                echo "[$time] <b>$username</b>: $action<br/>";
+            }
         }
     }
     else
