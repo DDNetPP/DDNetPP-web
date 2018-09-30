@@ -34,7 +34,7 @@ function GetTotalPages($items_per_page)
 
 	$SQL_playerlist_query_base = "SELECT * FROM Players WHERE ID > ? AND Status = 3 ";
 	//$SQL_playerlist_query_condition = "AND Status = 3 ";
-	//$SQL_playerlist_query_order_by = "ORDER BY x DESC ";
+	$SQL_playerlist_query_order_by = "ORDER BY Name ASC ";
 	$SQL_playerlist_query_range = "LIMIT 10 OFFSET 0 ";
 
 	$players_per_page = 10;
@@ -59,7 +59,7 @@ function GetTotalPages($items_per_page)
 	
 	$db = new PDO(PLAYER_DATABASE);
 	$db->setAttribute( PDO::ATTR_ERRMODE, PDO::ERRMODE_WARNING );
-	$SQL_execution_string = $SQL_playerlist_query_base . $SQL_playerlist_query_range;
+	$SQL_execution_string = $SQL_playerlist_query_base . $SQL_playerlist_query_order_by . $SQL_playerlist_query_range;
 	$stmt = $db->prepare($SQL_execution_string);
 	//echo "ececuted: $SQL_execution_string <br>";
 	$stmt->execute(array(0));
