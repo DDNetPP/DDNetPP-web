@@ -133,8 +133,13 @@ echo "
         </div>
 <?php
 			
+            /*
+            //old picture system
 			if (file_exists("players/img_players/Teeworlds_$name.png"))
+            {
 				echo "<img src=\"players/img_players/Teeworlds_$name.png\"><br>";
+            }
+            */
 			if ($aka)
 			{
 				echo "<a><strong>AKA:</strong> $aka<br></a>";

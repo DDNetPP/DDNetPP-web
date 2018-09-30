@@ -3,7 +3,8 @@
  * edit by ChillerDragon
  */
 
-var screenWidth     = screen.width;
+//var screenWidth     = screen.width; // worked fine on macOS safari; But went to early back on iPhone5
+var screenWidth     = screen.width + 1000; // worked fine everywhere
 
 var cloud1          = document.getElementById("cloud1");
 var cloud1StartPos  = typeof sessionStorage['cloud1Pos'] == "undefined" ? cloud1.style.left : sessionStorage['cloud1Pos'];
