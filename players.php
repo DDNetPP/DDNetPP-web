@@ -123,9 +123,9 @@ echo "
 ?>
         <div class="tee" <?php echo "skin$id"; ?>>
             <div class="head-shadow"></div>
-            <div class="head"></div>
             <div class="back-foot-shadow"></div>
             <div class="back-foot"></div>
+            <div class="head"></div>
             <div class="front-foot-shadow"></div>
             <div class="front-foot"></div>
             <div class="lEye"></div>
