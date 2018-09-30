@@ -53,7 +53,7 @@ function HtmlHeader($page, $style = "js_clouds.css", $style2 = "")
                 <?php
                     if (!empty($_SESSION['csLOGGED']) && $_SESSION['csLOGGED'] === "online")
                     {
-                        echo "<a href=\"account.php\">Account</a>";
+                        echo "<a " . (($page === "Account") ? 'class="active"' : '') . "href=\"account.php\">Account</a>";
                     }
                     else
                     {

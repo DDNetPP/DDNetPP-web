@@ -1,36 +1,12 @@
 <?php
 require_once(__DIR__ . "/global.php");
-if (IS_MINER == true)
-{
-    StartMiner();
-}
-?>
-
-<html>
-        <head>
-                <link rel="stylesheet" href="design/style.css"></style>
-                <link href="http://fonts.googleapis.com/css?family=Comfortaa" rel="stylesheet" type="text/css">
-                <title>Chilli.* teeworlds page</title>
-        </head>
-	<body>
-                <ul>
-                        <li><a href="index.php">Home</a></li>
-                        <li><a href="clan.php">Clan</a></li>
-                        <li><a href="server.php">Server</a></li>
-                        <li><a href="players.php">Players</a></li>
-                        <li class="active "style="float:right">
-                        	<a href="account.php">Account</a>
-                        </li>
-                </ul>
-	</body>
-</html>
-<?php
 session_start();
+HtmlHeader("Account");
 
 if ($_SESSION['csLOGGED'] !== "online")
 {
 	echo "you are not logged in";
-	die();
+	fok();
 }
 
 $db = new PDO(ABSOLUTE_DATABASE_PATH);
@@ -82,4 +58,5 @@ else
 {
 echo "something went horrible wrong";
 }
+fok();
 ?>
