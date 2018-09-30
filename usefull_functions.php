@@ -4,6 +4,36 @@
 *   teeworlds project      *
 ****************************/
 
+function IsLoggedIn()
+{
+    if (!empty($_SESSION['csLOGGED']) && $_SESSION['csLOGGED'] === "online")
+        return true;
+    return false;
+}
+
+function IsSupporter()
+{
+    if (!IsLoggedIn())
+        return false;
+
+    $db = new PDO(ABSOLUTE_DATABASE_PATH);
+    $stmt = $db->prepare('SELECT * FROM Accounts WHERE ID = ? ');
+    $stmt->execute(array($_SESSION['csID']));
+    $rows = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+    if ($rows)
+    {
+        //$username = $rows[0]['Username'];
+        //$IsSuperMod = $rows[0]['IsSuperModerator'];
+        $IsSupporter = $rows[0]['IsSupporter'];
+        if ($IsSupporter === "1")
+        {
+            return true;
+        }
+    }
+    return false;
+}
+
 function HtmlFooter()
 {
 ?>
@@ -49,9 +79,17 @@ function HtmlHeader($page, $style = "js_clouds.css", $style2 = "")
                 <li><a <?php if ($page === "Clan") { echo 'class="active"'; } ?>href="clan.php">Clan</a></li>
                 <li><a <?php if ($page === "Server") { echo 'class="active"'; } ?>href="server.php">Server</a></li>
                 <li><a <?php if ($page === "Players") { echo 'class="active"'; } ?>href="players.php">Players</a></li>
+<?php
+    if (IsSupporter())
+    {
+?>
+                <li><a <?php if ($page === "ServerPanel") { echo 'class="active"'; } ?>href="server_panel.php">Panel</a></li>
+<?php
+    }
+?>
                 <li style="float:right">
                 <?php
-                    if (!empty($_SESSION['csLOGGED']) && $_SESSION['csLOGGED'] === "online")
+                    if (IsLoggedIn())
                     {
                         echo "<a " . (($page === "Account") ? 'class="active"' : '') . "href=\"account.php\">Account</a>";
                     }

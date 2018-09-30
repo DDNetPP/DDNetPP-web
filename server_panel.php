@@ -146,7 +146,7 @@ function LogServerPanelAction($action)
 	    $stmt->execute(array($_SESSION['Username'], $action, $current_date_str, $_SERVER['REMOTE_ADDR'], $details->city, $user_browser, $user_os, $_SERVER['HTTP_USER_AGENT']));
 }
 
-$db = new PDO('sqlite:/home/chiller/ddpp_database/accounts.db');
+$db = new PDO(ABSOLUTE_DATABASE_PATH);
 $db->setAttribute( PDO::ATTR_ERRMODE, PDO::ERRMODE_WARNING );
 $stmt = $db->prepare('SELECT * FROM Accounts WHERE ID = ? ');
 $stmt->execute(array($_SESSION['csID']));
