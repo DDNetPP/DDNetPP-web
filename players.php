@@ -9,7 +9,7 @@ HtmlHeader("Players", "jungle.css");
 
 function GetTotalPages($items_per_page)
 {
-    $SQL_pages_base = "SELECT COUNT(*) AS TotalPages FROM Players";
+    $SQL_pages_base = "SELECT COUNT(*) AS TotalPages FROM Players WHERE Status = 3";
     
     $db = new PDO(PLAYER_DATABASE);
     $rows = $db->query($SQL_pages_base);
@@ -32,8 +32,8 @@ function GetTotalPages($items_per_page)
 }
 
 
-	$SQL_playerlist_query_base = "SELECT * FROM Players WHERE ID > ? ";
-	//$SQL_playerlist_query_condition1 = "";
+	$SQL_playerlist_query_base = "SELECT * FROM Players WHERE ID > ? AND Status = 3 ";
+	//$SQL_playerlist_query_condition = "AND Status = 3 ";
 	//$SQL_playerlist_query_order_by = "ORDER BY x DESC ";
 	$SQL_playerlist_query_range = "LIMIT 10 OFFSET 0 ";
 
