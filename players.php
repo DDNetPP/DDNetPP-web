@@ -76,6 +76,7 @@ function GetTotalPages($items_per_page)
 		{
 			$name = $row['Name'];
 			$aka = $row['AKA'];
+            $id = $row['ID'];
             $skin_name = $row['SkinName'];
             $skin_color_body = $row['SkinColorBody'];
             $skin_color_feet = $row['SkinColorFeet'];
@@ -114,13 +115,13 @@ function GetTotalPages($items_per_page)
             // Thanks to Alexander_
 echo "
         <style>
-        .tee div,.template {
+        .tee[skin$id] div {
           background-image: url(TeeworldsDB/skins/$skin_name.png);
         }
         </style>
 ";
 ?>
-        <div class="tee">
+        <div class="tee" <?php echo "skin$id"; ?>>
             <div class="head-shadow"></div>
             <div class="head"></div>
             <div class="back-foot-shadow"></div>
