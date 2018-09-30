@@ -1,0 +1,110 @@
+/*
+
+    CSS TeeAssembler
+
+    Made by Alexander
+    Discord: Alexander_#6686 (just in case)
+
+    Edited by ChillerDragon
+
+
+    No License, do whatever you want.
+
+*/
+
+:focus {
+    outline: none;
+}
+
+.tee {
+    width: 96px;
+    height: 96px;
+    /*border: 2px solid white;*/
+    position: relative;
+    left: 5%;
+    transform: translateX(-50%);
+    -ms-transform: translateX(-50%);
+    margin-top: 0px;
+    z-index: 1;
+}
+
+.tee div {
+    position: absolute;
+}
+
+.head,.head-shadow {
+    width: 96px;
+    height: 96px;
+}
+
+.back-foot,.back-foot-shadow,.front-foot,.front-foot-shadow {
+    width: 64px;
+    height: 32px;
+}
+
+.head-shadow {
+    z-index: 5;
+    background-position: -96px 0;
+}
+
+.back-foot-shadow {
+    z-index: 6;
+    background-position: -192px -64px;
+    top: 52px;
+    left: 6px;
+    transform: scale(1.1);
+}
+
+.back-foot {
+    z-index: 7;
+    background-position: -192px -32px;
+    top: 52px;
+    left: 7px;
+    transform: scale(1.4);
+}
+
+.head {
+    z-index: 8;
+    background-position: 0 0;
+}
+
+.front-foot-shadow {
+    z-index: 9;
+    background-position: -192px -64px;
+    top: 52px;
+    left: 26px;
+    transform: scale(1.1);
+}
+
+.front-foot {
+    z-index: 10;
+    background-position: -192px -32px;
+    top: 52px;
+    left: 26px;
+    transform: scale(1.35);
+}
+
+.lEye,.rEye {
+    z-index: 10;
+    width: 32px;
+    height: 32px;
+    background-position: -64px -96px;
+}
+
+.lEye {
+    top: 29px;
+    left: 38px;
+    transform: scale(1.12);
+}
+
+.rEye {
+    top: 29px;
+    left: 48px;
+    transform: scale(1.12) rotateY(-180deg);
+}
+
+.head-shadow, .head {
+    transform: scale(.9);
+    top: 1px
+}
+

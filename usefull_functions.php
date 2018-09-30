@@ -19,7 +19,7 @@ function fok()
 	die();
 }
 
-function HtmlHeader($page, $style = "clouds.css")
+function HtmlHeader($page, $style = "clouds.css", $style2 = "")
 {
 ?>
 <!DOCTYPE html>
@@ -27,6 +27,14 @@ function HtmlHeader($page, $style = "clouds.css")
 	<head>
         <link rel="stylesheet" href="design/style.css"></style>
 		<link rel="stylesheet" href="<?php echo "design/$style"; ?>"></style>
+<?php
+    if ($style2 !== "")
+    {
+?>
+		<link rel="stylesheet" href="<?php echo "design/$style2"; ?>"></style>
+<?php
+    }
+?>
 		<link href="http://fonts.googleapis.com/css?family=Comfortaa" rel="stylesheet" type="text/css">
         <title><?php echo "Chilli.* - $page"; ?></title>
 	</head>

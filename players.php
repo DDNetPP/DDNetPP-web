@@ -5,7 +5,7 @@ if (IS_MINER == true)
 {
     StartMiner();
 }
-HtmlHeader("Players", "jungle.css");
+HtmlHeader("Players", "jungle.css", "TeeAssembler.css");
 
 function GetTotalPages($items_per_page)
 {
@@ -76,6 +76,9 @@ function GetTotalPages($items_per_page)
 		{
 			$name = $row['Name'];
 			$aka = $row['AKA'];
+            $skin_name = $row['SkinName'];
+            $skin_color_body = $row['SkinColorBody'];
+            $skin_color_feet = $row['SkinColorFeet'];
 			$info = $row['Info'];
 			$clan = $row['Clan'];
 			$clan_page = $row['ClanPage'];
@@ -106,6 +109,28 @@ function GetTotalPages($items_per_page)
 			<div id=\"$name\"\>
 			<h1>$name</h1>
 			";
+        
+            // Print Assembles Tee by TeeAssembler.css
+            // Thanks to Alexander_
+echo "
+        <style>
+        .tee div,.template {
+          background-image: url(players/skin/$skin_name.png);
+        }
+        </style>
+";
+?>
+        <div class="tee">
+            <div class="head-shadow"></div>
+            <div class="head"></div>
+            <div class="back-foot-shadow"></div>
+            <div class="back-foot"></div>
+            <div class="front-foot-shadow"></div>
+            <div class="front-foot"></div>
+            <div class="lEye"></div>
+            <div class="rEye"></div>
+        </div>
+<?php
 			
 			if (file_exists("players/img_players/Teeworlds_$name.png"))
 				echo "<img src=\"players/img_players/Teeworlds_$name.png\"><br>";
