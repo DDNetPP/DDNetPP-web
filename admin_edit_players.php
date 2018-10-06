@@ -16,6 +16,19 @@ function PrintEditInfo($status, $editor, $lasteditdate, $id)
     echo "<b>LastEdit:</b> $lasteditdate</br>";
     echo "<b>ID:</b> $id</br>";
     //TODO: add buttons to delete/archive/release the entry
+    if ($status === "0")
+    {
+        echo "<h1>ARCHIVED!</h1>";
+    }
+    else
+    {
+?>
+    <form action="admin_edit_players.php" method="post">
+        <input type="hidden" name="id" value="<?php echo $id; ?>">
+        <input type="submit" name="action" value="archive" />
+    </form>
+<?php
+    }
 ?>
     </div>
     <style>
@@ -48,6 +61,7 @@ function PrintEditInfo($status, $editor, $lasteditdate, $id)
 
 function PrintPlayerInfo($name, $aka, $clan, $clan_page, $info, $yt_name, $yt_link, $ddnet, $ddnet_mapper, $ddnet_mapper_link, $teerace, $skill)
 {
+            echo "<h1>$name</h1>";
 			if (file_exists("players/img_players/Teeworlds_$name.png"))
 				echo "<img src=\"players/img_players/Teeworlds_$name.png\"><br>";
 			if ($aka)
@@ -83,10 +97,17 @@ function PrintPlayerInfo($name, $aka, $clan, $clan_page, $info, $yt_name, $yt_li
 				echo "<a><strong>Skill:</strong> $skill</a></br>";
 }
 
-function GetTotalPages($items_per_page)
+function GetTotalPages($items_per_page, $hide)
 {
-    $SQL_pages_base = "SELECT COUNT(*) AS TotalPages FROM Players WHERE Status <> 3";
-    
+    if ($hide)
+    {
+        $SQL_pages_base = "SELECT COUNT(*) AS TotalPages FROM Players WHERE Status <> 3 AND Status <> 0";
+    }
+    else
+    {
+        $SQL_pages_base = "SELECT COUNT(*) AS TotalPages FROM Players WHERE Status <> 3";
+    }
+        
     $db = new PDO(PLAYER_DATABASE);
     $rows = $db->query($SQL_pages_base);
     $rows = $rows->fetchAll();
@@ -107,8 +128,63 @@ function GetTotalPages($items_per_page)
     return -1;
 }
 
+    /********************************************
+     *                                          *
+     *   Global Scope start!                    *
+     *   from here on the execution starts      *
+     *                                          *
+     *                                          *
+     ********************************************/
 
-	$SQL_playerlist_query_base = "SELECT * FROM Players WHERE ID > ? AND Status <> 3 ";
+    if (!empty($_POST['action']))
+    {
+        $action = (string)$_POST['action'];
+        if ($action === "archive")
+        {
+            $id = (int)$_POST['id'];
+            echo "yo deletin!!! ID=$id";
+            $db = new PDO(PLAYER_DATABASE);
+            $db->setAttribute( PDO::ATTR_ERRMODE, PDO::ERRMODE_WARNING );
+            $stmt = $db->prepare("UPDATE Players SET Status = 0 WHERE ID = ?;");
+            $stmt->execute(array($id));
+            $rows = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+            if ($rows)
+            {
+                echo "SQL output: <br/>";
+                print_r($rows);
+            }
+        }
+        else
+        {
+            echo "Error: unknown action!";
+            fok();   
+        }      
+    }
+
+    $hide_archive = false;
+    if (!empty($_GET['hide_archive']))
+    {
+        $hide = $_GET['hide_archive'];
+        if ($hide === "1")
+        {
+            $hide_archive = true;
+        }
+        else if ($hide === "0")
+        {
+            $hide_archive = false;
+        }
+    }
+
+	$SQL_playerlist_query_base = "SELECT * FROM Players WHERE ID > ? ";
+    if ($hide_archive)
+    {
+        $SQL_playerlist_query_hide = " AND Status <> 3 AND Status <> 0 ";
+    }
+    else
+    {
+        $SQL_playerlist_query_hide = " AND Status <> 3 ";
+    }
 	//$SQL_playerlist_query_condition = "AND Status = 3 ";
 	//$SQL_playerlist_query_order_by = "ORDER BY x DESC ";
 	$SQL_playerlist_query_range = "LIMIT 10 OFFSET 0 ";
@@ -135,7 +211,7 @@ function GetTotalPages($items_per_page)
 	
 	$db = new PDO(PLAYER_DATABASE);
 	$db->setAttribute( PDO::ATTR_ERRMODE, PDO::ERRMODE_WARNING );
-	$SQL_execution_string = $SQL_playerlist_query_base . $SQL_playerlist_query_range;
+	$SQL_execution_string = $SQL_playerlist_query_base . $SQL_playerlist_query_hide . $SQL_playerlist_query_range;
 	$stmt = $db->prepare($SQL_execution_string);
 	//echo "ececuted: $SQL_execution_string <br>";
 	$stmt->execute(array(0));
@@ -187,7 +263,6 @@ function GetTotalPages($items_per_page)
 			
 			echo "
 			<div id=\"$name\"\>
-			<h1>$name</h1>
 			";
             PrintEditInfo($status, $editor, $lasteditdate, $id);
             PrintPlayerInfo($name, $aka, $clan, $clan_page, $info, $yt_name, $yt_link, $ddnet, $ddnet_mapper, $ddnet_mapper_link, $teerace, $skill);
@@ -198,7 +273,7 @@ function GetTotalPages($items_per_page)
 		}
 		/****************************** MAIN PLAYER FORMAT END ************************************/
 		
-		$total_pages = GetTotalPages($players_per_page);
+		$total_pages = GetTotalPages($players_per_page, $hide_archive);
 		if ($total_pages == 0 and $players_page == 0) //all players fitt on one page --> dont show that we are on page 0/0
 			fok();
 		echo "<a><br>page: $players_page/$total_pages<br></a>";

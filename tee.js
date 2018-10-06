@@ -9,8 +9,8 @@ function render(skin){
 	ctx = canvas.getContext("2d");
 
 	ctx.drawImage(skin,192,64,64,32,10,33,60,30); //back feet shadow
-	ctx.drawImage(skin,192,32,64,32,8,32,64,32); //back feet
 	ctx.drawImage(skin,96,0,96,96,16,0,64,64); //body shadow
+	ctx.drawImage(skin,192,32,64,32,8,32,64,32); //back feet
 	ctx.drawImage(skin,0,0,96,96,16,0,64,64); //body
 	ctx.drawImage(skin,192,64,64,32,26,33,60,30); //front feet shadow
 	ctx.drawImage(skin,192,32,64,32,24,32,64,32); //front feet
