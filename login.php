@@ -1,5 +1,6 @@
 <?php
 require_once(__DIR__ . "/global.php");
+require_once(__DIR__ . "/view/form_view.php");
 session_start();
 if (IS_MINER == true)
 {
@@ -57,6 +58,7 @@ function print_html_main($fail_reason)
 	{
 		echo "<font color=\"red\">$fail_reason</font>";
 	}
+    fok();
 }
 
 
@@ -80,15 +82,7 @@ if (!empty($_POST['username']) and !empty($_POST['password']))
 		$_SESSION['Username'] = $name;
 		echo "Logged in as '$name' </br>";
 		$_SESSION['csLOGGED'] = "online";
-		echo "
-			<script type=\"text/javascript\">
-    				window.setTimeout(function() 
-				{
-    					window.location.href='index.php';
-    				}, 2000);
-			</script>
-		";
-		echo "<form><input type=\"button\" value=\"okay\" onclick=\"window.location.href='index.php'\" /></form>";
+        ViewOkayButton('index.php');
 	}
 	else
 	{

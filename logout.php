@@ -7,6 +7,7 @@
 <?php
 session_start();
 require_once(__DIR__ . "/global.php");
+require_once(__DIR__ . "/view/form_view.php");
 
 
 if ($_SESSION['csLOGGED'] !== "online")
@@ -20,18 +21,7 @@ else
 	echo "logged out.";
 }
 
-
-echo "
-<script type=\"text/javascript\">
-  window.setTimeout(function()
-  {
-    window.location.href='index.php';
-  }, 2000);
-</script>
-";
-
-
-echo "<form><input type=\"button\" value=\"back\" onclick=\"window.location.href='index.php'\" /></form>";
+ViewOkayButton('index.php');
 
 ?>
 
