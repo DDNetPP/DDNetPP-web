@@ -69,11 +69,26 @@ function HtmlHeader($page, $style = "js_clouds.css", $style2 = "")
 		<link rel="stylesheet" href="<?php echo "design/$style2"; ?>"></style>
 <?php
     }
-    if ($page === "Home" or $page === "Clan" or $page === "Server" or $page === "Players" or $page === "Account" or $page === "ServerPanel")
+    if (in_array($page, HOTKEY_PAGES))
     {
+        if (IsSupporter())
+        {
 ?>
-        <script src="hotkeys.js"></script>
+        <script src="hotkeys_supporter.js"></script>
 <?php
+        }
+        else if (IsLoggedIn())
+        {
+?>
+        <script src="hotkeys_user.js"></script>
+<?php
+        }
+        else
+        {
+?>
+        <script src="hotkeys_default.js"></script>
+<?php
+        }
     }
 ?>
         <title><?php echo "Chilli.* - $page"; ?></title>

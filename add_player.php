@@ -15,6 +15,13 @@ function BackButton()
 <?php
 }
 
+function MainPlayerForm()
+{
+?>
+    SOME PLAYER FORM
+<?php
+}
+
 function GetPlayerName()
 {
 ?>
@@ -67,6 +74,7 @@ if (!empty($_POST['player']))
     else
     {
         echo "adding player '$player'";
+        MainPlayerForm();
         BackButton();
     }
 }
