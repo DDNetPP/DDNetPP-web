@@ -64,7 +64,6 @@ function print_html_main($fail_reason)
 function RememberMe($username, $password, $tw_id)
 {
     $token = bin2hex(openssl_random_pseudo_bytes(256));
-    echo "remember token: $token<br>";
     StoreLoginCookie($username, $password, $tw_id, $token);
 }
 
