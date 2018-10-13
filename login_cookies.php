@@ -1,6 +1,19 @@
 <?php
 require_once("/var/www/html/DDNetPP-web/global.php");
 
+function DeleteLoginCookie($token)
+{
+    // remove cookei from database
+    $db = NULL;
+    $db = new PDO(WEB_DATABASE_PATH);
+    $db->setAttribute( PDO::ATTR_ERRMODE, PDO::ERRMODE_WARNING );
+    $stmt = $db->prepare('DELETE FROM LoginCookies WHERE Token = ?;');
+    $stmt->execute(array($token));
+    
+    // delete cookie clientside
+    setCookie('token', "l0gg3ed0u7"); // much wow leet loggedout value idk^ should maybe use some cookie deletion method instead
+}
+
 function StoreLoginCookie($username, $password, $tw_id, $token)
 {
     //Get Date
@@ -47,6 +60,7 @@ function LoadLoginCookie($token)
 		$_SESSION['csID'] = $rows[0]['TwID'];
 		$_SESSION['Username'] = $rows[0]['Username'];
 		$_SESSION['csLOGGED'] = "online";
+        $_SESSION['login_token'] = $token;
         echo "LOGGED IN WITH COOKIE";
         return true;
     }

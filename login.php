@@ -65,6 +65,7 @@ function RememberMe($username, $password, $tw_id)
 {
     $token = bin2hex(openssl_random_pseudo_bytes(256));
     StoreLoginCookie($username, $password, $tw_id, $token);
+    return $token;
 }
 
 
@@ -82,16 +83,18 @@ if (!empty($_POST['username']) and !empty($_POST['password']))
 
 	if ($rows)
 	{
-		#print_r($rows);
 		$name = $rows[0]['Username'];
-		echo "Logged in as '$name' </br>";
-		$_SESSION['csID'] = $rows[0]['ID'];
-		$_SESSION['Username'] = $name;
-		$_SESSION['csLOGGED'] = "online";
+        $tw_id = $rows[0]['ID'];
+        $token = "error";
         if(isset($_POST['remember_me']) && $_POST['remember_me']  ? "1" : "0")
         {
-            RememberMe($username, $password, $_SESSION['csID']);
+            $token = RememberMe($username, $password, $tw_id);
         }
+		$_SESSION['csID'] = $tw_id;
+		$_SESSION['Username'] = $name;
+		$_SESSION['csLOGGED'] = "online";
+        $_SESSION['login_token'] = $token;
+		echo "Logged in as '$name' </br>";
         ViewOkayButton('index.php');
 	}
 	else
