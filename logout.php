@@ -18,6 +18,7 @@ if ($_SESSION['csLOGGED'] !== "online")
 else
 {
 	session_destroy();
+    setCookie('token', "l0gg3ed0u7"); // much wow leet loggedout value idk^ should maybe use some cookie deletion method instead
 	echo "logged out.";
 }
 

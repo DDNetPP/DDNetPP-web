@@ -1,0 +1,55 @@
+<?php
+require_once("/var/www/html/DDNetPP-web/global.php");
+
+function StoreLoginCookie($username, $password, $tw_id, $token)
+{
+    //Get Date
+    $current_date = date_create(date("Y-m-d H:i:s"));
+    $current_date_str = $current_date->format('Y-m-d H:i:s');
+    
+    //Get City
+    $ip = $_SERVER['REMOTE_ADDR'];
+    $details = json_decode(file_get_contents("http://ipinfo.io/{$ip}/json"));
+    
+    //Add login to cookie database
+    $db = NULL;
+    $db = new PDO(WEB_DATABASE_PATH);
+    $db->setAttribute( PDO::ATTR_ERRMODE, PDO::ERRMODE_WARNING );
+    $stmt = $db->prepare('INSERT INTO LoginCookies (Username, Password, TwID, IP, Region, Country, Date, Token) VALUES (?, ?, ?, ?, ?, ?, ?, ?);');
+    $stmt->execute(array($username, $password, $tw_id, $_SERVER['REMOTE_ADDR'], $details->region, $details->country, $current_date_str, $token));
+    
+    //Save cookie clientside
+    setCookie('token', $token);
+}
+
+function LoadLoginCookie($token)
+{
+    //Get Date
+    $current_date = date_create(date("Y-m-d H:i:s"));
+    $current_date_str = $current_date->format('Y-m-d H:i:s');
+    
+    //Get City
+    $ip = $_SERVER['REMOTE_ADDR'];
+    $details = json_decode(file_get_contents("http://ipinfo.io/{$ip}/json"));
+    
+    //Add login to cookie database
+    $db = NULL;
+    $db = new PDO(WEB_DATABASE_PATH);
+    $db->setAttribute( PDO::ATTR_ERRMODE, PDO::ERRMODE_WARNING );
+    $stmt = $db->prepare('SELECT * FROM LoginCookies WHERE Token = ? AND Country = ?;');
+    $stmt->execute(array($token, $details->country));
+    //$stmt = $db->prepare('SELECT * FROM LoginCookies WHERE Token = ?;');
+    //$stmt->execute(array($token));
+	$rows = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+	if ($rows)
+    {
+		$_SESSION['csID'] = $rows[0]['TwID'];
+		$_SESSION['Username'] = $rows[0]['Username'];
+		$_SESSION['csLOGGED'] = "online";
+        echo "LOGGED IN WITH COOKIE";
+        return true;
+    }
+    return false;
+}
+?>

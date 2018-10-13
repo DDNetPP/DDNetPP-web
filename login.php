@@ -42,8 +42,8 @@ function print_html_main($fail_reason)
         		<form method=\"post\" action=\"login.php\">
                 		<input id=\"username\" type=\"text\" name=\"username\"  placeholder=\"username\"></br>
                 		<input id=\"password\" type=\"password\" name=\"password\" placeholder=\"password\"></br>
-
-
+                        <span>remember me (using cookies)</span>
+                        <input type=\"checkbox\" name=\"remember_me\" value=\"1\">
 				</br></br>
                 		<input type=\"submit\" value=\"Login\" >
         		</form>
@@ -59,6 +59,13 @@ function print_html_main($fail_reason)
 		echo "<font color=\"red\">$fail_reason</font>";
 	}
     fok();
+}
+
+function RememberMe($username, $password, $tw_id)
+{
+    $token = bin2hex(openssl_random_pseudo_bytes(256));
+    echo "remember token: $token<br>";
+    StoreLoginCookie($username, $password, $tw_id, $token);
 }
 
 
@@ -78,10 +85,14 @@ if (!empty($_POST['username']) and !empty($_POST['password']))
 	{
 		#print_r($rows);
 		$name = $rows[0]['Username'];
+		echo "Logged in as '$name' </br>";
 		$_SESSION['csID'] = $rows[0]['ID'];
 		$_SESSION['Username'] = $name;
-		echo "Logged in as '$name' </br>";
 		$_SESSION['csLOGGED'] = "online";
+        if(isset($_POST['remember_me']) && $_POST['remember_me']  ? "1" : "0")
+        {
+            RememberMe($username, $password, $_SESSION['csID']);
+        }
         ViewOkayButton('index.php');
 	}
 	else
