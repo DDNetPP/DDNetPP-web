@@ -30,6 +30,10 @@ function PrintEditInfo($status, $editor, $lasteditdate, $id)
 <?php
     }
 ?>
+    <form action="admin_edit_players.php" method="post">
+        <input type="hidden" name="id" value="<?php echo $id; ?>">
+        <input type="submit" name="action" value="delete" />
+    </form>
     </div>
     <style>
     .edit-info-box {
@@ -142,10 +146,26 @@ function GetTotalPages($items_per_page, $hide)
         if ($action === "archive")
         {
             $id = (int)$_POST['id'];
-            echo "yo deletin!!! ID=$id";
+            echo "yo archivvin!!! ID=$id";
             $db = new PDO(PLAYER_DATABASE);
             $db->setAttribute( PDO::ATTR_ERRMODE, PDO::ERRMODE_WARNING );
             $stmt = $db->prepare("UPDATE Players SET Status = 0 WHERE ID = ?;");
+            $stmt->execute(array($id));
+            $rows = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+            if ($rows)
+            {
+                echo "SQL output: <br/>";
+                print_r($rows);
+            }
+        }
+        else if ($action === "delete")
+        {
+            $id = (int)$_POST['id'];
+            echo "yo deletin!!! ID=$id";
+            $db = new PDO(PLAYER_DATABASE);
+            $db->setAttribute( PDO::ATTR_ERRMODE, PDO::ERRMODE_WARNING );
+            $stmt = $db->prepare("DELETE FROM Players WHERE ID = ?;");
             $stmt->execute(array($id));
             $rows = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
