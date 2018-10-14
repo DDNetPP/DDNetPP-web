@@ -1,7 +1,7 @@
 <?php
 function MoveRowToOtherDataBase($src, $dst, $id)
 {
-    // getting all the values
+    // getting all the values from source db
     $db = new PDO($src);
     $db->setAttribute( PDO::ATTR_ERRMODE, PDO::ERRMODE_WARNING );
     $stmt = $db->prepare("SELECT * FROM Players WHERE ID = ?;");
@@ -27,7 +27,8 @@ function MoveRowToOtherDataBase($src, $dst, $id)
     $ddnet = $rows[0]['DDNet'];
     $ddnet_mapper = $rows[0]['DDNetMapper'];
 
-    // save all values in contributor database
+    // save all values in destination database
+    // if dst = contributor then the default type will handle the type
     $db = new PDO($dst);
     $db->setAttribute( PDO::ATTR_ERRMODE, PDO::ERRMODE_WARNING );
     $stmt = $db->prepare("
@@ -47,7 +48,7 @@ function MoveRowToOtherDataBase($src, $dst, $id)
     $yt_name, $yt_link, $teerace, $ddnet, $ddnet_mapper
     ));
 
-    // delete from released database
+    // delete from source database
     $db = new PDO($src);
     $db->setAttribute( PDO::ATTR_ERRMODE, PDO::ERRMODE_WARNING );
     $stmt = $db->prepare("DELETE FROM Players WHERE ID = ?;");

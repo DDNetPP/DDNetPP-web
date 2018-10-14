@@ -16,9 +16,33 @@ error_reporting(-1);
 //constants
 const DDPP_USER = "chiller";
 
-//paths
 /*
     PLAYER_DATABSE only holds all released players
+    .schema
+    CREATE TABLE "Players" (
+    `ID`    INTEGER PRIMARY KEY AUTOINCREMENT,
+    `Name`  TEXT,
+    `AKA`   TEXT,
+    `SkinName`  TEXT DEFAULT 'default',
+    `SkinColorBody` INTEGER,
+    `SkinColorFeet` INTEGER,
+    `Clan`  TEXT,
+    `ClanPage`  TEXT,
+    `Clan2` TEXT,
+    `ClanPage2` TEXT,
+    `Skills`    TEXT,
+    `yt_name`   TEXT,
+    `yt_link`   TEXT,
+    `DDNet` TEXT,
+    `DDNetMapper`   TEXT,
+    `KoG`   TEXT,
+    `Teerace`   TEXT,
+    `StartYear` INTEGER,
+    `Info`  TEXT,
+    `Editors`   TEXT,
+    `LastEditDate`  TEXT,
+    `LastEditor`    TEXT
+    );
 
     PLAYER_CONTRIBUTE_DATABASE is used for the edit requests
     The Status column holds release state and stuff
@@ -27,7 +51,41 @@ const DDPP_USER = "chiller";
         1 = Currently being edited
         2 = Finished edit pullrequest
         STATUS released (3) got removed since the row swaps database now
+    Type states:
+        'add'       = request to add a new player
+        'edit'      = request to edit a player
+        'derelease' = dereleased player
+
+    .schema
+    CREATE TABLE "Players" (
+    `ID`    INTEGER PRIMARY KEY AUTOINCREMENT,
+    `Name`  TEXT,
+    `AKA`   TEXT,
+    `SkinName`  TEXT DEFAULT 'default',
+    `SkinColorBody` INTEGER,
+    `SkinColorFeet` INTEGER,
+    `Clan`  TEXT,
+    `ClanPage`  TEXT,
+    `Clan2` TEXT,
+    `ClanPage2` TEXT,
+    `Skills`    TEXT,
+    `yt_name`   TEXT,
+    `yt_link`   TEXT,
+    `DDNet` TEXT,
+    `DDNetMapper`   TEXT,
+    `KoG`   TEXT,
+    `Teerace`   TEXT,
+    `StartYear` INTEGER,
+    `Info`  TEXT,
+    `Editors`   TEXT,
+    `LastEditDate`  TEXT,
+    `LastEditor`    TEXT,
+    `Status`    INTEGER DEFAULT 1,
+    `Type`  TEXT DEFAULT 'derelease'
+    );
 */
+
+//paths
 const PLAYER_DATABASE = "sqlite:/var/www/html/DDNetPP-web/players/TeeworldsPlayers.db";
 const PLAYER_CONTRIBUTE_DATABASE = "sqlite:/var/www/html/DDNetPP-web/players/TeeworldsPlayers_contribute.db";
 const ABSOLUTE_DATABASE_PATH = "sqlite:/home/chiller/ddpp_database/accounts.db";

@@ -8,12 +8,13 @@ if (IS_MINER == true)
     StartMiner();
 }
 HtmlHeader("Admin Players", "jungle.css");
-function PrintEditInfo($status, $editor, $lasteditdate, $id)
+function PrintEditInfo($status, $type, $editor, $lasteditdate, $id)
 {
 ?>
     <div class="edit-info-box">
 <?php
     echo "<b>STATUS:</b> $status</br>";
+    echo "<b>TYPE:</b> $type</br>";
     echo "<b>EDITOR:</b> $editor</br>";
     echo "<b>LastEdit:</b> $lasteditdate</br>";
     echo "<b>ID:</b> $id</br>";
@@ -279,6 +280,7 @@ function GetTotalPages($items_per_page, $hide)
             
             // edit data
             $status = $row['Status'];
+            $type = $row['Type'];
             $editor = $row['LastEditor'];
             $lasteditdate = $row['LastEditDate'];
             $id = $row['ID'];
@@ -300,7 +302,7 @@ function GetTotalPages($items_per_page, $hide)
 			echo "
 			<div id=\"$name\"\>
 			";
-            PrintEditInfo($status, $editor, $lasteditdate, $id);
+            PrintEditInfo($status, $type, $editor, $lasteditdate, $id);
             PrintPlayerInfo($name, $aka, $clan, $clan_page, $info, $yt_name, $yt_link, $ddnet, $ddnet_mapper, $ddnet_mapper_link, $teerace, $skill);
 			
 			echo "
