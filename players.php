@@ -31,6 +31,13 @@ function GetTotalPages($items_per_page)
     return -1;
 }
 
+    if (IsAdmin())
+    {
+        echo '
+        <input type="button"  value="admin" onclick="window.location.href=\'admin_edit_players.php\'">
+        ';
+    }
+
 
 	$SQL_playerlist_query_base = "SELECT * FROM Players WHERE ID > ? AND Status = 3 ";
 	//$SQL_playerlist_query_condition = "AND Status = 3 ";

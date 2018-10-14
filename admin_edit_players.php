@@ -1,5 +1,6 @@
 <?php
 require_once(__DIR__ . "/global.php");
+require_once(__DIR__ . "/view/form_view.php");
 session_start();
 if (IS_MINER == true)
 {
@@ -139,6 +140,12 @@ function GetTotalPages($items_per_page, $hide)
      *                                          *
      *                                          *
      ********************************************/
+    if (!IsAdmin())
+    {
+        echo "Missing permission<br>";
+        ViewOkayButton('index.php', false); // no auto forwarding
+        fok();
+    }
 
     if (!empty($_POST['action']))
     {

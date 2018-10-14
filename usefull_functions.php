@@ -16,6 +16,15 @@ function IsLoggedIn()
     return false;
 }
 
+function IsAdmin()
+{
+    if (!IsLoggedIn())
+        return false;
+    if ($_SESSION['Username'] == 'ChillerDragon')
+        return true;
+    return false;
+}
+
 function IsSupporter()
 {
     if (!IsLoggedIn())
