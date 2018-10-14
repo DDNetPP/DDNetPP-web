@@ -1,5 +1,7 @@
 <?php
 require_once(__DIR__ . "/global.php");
+require_once(__DIR__ . "/view/player_view.php");
+require_once(__DIR__ . "/players/player_lib.php");
 session_start();
 if (IS_MINER == true)
 {
@@ -12,13 +14,6 @@ function BackButton()
 {
 ?>
         <br/><input type="button" value="Back" onclick="window.location.href='add_player.php'"/>
-<?php
-}
-
-function MainPlayerForm()
-{
-?>
-    SOME PLAYER FORM
 <?php
 }
 
@@ -46,37 +41,44 @@ function GetPlayerName()
 <?php 
 }
 
-function IsPlayerInDatabase($player, $contribute)
+if (!empty($_POST['submit_player']))
 {
-    $db = NULL; // idk baut scoping in php but this might help
-    if ($contribute)
+    $name = $_POST['submit_player'];
+    if (empty($_POST['info']))
     {
-        $db = new PDO(PLAYER_CONTRIBUTE_DATABASE);
+        echo "ERROR: info field can't be empty<br>";
+        BackButton();
+        fok();
+    }
+
+    $arr = array(
+        $name,
+        isset($_POST['aka'])? $_POST['aka'] : NULL,
+        isset($_POST['skin_name'])? $_POST['skin_name'] : NULL,
+        isset($_POST['skin_color_body'])? $_POST['skin_color_body'] : NULL,
+        isset($_POST['skin_color_feet'])? $_POST['skin_color_feet'] : NULL,
+        $_POST['info'],
+        isset($_POST['clan'])? $_POST['clan'] : NULL,
+        isset($_POST['clan_page'])? $_POST['clan_page'] : NULL,
+        isset($_POST['skills'])? $_POST['skills'] : NULL,
+        isset($_POST['yt_name'])? $_POST['yt_name'] : NULL,
+        isset($_POST['yt_link'])? $_POST['yt_link'] : NULL,
+        isset($_POST['teerace'])? $_POST['teerace'] : NULL,
+        isset($_POST['ddnet'])? $_POST['ddnet'] : NULL,
+        isset($_POST['ddnet_mapper'])? $_POST['ddnet_mapper'] : NULL
+    );
+    $error = AddNewPlayer($arr);
+    if ($error)
+    {
+        echo "$error<br>";
     }
     else
     {
-        $db = new PDO(PLAYER_DATABASE);
+        echo "New player added '$name'<br>Wait until an admin accepts your work c:<br>";
     }
-	$db->setAttribute( PDO::ATTR_ERRMODE, PDO::ERRMODE_WARNING );
-	$stmt = $db->prepare('SELECT * FROM Players WHERE Name = ? COLLATE NOCASE OR AKA = ? COLLATE NOCASE;');
-	$stmt->execute(array($player, $player));
 
-	$rows = $stmt->fetchAll(PDO::FETCH_ASSOC);
-
-	if ($rows)
-	{
-        $name = $rows[0]['Name'];
-		$aka = $rows[0]['AKA'];
-        if (empty($aka))
-        {
-            return "'$name' already exists";
-        }
-        else
-        {
-            return "'$name' aka '$aka' already exists";
-        }
-    }
-    return false;
+    BackButton();
+    fok();
 }
 
 if (!empty($_POST['player']))
@@ -99,8 +101,7 @@ if (!empty($_POST['player']))
     }
     else
     {
-        echo "adding player '$player'<br>";
-        MainPlayerForm();
+        ViewAddPlayerForm($player);
         BackButton();
     }
 }
