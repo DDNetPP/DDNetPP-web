@@ -27,7 +27,7 @@ function GetPlayerName()
 ?>
 		<h1>Teeworlds Players</h1>
 		<a>
-			Update existing player entrys or add a new one</br>
+			Add new player</br>
 		</a>
         <div style="text-align: center;">
         <style>
@@ -46,11 +46,17 @@ function GetPlayerName()
 <?php 
 }
 
-if (!empty($_POST['player']))
+function IsPlayerInDatabase($player, $contribute)
 {
-	$player = isset($_POST['player'])? $_POST['player'] : '';
-
-	$db = new PDO(PLAYER_DATABASE);
+    $db = NULL; // idk baut scoping in php but this might help
+    if ($contribute)
+    {
+        $db = new PDO(PLAYER_CONTRIBUTE_DATABASE);
+    }
+    else
+    {
+        $db = new PDO(PLAYER_DATABASE);
+    }
 	$db->setAttribute( PDO::ATTR_ERRMODE, PDO::ERRMODE_WARNING );
 	$stmt = $db->prepare('SELECT * FROM Players WHERE Name = ? COLLATE NOCASE OR AKA = ? COLLATE NOCASE;');
 	$stmt->execute(array($player, $player));
@@ -63,17 +69,37 @@ if (!empty($_POST['player']))
 		$aka = $rows[0]['AKA'];
         if (empty($aka))
         {
-            echo "'$name' already exists";
+            return "'$name' already exists";
         }
         else
         {
-            echo "'$name' aka '$aka' already exists";
+            return "'$name' aka '$aka' already exists";
         }
+    }
+    return false;
+}
+
+if (!empty($_POST['player']))
+{
+	$player = isset($_POST['player'])? $_POST['player'] : '';
+    $player_in_db = IsPlayerInDatabase($player, false);
+    $player_in_db_contribute = IsPlayerInDatabase($player, true);
+
+    if ($player_in_db)
+    {
+        echo "ERROR: player is in list already<br>";
+        echo "$player_in_db<br>";
+        BackButton();
+    }
+    else if ($player_in_db_contribute)
+    {
+        echo "ERROR: user submit for this player is pending<br>";
+        echo "$player_in_db_contribute<br>";
         BackButton();
     }
     else
     {
-        echo "adding player '$player'";
+        echo "adding player '$player'<br>";
         MainPlayerForm();
         BackButton();
     }

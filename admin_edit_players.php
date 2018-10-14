@@ -112,7 +112,7 @@ function GetTotalPages($items_per_page, $hide)
         $SQL_pages_base = "SELECT COUNT(*) AS TotalPages FROM Players WHERE Status <> 3";
     }
         
-    $db = new PDO(PLAYER_DATABASE);
+    $db = new PDO(PLAYER_CONTRIBUTE_DATABASE);
     $rows = $db->query($SQL_pages_base);
     $rows = $rows->fetchAll();
     $db = NULL;
@@ -147,7 +147,7 @@ function GetTotalPages($items_per_page, $hide)
         {
             $id = (int)$_POST['id'];
             echo "yo archivvin!!! ID=$id";
-            $db = new PDO(PLAYER_DATABASE);
+            $db = new PDO(PLAYER_CONTRIBUTE_DATABASE);
             $db->setAttribute( PDO::ATTR_ERRMODE, PDO::ERRMODE_WARNING );
             $stmt = $db->prepare("UPDATE Players SET Status = 0 WHERE ID = ?;");
             $stmt->execute(array($id));
@@ -163,7 +163,7 @@ function GetTotalPages($items_per_page, $hide)
         {
             $id = (int)$_POST['id'];
             echo "yo deletin!!! ID=$id";
-            $db = new PDO(PLAYER_DATABASE);
+            $db = new PDO(PLAYER_CONTRIBUTE_DATABASE);
             $db->setAttribute( PDO::ATTR_ERRMODE, PDO::ERRMODE_WARNING );
             $stmt = $db->prepare("DELETE FROM Players WHERE ID = ?;");
             $stmt->execute(array($id));
@@ -229,7 +229,7 @@ function GetTotalPages($items_per_page, $hide)
 	}
 	$SQL_playerlist_query_range = "LIMIT $players_per_page OFFSET $players_offset ";
 	
-	$db = new PDO(PLAYER_DATABASE);
+	$db = new PDO(PLAYER_CONTRIBUTE_DATABASE);
 	$db->setAttribute( PDO::ATTR_ERRMODE, PDO::ERRMODE_WARNING );
 	$SQL_execution_string = $SQL_playerlist_query_base . $SQL_playerlist_query_hide . $SQL_playerlist_query_range;
 	$stmt = $db->prepare($SQL_execution_string);

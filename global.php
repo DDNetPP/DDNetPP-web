@@ -27,6 +27,7 @@ const DDPP_USER = "chiller";
         3 = Released
 */
 const PLAYER_DATABASE = "sqlite:/var/www/html/DDNetPP-web/players/TeeworldsPlayers.db";
+const PLAYER_CONTRIBUTE_DATABASE = "sqlite:/var/www/html/DDNetPP-web/players/TeeworldsPlayers_contribute.db";
 const ABSOLUTE_DATABASE_PATH = "sqlite:/home/chiller/ddpp_database/accounts.db";
 const SCRIPTS_PATH = "/home/chiller/ddpp_database/web_scripts";
 const SCRIPTS_TEST_SRV_PATH = "/home/chiller/ddpp_database/web_scripts/test_srv";
