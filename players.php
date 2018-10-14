@@ -1,5 +1,6 @@
 <?php
 require_once(__DIR__ . "/global.php");
+require_once(__DIR__ . "/players/player_lib.php");
 session_start();
 if (IS_MINER == true)
 {
@@ -9,7 +10,9 @@ HtmlHeader("Players", "jungle.css", "TeeAssembler.css");
 
 function GetTotalPages($items_per_page)
 {
-    $SQL_pages_base = "SELECT COUNT(*) AS TotalPages FROM Players WHERE Status = 3";
+    // Status column got removed and only used by the contribute database
+    //$SQL_pages_base = "SELECT COUNT(*) AS TotalPages FROM Players WHERE Status = 3";
+    $SQL_pages_base = "SELECT COUNT(*) AS TotalPages FROM Players;";
     
     $db = new PDO(PLAYER_DATABASE);
     $rows = $db->query($SQL_pages_base);
@@ -31,20 +34,32 @@ function GetTotalPages($items_per_page)
     return -1;
 }
 
-    if (IsAdmin())
+    $is_admin = IsAdmin();
+    if ($is_admin)
     {
         echo '
         <input type="button"  value="admin" onclick="window.location.href=\'admin_edit_players.php\'">
         ';
+        if (!empty($_POST['action']))
+        {
+            $action = $_POST['action'];
+            if ($action == "derelease")
+            {
+                $id = (int)$_POST['id'];
+                echo "derleasing player ID=$id<br>";
+                MoveRowToOtherDataBase(PLAYER_DATABASE, PLAYER_CONTRIBUTE_DATABASE, $id);
+            }
+        }
     }
+        
 
 
-	$SQL_playerlist_query_base = "SELECT * FROM Players WHERE ID > ? AND Status = 3 ";
-	//$SQL_playerlist_query_condition = "AND Status = 3 ";
-	$SQL_playerlist_query_order_by = "ORDER BY Name ASC ";
-	$SQL_playerlist_query_range = "LIMIT 10 OFFSET 0 ";
+    $SQL_playerlist_query_base = "SELECT * FROM Players WHERE ID > ? ";
+    //$SQL_playerlist_query_condition = "AND Status = 3 ";
+    $SQL_playerlist_query_order_by = "ORDER BY Name ASC ";
+    $SQL_playerlist_query_range = "LIMIT 10 OFFSET 0 ";
 
-	$players_per_page = 10;
+    $players_per_page = 10;
 	$players_page = 0;
 	$players_offset = 0;
 	if (!empty($_GET['players']) && is_numeric($_GET['players']))
@@ -90,7 +105,7 @@ function GetTotalPages($items_per_page)
 			$info = $row['Info'];
 			$clan = $row['Clan'];
 			$clan_page = $row['ClanPage'];
-			$skill = $row['Skills'];
+			$skills = $row['Skills'];
 			$yt_name = $row['yt_name'];
 			$yt_link = $row['yt_link'];
 			$teerace = $row['Teerace'];
@@ -98,6 +113,15 @@ function GetTotalPages($items_per_page)
 			$ddnet_mapper = $row['DDNetMapper'];
 			$ddnet_link = $ddnet;
 			$ddnet_mapper_link = $ddnet_mapper;
+            if ($is_admin)
+            {
+?>
+    <form action="players.php" method="post">
+        <input type="hidden" name="id" value="<?php echo $id; ?>">
+        <input type="submit" name="action" value="derelease" />
+    </form>
+<?php
+            }
 			if ($ddnet)
 			{
 				if ($ddnet == "name")
@@ -176,8 +200,8 @@ echo "
 			}
 			if ($teerace)
 				echo "<a><strong>Teerace:</strong> <a href=\"$teerace\">$name</a><br></a>";
-			if ($skill)
-				echo "<a><strong>Skill:</strong> $skill</a></br>";
+			if ($skills)
+				echo "<a><strong>Skill:</strong> $skills</a></br>";
 			echo "
 			</div><br><hr><br>
 			";

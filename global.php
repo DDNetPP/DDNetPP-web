@@ -18,13 +18,15 @@ const DDPP_USER = "chiller";
 
 //paths
 /*
-    PLAYER_DATABASE is also used for the edit requests
+    PLAYER_DATABSE only holds all released players
+
+    PLAYER_CONTRIBUTE_DATABASE is used for the edit requests
     The Status column holds release state and stuff
     Status states:
         0 = Archived/deleted (also blocks user form from adding this name agian)
         1 = Currently being edited
         2 = Finished edit pullrequest
-        3 = Released
+        STATUS released (3) got removed since the row swaps database now
 */
 const PLAYER_DATABASE = "sqlite:/var/www/html/DDNetPP-web/players/TeeworldsPlayers.db";
 const PLAYER_CONTRIBUTE_DATABASE = "sqlite:/var/www/html/DDNetPP-web/players/TeeworldsPlayers_contribute.db";

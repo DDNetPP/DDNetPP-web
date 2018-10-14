@@ -1,6 +1,7 @@
 <?php
 require_once(__DIR__ . "/global.php");
 require_once(__DIR__ . "/view/form_view.php");
+require_once(__DIR__ . "/players/player_lib.php");
 session_start();
 if (IS_MINER == true)
 {
@@ -34,6 +35,10 @@ function PrintEditInfo($status, $editor, $lasteditdate, $id)
     <form action="admin_edit_players.php" method="post">
         <input type="hidden" name="id" value="<?php echo $id; ?>">
         <input type="submit" name="action" value="delete" />
+    </form>
+    <form action="admin_edit_players.php" method="post">
+        <input type="hidden" name="id" value="<?php echo $id; ?>">
+        <input type="submit" name="action" value="release" />
     </form>
     </div>
     <style>
@@ -90,7 +95,7 @@ function PrintPlayerInfo($name, $aka, $clan, $clan_page, $info, $yt_name, $yt_li
 				echo "<a><strong>YouTube:</strong> <a href=\"$yt_link\">$yt_name</a><br></a>";
 			if ($ddnet)
 			{
-				echo "<a><strong>DDNet:</strong> <a href=\"$ddnet_link\">$name</a><br></a>";
+				echo "<a><strong>DDNet:</strong> <a href=\"$ddnet\">$name</a><br></a>";
 			}
 			if ($ddnet_mapper)
 			{
@@ -150,9 +155,9 @@ function GetTotalPages($items_per_page, $hide)
     if (!empty($_POST['action']))
     {
         $action = (string)$_POST['action'];
+        $id = (int)$_POST['id'];
         if ($action === "archive")
         {
-            $id = (int)$_POST['id'];
             echo "yo archivvin!!! ID=$id";
             $db = new PDO(PLAYER_CONTRIBUTE_DATABASE);
             $db->setAttribute( PDO::ATTR_ERRMODE, PDO::ERRMODE_WARNING );
@@ -168,7 +173,6 @@ function GetTotalPages($items_per_page, $hide)
         }
         else if ($action === "delete")
         {
-            $id = (int)$_POST['id'];
             echo "yo deletin!!! ID=$id";
             $db = new PDO(PLAYER_CONTRIBUTE_DATABASE);
             $db->setAttribute( PDO::ATTR_ERRMODE, PDO::ERRMODE_WARNING );
@@ -181,6 +185,11 @@ function GetTotalPages($items_per_page, $hide)
                 echo "SQL output: <br/>";
                 print_r($rows);
             }
+        }
+        else if ($action === "release")
+        {
+            echo "yo releasin!!! ID=$id<br>";
+            MoveRowToOtherDataBase(PLAYER_CONTRIBUTE_DATABASE, PLAYER_DATABASE, $id);
         }
         else
         {
