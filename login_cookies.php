@@ -31,8 +31,8 @@ function StoreLoginCookie($username, $password, $tw_id, $token)
     $stmt = $db->prepare('INSERT INTO LoginCookies (Username, Password, TwID, IP, Region, Country, Date, Token) VALUES (?, ?, ?, ?, ?, ?, ?, ?);');
     $stmt->execute(array($username, $password, $tw_id, $_SERVER['REMOTE_ADDR'], $details->region, $details->country, $current_date_str, $token));
     
-    //Save cookie clientside
-    setCookie('token', $token);
+    //Save cookie clientside (saved for 30 days)
+    setCookie('token', $token, time()+60*60*24*30);
 }
 
 function LoadLoginCookie($token)

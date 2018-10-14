@@ -42,8 +42,15 @@ function print_html_main($fail_reason)
         		<form method=\"post\" action=\"login.php\">
                 		<input id=\"username\" type=\"text\" name=\"username\"  placeholder=\"username\"></br>
                 		<input id=\"password\" type=\"password\" name=\"password\" placeholder=\"password\"></br>
+    ";
+    if (IS_COOKIE_LOGIN)
+    {
+    echo "
                         <span>remember me (using cookies)</span>
                         <input type=\"checkbox\" name=\"remember_me\" value=\"1\">
+    ";
+    }
+    echo "
 				</br></br>
                 		<input type=\"submit\" value=\"Login\" >
         		</form>

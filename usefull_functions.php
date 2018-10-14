@@ -8,7 +8,7 @@ function IsLoggedIn()
 {
     if (!empty($_SESSION['csLOGGED']) && $_SESSION['csLOGGED'] === "online")
         return true;
-    if (isset($_COOKIE['token'])) // try autologin from cookies
+    if (IS_COOKIE_LOGIN && isset($_COOKIE['token'])) // try autologin from cookies
     {
         if (LoadLoginCookie($_COOKIE['token']))
             return true;
