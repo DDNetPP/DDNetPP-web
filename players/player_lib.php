@@ -57,18 +57,17 @@ function AddNewPlayer($attrs)
     */
 
 
-
     $stmt = $db->prepare("
     INSERT INTO Players
     (Name, AKA, SkinName, SkinColorBody, SkinColorFeet,
     Info, Clan, ClanPage, Skills,
     yt_name, yt_link, Teerace, DDNet, DDNetMapper,
-    Type)
+    Editors, LastEditor, Type)
     VALUES (
     ?, ?, ?, ?, ?,
     ?, ?, ?, ?,
     ?, ?, ?, ?, ?,
-    'add'
+    ?, ?, 'add'
     );
     ");
 
@@ -113,6 +112,8 @@ function MoveRowToOtherDataBase($src, $dst, $id)
     $teerace = $rows[0]['Teerace'];
     $ddnet = $rows[0]['DDNet'];
     $ddnet_mapper = $rows[0]['DDNetMapper'];
+    $editor = $rows[0]['editor'];
+    $last_editor = $rows[0]['last_editor'];
 
     // save all values in destination database
     // if dst = contributor then the default type will handle the type
@@ -122,17 +123,20 @@ function MoveRowToOtherDataBase($src, $dst, $id)
     INSERT INTO Players
     (Name, AKA, SkinName, SkinColorBody, SkinColorFeet,
     Info, Clan, ClanPage, Skills,
-    yt_name, yt_link, Teerace, DDNet, DDNetMapper)
+    yt_name, yt_link, Teerace, DDNet, DDNetMapper,
+    Editors, LastEditor)
     VALUES (
     ?, ?, ?, ?, ?,
     ?, ?, ?, ?,
-    ?, ?, ?, ?, ?
+    ?, ?, ?, ?, ?,
+    ?, ?
     );
     ");
     $stmt->execute(array(
     $name, $aka, $skin_name, $skin_color_body, $skin_color_feet,
     $info, $clan, $clan_page, $skills,
-    $yt_name, $yt_link, $teerace, $ddnet, $ddnet_mapper
+    $yt_name, $yt_link, $teerace, $ddnet, $ddnet_mapper,
+    $editor, $last_editor
     ));
 
     // delete from source database

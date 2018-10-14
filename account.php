@@ -3,7 +3,7 @@ require_once(__DIR__ . "/global.php");
 session_start();
 HtmlHeader("Account");
 
-if ($_SESSION['csLOGGED'] !== "online")
+if (!IsLoggedIn())
 {
 	echo "you are not logged in";
 	fok();

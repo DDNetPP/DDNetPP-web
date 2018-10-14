@@ -41,9 +41,16 @@ function GetPlayerName()
 <?php 
 }
 
+if (!IsLoggedIn())
+{
+    echo 'sowwy you have to be <a href="login.php">logged in</a> ._.<br>';
+    fok();
+}
+
 if (!empty($_POST['submit_player']))
 {
     $name = $_POST['submit_player'];
+    $editor = $_SESSION['Username'];
     if (empty($_POST['info']))
     {
         echo "ERROR: info field can't be empty<br>";
@@ -65,7 +72,9 @@ if (!empty($_POST['submit_player']))
         isset($_POST['yt_link'])? $_POST['yt_link'] : NULL,
         isset($_POST['teerace'])? $_POST['teerace'] : NULL,
         isset($_POST['ddnet'])? $_POST['ddnet'] : NULL,
-        isset($_POST['ddnet_mapper'])? $_POST['ddnet_mapper'] : NULL
+        isset($_POST['ddnet_mapper'])? $_POST['ddnet_mapper'] : NULL,
+        $editor, // list of all editors
+        $editor  // last editor
     );
     $error = AddNewPlayer($arr);
     if ($error)
