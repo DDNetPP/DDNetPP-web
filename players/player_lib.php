@@ -85,6 +85,37 @@ function AddNewPlayer($attrs)
     return NULL;
 }
 
+function UpdatePlayer($id, $attrs)
+{
+    if (CanAddPlayer($attrs[0]))
+    {
+        return "ERROR: this player is not in datbase yet (use add instead of update)";
+    }
+    $attrs_count = count($attrs);
+    $attrs_expected = 16;
+    if ($attrs_count !== $attrs_expected)
+    {
+        return "ERROR: wrong number of arguments given $attrs_count/$attrs_expected";
+    }
+
+    $db = new PDO(PLAYER_CONTRIBUTE_DATABASE);
+    $db->setAttribute( PDO::ATTR_ERRMODE, PDO::ERRMODE_WARNING );
+
+    $stmt = $db->prepare("
+    UPDATE Players
+    SET
+    Name = ?, AKA = ?, SkinName = ?, SkinColorBody = ?, SkinColorFeet = ?,
+    Info = ?, Clan = ?, ClanPage = ?, Skills = ?,
+    yt_name = ?, yt_link = ?, Teerace = ?, DDNet = ?, DDNetMapper = ?,
+    Editors = ?, LastEditor = ?, Type = 'edit'
+    WHERE ID = ?;
+    ");
+
+    $attrs[] = $id; // push id to end of array
+    $stmt->execute($attrs);
+    return NULL;
+}
+
 function MoveRowToOtherDataBase($src, $dst, $id)
 {
     // getting all the values from source db

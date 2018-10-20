@@ -47,49 +47,6 @@ if (!IsLoggedIn())
     fok();
 }
 
-if (!empty($_POST['submit_player']))
-{
-    $name = $_POST['submit_player'];
-    $editor = $_SESSION['Username'];
-    if (empty($_POST['info']))
-    {
-        echo "ERROR: info field can't be empty<br>";
-        BackButton();
-        fok();
-    }
-
-    $arr = array(
-        $name,
-        isset($_POST['aka'])? $_POST['aka'] : NULL,
-        isset($_POST['skin_name'])? $_POST['skin_name'] : NULL,
-        isset($_POST['skin_color_body'])? $_POST['skin_color_body'] : NULL,
-        isset($_POST['skin_color_feet'])? $_POST['skin_color_feet'] : NULL,
-        $_POST['info'],
-        isset($_POST['clan'])? $_POST['clan'] : NULL,
-        isset($_POST['clan_page'])? $_POST['clan_page'] : NULL,
-        isset($_POST['skills'])? $_POST['skills'] : NULL,
-        isset($_POST['yt_name'])? $_POST['yt_name'] : NULL,
-        isset($_POST['yt_link'])? $_POST['yt_link'] : NULL,
-        isset($_POST['teerace'])? $_POST['teerace'] : NULL,
-        isset($_POST['ddnet'])? $_POST['ddnet'] : NULL,
-        isset($_POST['ddnet_mapper'])? $_POST['ddnet_mapper'] : NULL,
-        $editor, // list of all editors
-        $editor  // last editor
-    );
-    $error = AddNewPlayer($arr);
-    if ($error)
-    {
-        echo "$error<br>";
-    }
-    else
-    {
-        echo "New player added '$name'<br>Wait until an admin accepts your work c:<br>";
-    }
-
-    BackButton();
-    fok();
-}
-
 if (!empty($_POST['player']))
 {
 	$player = isset($_POST['player'])? $_POST['player'] : '';
@@ -110,7 +67,7 @@ if (!empty($_POST['player']))
     }
     else
     {
-        ViewAddPlayerForm($player);
+        ViewContributePlayerForm($player, 0);
         BackButton();
     }
 }

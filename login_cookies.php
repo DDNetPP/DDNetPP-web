@@ -61,7 +61,7 @@ function LoadLoginCookie($token)
 		$_SESSION['Username'] = $rows[0]['Username'];
 		$_SESSION['csLOGGED'] = "online";
         $_SESSION['login_token'] = $token;
-        echo "LOGGED IN WITH COOKIE";
+        //echo "LOGGED IN WITH COOKIE";
         return true;
     }
     return false;

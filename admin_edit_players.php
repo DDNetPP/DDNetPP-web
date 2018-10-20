@@ -41,6 +41,7 @@ function PrintEditInfo($status, $type, $editor, $lasteditdate, $id)
         <input type="hidden" name="id" value="<?php echo $id; ?>">
         <input type="submit" name="action" value="release" />
     </form>
+    <input type="button" value="edit" onclick="window.location.href='edit_player.php?id=<?php echo $id?>'"></br>
     </div>
     <style>
     .edit-info-box {
