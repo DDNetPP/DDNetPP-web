@@ -80,7 +80,7 @@ function PrintEditInfo($status, $type, $editor, $editors, $lasteditdate, $id)
 <?php
 }
 
-function PrintPlayerInfo($name, $aka, $clan, $clan_page, $info, $yt_name, $yt_link, $ddnet, $ddnet_mapper, $ddnet_mapper_link, $teerace, $skill)
+function PrintPlayerInfo($name, $aka, $clan, $clan_page, $info, $yt_name, $yt_link, $ddnet, $ddnet_link, $ddnet_mapper, $ddnet_mapper_link, $teerace, $skill)
 {
             echo "<h1>$name</h1>";
 			if (file_exists("players/img_players/Teeworlds_$name.png"))
@@ -106,7 +106,7 @@ function PrintPlayerInfo($name, $aka, $clan, $clan_page, $info, $yt_name, $yt_li
 				echo "<a><strong>YouTube:</strong> <a href=\"$yt_link\">$yt_name</a><br></a>";
 			if ($ddnet)
 			{
-				echo "<a><strong>DDNet:</strong> <a href=\"$ddnet\">$name</a><br></a>";
+				echo "<a><strong>DDNet:</strong> <a href=\"$ddnet_link\">$name</a><br></a>";
 			}
 			if ($ddnet_mapper)
 			{
@@ -305,7 +305,7 @@ function GetTotalPages($items_per_page, $hide)
 			<div id=\"$name\"\>
 			";
             PrintEditInfo($status, $type, $editor, $editors, $lasteditdate, $id);
-            PrintPlayerInfo($name, $aka, $clan, $clan_page, $info, $yt_name, $yt_link, $ddnet, $ddnet_mapper, $ddnet_mapper_link, $teerace, $skill);
+            PrintPlayerInfo($name, $aka, $clan, $clan_page, $info, $yt_name, $yt_link, $ddnet, $ddnet_link, $ddnet_mapper, $ddnet_mapper_link, $teerace, $skill);
 			
 			echo "
 			</div><br><hr><br>

@@ -154,6 +154,7 @@ function MoveRowToOtherDataBase($src, $dst, $id)
     $ddnet_mapper = $rows[0]['DDNetMapper'];
     $editors = $rows[0]['Editors'];
     $last_editor = $rows[0]['LastEditor'];
+    $last_edit_date = $rows[0]['LastEditDate'];
 
     // save all values in destination database
     // if dst = contributor then the default type will handle the type
@@ -164,19 +165,19 @@ function MoveRowToOtherDataBase($src, $dst, $id)
     (Name, AKA, SkinName, SkinColorBody, SkinColorFeet,
     Info, Clan, ClanPage, Skills,
     yt_name, yt_link, Teerace, DDNet, DDNetMapper,
-    Editors, LastEditor)
+    Editors, LastEditDate, LastEditor)
     VALUES (
     ?, ?, ?, ?, ?,
     ?, ?, ?, ?,
     ?, ?, ?, ?, ?,
-    ?, ?
+    ?, ?, ?
     );
     ");
     $stmt->execute(array(
     $name, $aka, $skin_name, $skin_color_body, $skin_color_feet,
     $info, $clan, $clan_page, $skills,
     $yt_name, $yt_link, $teerace, $ddnet, $ddnet_mapper,
-    $editors, $last_editor
+    $editors, $last_edit_date, $last_editor
     ));
 
     // delete from source database
