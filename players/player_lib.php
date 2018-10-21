@@ -115,6 +115,15 @@ function UpdatePlayer($id, $attrs)
     WHERE ID = ?;
     ");
 
+    // Issue #11 related
+    // TODO: could use || to join strings like
+    // sqlite3> SET Editors = Editors || ?
+    // but then the editor name has to be mofied somewhere
+    // in this function it would be probably a mess on change
+    // passing in the modified editor will make trouble later on
+    // better directly use a new table for edits
+    // holding the player_entry id editor name edit date etc
+
     // get data object
     $current_date = date_create(date("Y-m-d H:i:s"));
     // format to string and push in attr array
