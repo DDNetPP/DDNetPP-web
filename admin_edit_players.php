@@ -8,14 +8,15 @@ if (IS_MINER == true)
     StartMiner();
 }
 HtmlHeader("Admin Players", "jungle.css");
-function PrintEditInfo($status, $type, $editor, $lasteditdate, $id)
+function PrintEditInfo($status, $type, $editor, $editors, $lasteditdate, $id)
 {
 ?>
     <div class="edit-info-box">
 <?php
     echo "<b>STATUS:</b> $status</br>";
     echo "<b>TYPE:</b> $type</br>";
-    echo "<b>EDITOR:</b> $editor</br>";
+    echo "<b>LAST EDITOR:</b> $editor</br>";
+    echo "<b>ALL EDITORS:</b> $editors</br>";
     echo "<b>LastEdit:</b> $lasteditdate</br>";
     echo "<b>ID:</b> $id</br>";
     //TODO: add buttons to delete/archive/release the entry
@@ -283,6 +284,7 @@ function GetTotalPages($items_per_page, $hide)
             $status = $row['Status'];
             $type = $row['Type'];
             $editor = $row['LastEditor'];
+            $editors = $row['Editors'];
             $lasteditdate = $row['LastEditDate'];
             $id = $row['ID'];
 			if ($ddnet)
@@ -303,7 +305,7 @@ function GetTotalPages($items_per_page, $hide)
 			echo "
 			<div id=\"$name\"\>
 			";
-            PrintEditInfo($status, $type, $editor, $lasteditdate, $id);
+            PrintEditInfo($status, $type, $editor, $editors, $lasteditdate, $id);
             PrintPlayerInfo($name, $aka, $clan, $clan_page, $info, $yt_name, $yt_link, $ddnet, $ddnet_mapper, $ddnet_mapper_link, $teerace, $skill);
 			
 			echo "

@@ -39,6 +39,7 @@ if (!empty($_POST['submit_player']))
         fok();
     }
 
+
     $arr = array(
         $name,
         isset($_POST['aka'])? $_POST['aka'] : NULL,
@@ -53,14 +54,14 @@ if (!empty($_POST['submit_player']))
         isset($_POST['yt_link'])? $_POST['yt_link'] : NULL,
         isset($_POST['teerace'])? $_POST['teerace'] : NULL,
         isset($_POST['ddnet'])? $_POST['ddnet'] : NULL,
-        isset($_POST['ddnet_mapper'])? $_POST['ddnet_mapper'] : NULL,
-        $editor, // list of all editors
-        $editor  // last editor
+        isset($_POST['ddnet_mapper'])? $_POST['ddnet_mapper'] : NULL
     );
 
 
     if ($type === "edit")
     {
+        $arr[] = ', ' . $editor; // append with comma to list
+        $arr[] = $editor;        // last editor
         $error = UpdatePlayer($id, $arr);
         if ($error)
         {
@@ -72,10 +73,12 @@ if (!empty($_POST['submit_player']))
 
             // remove this if users can edit aswell:
             echo "Well you should be admin...";
-            ViewOkayButton('admin_edit_players.php');
+            ViewOkayButton('admin_edit_players.php', false);
             fok();
         }
     } else if ($type === "add") {
+        $arr[] = $editor; // editor list first entry
+        $arr[] = $editor; // last editor
         $error = AddNewPlayer($arr);
         if ($error)
         {
