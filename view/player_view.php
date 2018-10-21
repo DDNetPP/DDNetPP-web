@@ -1,4 +1,11 @@
 <?php
+// lill helper func from stackoverflow
+// credits go to https://stackoverflow.com/a/7112596/6287070
+function contains($needle, $haystack)
+{
+    return strpos($haystack, $needle) !== false;
+}
+
 function ViewContributePlayerForm($name, $id = 0, $edit = null)
 {
     if (!$edit)
@@ -61,11 +68,11 @@ function ViewContributePlayerForm($name, $id = 0, $edit = null)
         <input type="text" name="yt_name" value="<?php echo $yt_name;?>"><br>
         youtube link:<br>
         <input type="text" name="yt_link" value="<?php echo $yt_link;?>"><br>
-        teerace:<br>
+        teerace (url):<br>
         <input type="text" name="teerace" value="<?php echo $teerace;?>"><br>
-        ddnet:<br>
+        ddnet (username or fulllink):<br>
         <input type="text" name="ddnet" value="<?php echo $ddnet;?>"><br>
-        ddnet mapper (username):<br>
+        ddnet mapper (username or fulllink):<br>
         <input type="text" name="ddnet_mapper" value="<?php echo $ddnet_mapper;?>"><br>
         <br>
         <input type="submit" value="submit"><br>
@@ -103,16 +110,18 @@ function ViewPlayer($row, $is_admin)
     }
     if ($ddnet)
     {
-        if ($ddnet == "name")
+        //if ($ddnet == "name") // old using hardcodet name value
+        if (!contains('https://ddnet.tw', $ddnet)) // no ddnet link found -> create one
         {
-            $ddnet_link = "https://ddnet.tw/players/$name/";
+            $ddnet_link = "https://ddnet.tw/players/$ddnet/";
         }
     }
     if ($ddnet_mapper)
     {
-        if ($ddnet_mapper == "name")
+        //if ($ddnet_mapper == "name") // old using hardcodet name value
+        if (!contains('https://ddnet.tw', $ddnet_mapper)) // no ddnet link found -> create one
         {
-            $ddnet_mapper_link = "https://ddnet.tw/mappers/$name/";
+            $ddnet_mapper_link = "https://ddnet.tw/mappers/$ddnet_mapper/";
         }
     }
     

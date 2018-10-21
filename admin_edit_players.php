@@ -8,6 +8,14 @@ if (IS_MINER == true)
     StartMiner();
 }
 HtmlHeader("Admin Players", "jungle.css");
+
+// lill helper func from stackoverflow
+// credits go to https://stackoverflow.com/a/7112596/6287070
+function contains($needle, $haystack)
+{
+    return strpos($haystack, $needle) !== false;
+}
+
 function PrintEditInfo($status, $type, $editor, $editors, $lasteditdate, $id)
 {
 ?>
@@ -276,20 +284,22 @@ function GetTotalPages($items_per_page, $hide)
             $editors = $row['Editors'];
             $lasteditdate = $row['LastEditDate'];
             $id = $row['ID'];
-			if ($ddnet)
-			{
-				if ($ddnet == "name")
-				{
-					$ddnet_link = "https://ddnet.tw/players/$name/";
-				}
-			}
-			if ($ddnet_mapper)
-			{
-				if ($ddnet_mapper == "name")
-				{
-					$ddnet_mapper_link = "https://ddnet.tw/mappers/$name/";
-				}
-			}
+            if ($ddnet)
+            {
+                //if ($ddnet == "name") // old using hardcodet name value
+                if (!contains('https://ddnet.tw', $ddnet)) // no ddnet link found -> create one
+                {
+                    $ddnet_link = "https://ddnet.tw/players/$ddnet/";
+                }
+            }
+            if ($ddnet_mapper)
+            {
+                //if ($ddnet_mapper == "name") // old using hardcodet name value
+                if (!contains('https://ddnet.tw', $ddnet_mapper)) // no ddnet link found -> create one
+                {
+                    $ddnet_mapper_link = "https://ddnet.tw/mappers/$ddnet_mapper/";
+                }
+            }
 			
 			echo "
 			<div id=\"$name\"\>
