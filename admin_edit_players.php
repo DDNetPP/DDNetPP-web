@@ -34,7 +34,7 @@ function PrintEditInfo($status, $type, $editor, $editors, $lasteditdate, $id)
 <?php
     }
 ?>
-    <form action="admin_edit_players.php" method="post">
+    <form action="delete_player.php" method="post">
         <input type="hidden" name="id" value="<?php echo $id; ?>">
         <input type="submit" name="action" value="delete" />
     </form>
@@ -176,18 +176,7 @@ function GetTotalPages($items_per_page, $hide)
         }
         else if ($action === "delete")
         {
-            echo "yo deletin!!! ID=$id";
-            $db = new PDO(PLAYER_CONTRIBUTE_DATABASE);
-            $db->setAttribute( PDO::ATTR_ERRMODE, PDO::ERRMODE_WARNING );
-            $stmt = $db->prepare("DELETE FROM Players WHERE ID = ?;");
-            $stmt->execute(array($id));
-            $rows = $stmt->fetchAll(PDO::FETCH_ASSOC);
-
-            if ($rows)
-            {
-                echo "SQL output: <br/>";
-                print_r($rows);
-            }
+            // moved to delete_player.php
         }
         else if ($action === "release")
         {
