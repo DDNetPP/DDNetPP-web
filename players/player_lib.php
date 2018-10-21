@@ -62,15 +62,19 @@ function AddNewPlayer($attrs)
     (Name, AKA, SkinName, SkinColorBody, SkinColorFeet,
     Info, Clan, ClanPage, Skills,
     yt_name, yt_link, Teerace, DDNet, DDNetMapper,
-    Editors, LastEditor, Type)
+    Editors, LastEditor, LastEditDate, Type)
     VALUES (
     ?, ?, ?, ?, ?,
     ?, ?, ?, ?,
     ?, ?, ?, ?, ?,
-    ?, ?, 'add'
+    ?, ?, ?, 'add'
     );
     ");
 
+    // get data object
+    $current_date = date_create(date("Y-m-d H:i:s"));
+    // format to string and push in attr array
+    $attrs[] = $current_date->format('Y-m-d H:i:s');
 
     $stmt->execute($attrs);
 
@@ -107,9 +111,14 @@ function UpdatePlayer($id, $attrs)
     Name = ?, AKA = ?, SkinName = ?, SkinColorBody = ?, SkinColorFeet = ?,
     Info = ?, Clan = ?, ClanPage = ?, Skills = ?,
     yt_name = ?, yt_link = ?, Teerace = ?, DDNet = ?, DDNetMapper = ?,
-    Editors = ?, LastEditor = ?, Type = 'edit'
+    Editors = ?, LastEditor = ?, LastEditDate = ?, Type = 'edit'
     WHERE ID = ?;
     ");
+
+    // get data object
+    $current_date = date_create(date("Y-m-d H:i:s"));
+    // format to string and push in attr array
+    $attrs[] = $current_date->format('Y-m-d H:i:s');
 
     $attrs[] = $id; // push id to end of array
     $stmt->execute($attrs);
