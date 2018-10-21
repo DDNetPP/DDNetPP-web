@@ -8,12 +8,15 @@ if (IS_MINER == true)
 HtmlHeader("Server");
 ?>
 		<h1>ChillBlock5 Block Server</h1>
+        <img src="https://status.tw/server/style1/149.202.127.134/8303/"></br></br></br>
+        <!--
 		<a>
 			IP: 149.202.127.134:8303</br>
 			Name: ChillBlock Server by ChillerDragon [Chilli.*]</br>
 			Gametype: DDraceNetwork++</br>
 			Map: ChillBlock5</br>
 		</a>
+        -->
 		<img src="design/img/ChillBlock5_race.png" height="300"/>
 		<h2>General Server info</h2>
 		<a>
