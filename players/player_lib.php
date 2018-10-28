@@ -1,4 +1,7 @@
 <?php
+// chiller sec lib replaced by professional php stuff
+// htmlspecialchars()
+//require_once("chiller_security.php");
 
 function IsPlayerInDatabase($player, $contribute)
 {
@@ -76,6 +79,12 @@ function AddNewPlayer($attrs)
     // format to string and push in attr array
     $attrs[] = $current_date->format('Y-m-d H:i:s');
 
+    foreach($attrs as &$attr)
+    {
+        $attr = htmlspecialchars($attr);
+    }
+    unset($attr); // delete pointer
+
     $stmt->execute($attrs);
 
     /*
@@ -114,6 +123,13 @@ function UpdatePlayer($id, $attrs)
     Editors = Editors || ?, LastEditor = ?, LastEditDate = ?, Type = 'edit'
     WHERE ID = ?;
     ");
+
+    // security
+    foreach($attrs as &$attr)
+    {
+        $attr = htmlspecialchars($attr);
+    }
+    unset($attr); // delete pointer
 
     // get data object
     $current_date = date_create(date("Y-m-d H:i:s"));
