@@ -6,7 +6,7 @@ function contains($needle, $haystack)
     return strpos($haystack, $needle) !== false;
 }
 
-function ViewContributePlayerForm($name, $id = 0, $edit = null, $rls)
+function ViewContributePlayerForm($name, $id, $edit, $rls)
 {
     if (!$edit)
     {

@@ -67,7 +67,8 @@ if (!empty($_POST['player']))
     }
     else
     {
-        ViewContributePlayerForm($player, 0);
+        // ViewContributePlayerForm($name, $id, $edit, $rls)
+        ViewContributePlayerForm($player, 0, false, false);
         BackButton();
     }
 }
