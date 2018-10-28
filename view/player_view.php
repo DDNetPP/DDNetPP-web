@@ -6,7 +6,7 @@ function contains($needle, $haystack)
     return strpos($haystack, $needle) !== false;
 }
 
-function ViewContributePlayerForm($name, $id = 0, $edit = null)
+function ViewContributePlayerForm($name, $id = 0, $edit = null, $rls)
 {
     if (!$edit)
     {
@@ -34,8 +34,13 @@ function ViewContributePlayerForm($name, $id = 0, $edit = null)
 
     <form action="save_player.php" method="post">
 <?php
-        if ($edit)
+        if ($edit && $rls)
         {
+            echo "
+            name:</br>
+            <input type=\"text\" name=\"submit_player\" value=\"$name\"></br>
+            <input type=\"hidden\" name=\"type\" value=\"edit_rls\">";
+        } else if ($edit) {
             echo "
             name:</br>
             <input type=\"text\" name=\"submit_player\" value=\"$name\"></br>
@@ -106,6 +111,7 @@ function ViewPlayer($row, $is_admin)
 <input type="hidden" name="id" value="<?php echo $id; ?>">
 <input type="submit" name="action" value="derelease" />
 </form>
+<input type="button" value="edit" onclick="window.location.href='edit_player.php?id=<?php echo $id?>&rls=true'"></br>
 <?php
     }
     if ($ddnet)

@@ -62,7 +62,7 @@ if (!empty($_POST['submit_player']))
     {
         $arr[] = ', ' . $editor; // append with comma to list
         $arr[] = $editor;        // last editor
-        $error = UpdatePlayer($id, $arr);
+        $error = UpdatePlayer($id, PLAYER_CONTRIBUTE_DATABASE, $arr);
         if ($error)
         {
             echo "$error<br>";
@@ -74,6 +74,28 @@ if (!empty($_POST['submit_player']))
             // remove this if users can edit aswell:
             echo "Well you should be admin...";
             ViewOkayButton('admin_edit_players.php', false);
+            fok();
+        }
+    } else if ($type === "edit_rls") {
+        if (!IsAdmin())
+        {
+            echo "error you have to be admin for that action.<br>";
+            fok();
+            die(); // unreachable code ik
+        }
+        // dont spam editor list on quick rlsd edits
+        //$arr[] = ', ' . $editor; // append with comma to list
+        $arr[] = ''; // append empty editor
+        $arr[] = $editor;        // last editor
+        $error = UpdatePlayer($id, PLAYER_DATABASE, $arr);
+        if ($error)
+        {
+            echo "$error<br>";
+        }
+        else
+        {
+            echo "Player '$name' edited<br>";
+            ViewOkayButton('players.php', false);
             fok();
         }
     } else if ($type === "add") {
@@ -89,7 +111,7 @@ if (!empty($_POST['submit_player']))
             echo "New player added '$name'<br>Wait until an admin accepts your work c:<br>";
         }
     } else {
-        echo "ERROR: unkown save type</br>";   
+        echo "ERROR: unkown save type '" . htmlspecialchars($type) . "'</br>";   
     }
 
     BackButton();

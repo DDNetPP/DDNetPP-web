@@ -50,8 +50,8 @@ if (!IsLoggedIn())
 if (!empty($_POST['player']))
 {
 	$player = isset($_POST['player'])? $_POST['player'] : '';
-    $player_in_db = IsPlayerInDatabase($player, false);
-    $player_in_db_contribute = IsPlayerInDatabase($player, true);
+    $player_in_db = IsPlayerInDatabase($player, PLAYER_DATABASE);
+    $player_in_db_contribute = IsPlayerInDatabase($player, PLAYER_CONTRIBUTE_DATABASE);
 
     if ($player_in_db)
     {

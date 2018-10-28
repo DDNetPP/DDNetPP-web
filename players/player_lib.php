@@ -3,17 +3,9 @@
 // htmlspecialchars()
 //require_once("chiller_security.php");
 
-function IsPlayerInDatabase($player, $contribute)
+function IsPlayerInDatabase($player, $database)
 {
-    $db = NULL; // idk baut scoping in php but this might help
-    if ($contribute)
-    {
-        $db = new PDO(PLAYER_CONTRIBUTE_DATABASE);
-    }
-    else
-    {
-        $db = new PDO(PLAYER_DATABASE);
-    }
+    $db = new PDO($database);
 	$db->setAttribute( PDO::ATTR_ERRMODE, PDO::ERRMODE_WARNING );
 	$stmt = $db->prepare('SELECT * FROM Players WHERE Name = ? COLLATE NOCASE OR AKA = ? COLLATE NOCASE;');
 	$stmt->execute(array($player, $player));
@@ -98,7 +90,7 @@ function AddNewPlayer($attrs)
     return NULL;
 }
 
-function UpdatePlayer($id, $attrs)
+function UpdatePlayer($id, $db, $attrs)
 {
     if (CanAddPlayer($attrs[0]))
     {
@@ -111,7 +103,7 @@ function UpdatePlayer($id, $attrs)
         return "ERROR: wrong number of arguments given $attrs_count/$attrs_expected";
     }
 
-    $db = new PDO(PLAYER_CONTRIBUTE_DATABASE);
+    $db = new PDO($db);
     $db->setAttribute( PDO::ATTR_ERRMODE, PDO::ERRMODE_WARNING );
 
     $stmt = $db->prepare("

@@ -41,7 +41,8 @@ const DDPP_USER = "chiller";
     `Info`  TEXT,
     `Editors`   TEXT,
     `LastEditDate`  TEXT,
-    `LastEditor`    TEXT
+    `LastEditor`    TEXT,
+    `Type`  TEXT DEFAULT 'only_for_compability'
     );
 
     PLAYER_CONTRIBUTE_DATABASE is used for the edit requests

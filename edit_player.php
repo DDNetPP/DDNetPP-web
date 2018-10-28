@@ -20,17 +20,32 @@ if (!$id)
     echo "Missing id";
     fok();
 }
+$rls = empty($_GET['rls']) ? false : $_GET['rls'];
+if ($rls === "true")
+{
+    $rls = true;
+    // keep this one even if user edits are allowed
+    if (!IsAdmin())
+    {
+        echo "Missing permission";
+        fok();
+    }
+}
 
 
-
-$db = new PDO(PLAYER_CONTRIBUTE_DATABASE); // for now only allow editing players in contribute state
+$db = new PDO(PLAYER_CONTRIBUTE_DATABASE);
+if ($rls)
+{
+    $db = new PDO(PLAYER_DATABASE);
+}
 $db->setAttribute( PDO::ATTR_ERRMODE, PDO::ERRMODE_WARNING );
 $stmt = $db->prepare("SELECT * FROM Players WHERE ID = ?;");
 $stmt->execute(array($id));
 $rows = $stmt->fetchAll(PDO::FETCH_ASSOC);
 if (!$rows)
 {
-    echo "ERROR: no player with id=$id found in contribute database<br>";
+    $db_name = $rls ? "release" : "contribute";
+    echo "ERROR: no player with id=$id found in $db_name database<br>";
     fok();
 }
 
@@ -56,7 +71,7 @@ $data = array(
     "last_editor" => $rows[0]['LastEditor']
 );
 
-ViewContributePlayerForm($data['name'], $id, $data);
+ViewContributePlayerForm($data['name'], $id, $data, $rls);
 
 fok();
 ?>
