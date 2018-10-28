@@ -20,7 +20,7 @@ if ($rowsLEVEL)
 	$rowsLEVEL = $rowsLEVEL->fetchAll();
 	for ($i = 0;$i < 20;$i++)
 	{
-		$username = $rowsLEVEL[$i]['Username'];
+		$username = htmlspecialchars($rowsLEVEL[$i]['Username']);
 		$level = $rowsLEVEL[$i]['Level'];
 		echo $i+1 . ". $username - $level </br>";
 	}
@@ -29,14 +29,14 @@ if ($rowsLEVEL)
 $rowsPOINTS = $db->query('SELECT Username, BlockPoints FROM Accounts ORDER BY BlockPoints DESC LIMIT 20');
 if ($rowsPOINTS)
 {
-	echo "<h2>Best Blocker</h2>";
-	$rowsPOINTS = $rowsPOINTS->fetchAll();
-	for ($i = 0;$i < 20; $i++)
-	{
-        	$username = $rowsPOINTS[$i]['Username'];
-        	$points = $rowsPOINTS[$i]['BlockPoints'];
-		echo $i+1 . ". $username - $points </br>";
-	}
+    echo "<h2>Best Blocker</h2>";
+    $rowsPOINTS = $rowsPOINTS->fetchAll();
+    for ($i = 0;$i < 20; $i++)
+    {
+        $username = htmlspecialchars($rowsPOINTS[$i]['Username']);
+        $points = $rowsPOINTS[$i]['BlockPoints'];
+        echo $i+1 . ". $username - $points </br>";
+    }
 }
 */
 $rowsLEVEL = $db->query('SELECT LastLogoutIGN1, Level FROM Accounts ORDER BY Exp DESC LIMIT 20');
@@ -53,7 +53,7 @@ if ($rowsLEVEL)
         $rowsLEVEL = $rowsLEVEL->fetchAll();
         for ($i = 0;$i < 20;$i++)
         {
-                $username = $rowsLEVEL[$i]['LastLogoutIGN1'];
+                $username = htmlspecialchars($rowsLEVEL[$i]['LastLogoutIGN1']);
                 $level = $rowsLEVEL[$i]['Level'];
                 echo $i+1 . ". $username - $level </br>";
         }
@@ -66,7 +66,7 @@ if ($rowsPOINTS)
         $rowsPOINTS = $rowsPOINTS->fetchAll();
         for ($i = 0;$i < 20; $i++)
         {
-                $username = $rowsPOINTS[$i]['LastLogoutIGN1'];
+                $username = htmlspecialchars($rowsPOINTS[$i]['LastLogoutIGN1']);
                 $points = $rowsPOINTS[$i]['BlockPoints'];
                 echo $i+1 . ". $username - $points </br>";
         }
