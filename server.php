@@ -61,12 +61,12 @@ HtmlHeader("Server");
 			The SuperModerator can do all things</br>
 			the Moderator can do and more.</br></br>
 
-			Price (30 days):</br>
-				<li>VIP: 3 euro</li></br>
-				<li>VIP+: 5 euro</li></br></br>
+			Price (60 days):</br>
+				<li>VIP: 6 euro</li></br>
+				<li>VIP+: 10 euro</li></br></br>
 
 			By buying a rank you help to keep the server running.</br>
-			Sadly we currently only accept Bitcoin as payment method.</br>
+			Sadly we currently only accept <a href="https://www.paypal.me/ChillerDragon">paypal</a> as payment method.</br>
 
 			<h3> VIP power </h3>
 			'/say_srv' to send chat messages as server</br>
