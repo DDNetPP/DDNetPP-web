@@ -14,6 +14,7 @@ HtmlHeader("ServerPanel");
                 <li><a href="server_panel.php?p=home">Main</a></li>
                 <li><a href="server_panel.php?p=test">Test</a></li>
                 <li><a href="server_panel.php?p=logs">Logs</a></li>
+                <li><a href="server_panel.php?p=donors">Donors</a></li>
             </ul>
         </div>
 <?php
@@ -21,8 +22,39 @@ HtmlHeader("ServerPanel");
 if (empty($_SESSION['csLOGGED']) || $_SESSION['csLOGGED'] !== "online")
 {
 	echo "you are not logged in";
-    fok(); // should include die() but
-    die(); // better double check on that one
+  fok(); // should include die() but
+  die(); // better double check on that one
+}
+
+function PageDonors()
+{
+  echo "<h1>Donors</h1>";
+  $db = new PDO(ABSOLUTE_DATABASE_PATH);
+  $db->setAttribute( PDO::ATTR_ERRMODE, PDO::ERRMODE_WARNING );
+  $rowsVIP = $db->query('SELECT LastLogoutIGN1, Username FROM Accounts WHERE IsModerator = 1');
+  if ($rowsVIP)
+  {
+    echo "<h2>VIP</h2>";
+    $rows = $rowsVIP->fetchAll();
+    foreach ($rows as $row)
+    {
+      $ign = htmlspecialchars($row['LastLogoutIGN1']);
+      $acc = $row['Username'];
+      echo "acc: $acc ingame: $ign </br>";
+    }
+  }
+  $rowsVIPP = $db->query('SELECT LastLogoutIGN1, Username FROM Accounts WHERE IsSuperModerator = 1');
+  if ($rowsVIPP)
+  {
+    echo "<h2>VIP+</h2>";
+    $rows = $rowsVIPP->fetchAll();
+    foreach ($rows as $row)
+    {
+      $ign = htmlspecialchars($row['LastLogoutIGN1']);
+      $acc = $row['Username'];
+      echo "acc: $acc ingame: $ign </br>";
+    }
+  }
 }
 
 function PageTest()
@@ -179,6 +211,12 @@ if ($rows)
         else if ($page === "test")
         {
             PageTest();
+            fok();
+            die();
+        }
+        else if ($page === "donors")
+        {
+            PageDonors();
             fok();
             die();
         }
