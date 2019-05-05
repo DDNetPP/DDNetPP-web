@@ -89,7 +89,7 @@ const DDPP_USER = "chiller";
 //paths
 const PLAYER_DATABASE = "sqlite:/var/www/html/DDNetPP-web/players/TeeworldsPlayers.db";
 const PLAYER_CONTRIBUTE_DATABASE = "sqlite:/var/www/html/DDNetPP-web/players/TeeworldsPlayers_contribute.db";
-const ABSOLUTE_DATABASE_PATH = "sqlite:/home/chiller/ddpp_database/accounts.db";
+const ABSOLUTE_DATABASE_PATH = "sqlite:/home/chiller/git/TeeworldsData/accounts.db";
 const SCRIPTS_PATH = "/home/chiller/ddpp_database/web_scripts";
 const SCRIPTS_TEST_SRV_PATH = "/home/chiller/ddpp_database/web_scripts/test_srv";
 const UPDATE_SCRIPTS_SCRIPT_PATH = "/var/www/update_ddpp_scripts.sh";
