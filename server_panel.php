@@ -15,6 +15,7 @@ HtmlHeader("ServerPanel");
                 <li><a href="server_panel.php?p=test">Test</a></li>
                 <li><a href="server_panel.php?p=logs">Logs</a></li>
                 <li><a href="server_panel.php?p=donors">Donors</a></li>
+                <li><a href="server_panel.php?p=status">Status</a></li>
             </ul>
         </div>
 <?php
@@ -24,6 +25,15 @@ if (empty($_SESSION['csLOGGED']) || $_SESSION['csLOGGED'] !== "online")
 	echo "you are not logged in";
   fok(); // should include die() but
   die(); // better double check on that one
+}
+
+function PageStatus()
+{
+  echo "<h1>Status</h1>";
+  $cmd = "cd " . SCRIPTS_PATH . ";./status_chiller.sh html";
+  # echo "cmd: <br/>$cmd<br/>";
+  $out = shell_exec($cmd);
+  echo $out;
 }
 
 function PageDonors()
@@ -217,6 +227,12 @@ if ($rows)
         else if ($page === "donors")
         {
             PageDonors();
+            fok();
+            die();
+        }
+        else if ($page === "status")
+        {
+            PageStatus();
             fok();
             die();
         }
