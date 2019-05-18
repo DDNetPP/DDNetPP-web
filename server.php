@@ -83,6 +83,8 @@ HtmlHeader("Server");
 			'/give trail' to get an trail</br>
 			'/give rainbow (player)' to offer rainbow to (player)</br>
 			'/give bloody (player)' to offer bloody to (player)</br>
+			'/drop_armor (num)' to drop num armor pickups at current position</br>
+			'/drop_health (num)' to drop num health pickups at current position</br>
 			'/bomb ban (player)' to ban (player) from bombgames (5min max)</br>
 			'/hook bloody' to get bloody hook</br>
 			'/room invite (player)' to invite (player) to the special room (under the spawn)</br>
