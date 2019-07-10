@@ -81,19 +81,6 @@ function PageTest()
             //echo "cmd: <br/>$cmd<br/>";
             $out = shell_exec($cmd);
         }
-        if ($action === "github_update_tmp")
-        {
-            if (IS_ALLOWED_TMP_GITHUB)
-            {
-                $cmd = "cd " . SCRIPTS_TEST_SRV_PATH . ";sudo -u " . DDPP_USER . " " . SCRIPTS_TEST_SRV_PATH . "/github_update_tmp.sh";
-                //echo "cmd: <br/>$cmd<br/>";
-                $out = shell_exec($cmd);
-            }
-            else
-            {
-                echo "tmp github update is currently not allowed";
-            }
-        }
         else if ($action === "start")
         {
             $cmd = "cd " . SCRIPTS_TEST_SRV_PATH . ";sudo -u " . DDPP_USER . " " . SCRIPTS_TEST_SRV_PATH . "/start.sh";
@@ -127,7 +114,6 @@ function PageTest()
     <br/><input type="button" value="stop" onclick="window.location.href='server_panel.php?p=test&action=stop'"/>
     <br/><input type="button" value="show log" onclick="window.location.href='server_panel.php?p=test&action=log'"/>
     <br/><input type="button" value="github_update" onclick="window.location.href='server_panel.php?p=test&action=github_update'"/>
-    <br/><input type="button" value="github_update_tmp" onclick="window.location.href='server_panel.php?p=test&action=github_update_tmp'"/>
     </form>
 <?php
 }
