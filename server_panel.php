@@ -229,6 +229,21 @@ if ($rows)
         $action = isset($_GET['action'])? $_GET['action'] : '';
         $action = (string)$action;
         $out = "error: action not found";
+
+        if ($action === "start_github")
+        {
+            $cmd = "cd " . SCRIPTS_PATH . ";sudo -u " . DDPP_USER . " " . SCRIPTS_PATH . "/github_update.sh";
+            echo "cmd: <br/>$cmd<br/>";
+            $out = shell_exec($cmd);
+        }
+        else if ($action === "update_ddpp_scripts")
+        {
+            $cmd = "sudo -u " . DDPP_USER . " " . UPDATE_SCRIPTS_SCRIPT_PATH;
+            echo "cmd: <br/>$cmd<br/>";
+            $out = shell_exec($cmd);
+        }
+
+        /*
         if ($action === "start_restart")
         {
             $cmd = "cd " . SCRIPTS_PATH . ";sudo -u " . DDPP_USER . " " . SCRIPTS_PATH . "/init_restart.sh";
@@ -245,12 +260,6 @@ if ($rows)
         {
             $out = shell_exec("cat " . SCRIPTS_PATH . "/status_restart_*.log");
         }
-        else if ($action === "start_github")
-        {
-            $cmd = "cd " . SCRIPTS_PATH . ";sudo -u " . DDPP_USER . " " . SCRIPTS_PATH . "/github_update.sh";
-            echo "cmd: <br/>$cmd<br/>";
-            $out = shell_exec($cmd);
-        }
         else if ($action === "restart_chillerbot_bl")
         {
             $cmd = "cd " . SCRIPTS_PATH . ";sudo -u " . DDPP_USER . " " . SCRIPTS_PATH . "/restart_bot_bl.sh";
@@ -260,12 +269,6 @@ if ($rows)
         else if ($action === "restart_chillerbot_cb")
         {
             $cmd = "cd " . SCRIPTS_PATH . ";sudo -u " . DDPP_USER . " " . SCRIPTS_PATH . "/restart_bot_cb.sh";
-            echo "cmd: <br/>$cmd<br/>";
-            $out = shell_exec($cmd);
-        }
-        else if ($action === "update_ddpp_scripts")
-        {
-            $cmd = "sudo -u " . DDPP_USER . " " . UPDATE_SCRIPTS_SCRIPT_PATH;
             echo "cmd: <br/>$cmd<br/>";
             $out = shell_exec($cmd);
         }
@@ -293,12 +296,17 @@ if ($rows)
             echo "cmd: <br/>$cmd<br/>";
             $out = shell_exec($cmd);
         }
+        */
         $out = nl2br($out);
         echo "Output:<br/>$out";
         LogServerPanelAction($action);
     }
 ?>
     <form method="get">
+    <h1 id="zone-github">Github updates</h1>
+    <br/><input type="button" value="start github_update.sh" onclick="window.location.href='server_panel.php?action=start_github'"/>
+    <br/><input type="button" value="update scripts/cfgs" onclick="window.location.href='server_panel.php?action=update_ddpp_scripts'"/>
+    <!--
     <h1 id="zone-night">Night restart (FORCE)</h1>
     <br/><input type="button" value="start restart.sh" onclick="window.location.href='server_panel.php?action=start_restart'"/>
     <br/><input type="button" value="stop restart.sh" onclick="window.location.href='server_panel.php?action=stop_restart'"/>
@@ -308,21 +316,14 @@ if ($rows)
     <br/><input type="button" value="stop chillblock" onclick="window.location.href='server_panel.php?action=ddpp_shutdown_cb_off'"/>
     <br/><input type="button" value="start blmapchill" onclick="window.location.href='server_panel.php?action=ddpp_shutdown_bl_on'"/>
     <br/><input type="button" value="stop blmapchill" onclick="window.location.href='server_panel.php?action=ddpp_shutdown_bl_off'"/>
-    <h1 id="zone-github">Github updates</h1>
-    <br/><input type="button" value="start github_update.sh" onclick="window.location.href='server_panel.php?action=start_github'"/>
-    <br/><input type="button" value="update scripts/cfgs" onclick="window.location.href='server_panel.php?action=update_ddpp_scripts'"/>
-<br/><br/>
+    <br/><br/>
     <h1 id="zone-danger">Force server restart NOW</h1>
     <h2 id="zone-danger">WARNING DANGER ZONE</h2>
     <br/><input type="button" id="btn-danger" value="restart chillerbot/srv BlmapChill" onclick="window.location.href='server_panel.php?action=restart_chillerbot_bl'"/>
     <br/><input type="button" id="btn-danger" value="restart chillerbot/srv ChillBlock5" onclick="window.location.href='server_panel.php?action=restart_chillerbot_cb'"/>
+    --!>
     </form>
 <?php
-
-
-	echo "
-		</br><input type=\"button\" value=\"Logout\" onclick=\"window.location.href='logout.php'\" />
-	";
 }
 else
 {
