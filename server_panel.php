@@ -22,9 +22,60 @@ HtmlHeader("ServerPanel");
 
 if (empty($_SESSION['csLOGGED']) || $_SESSION['csLOGGED'] !== "online")
 {
-	echo "you are not logged in";
-  fok(); // should include die() but
-  die(); // better double check on that one
+    echo "you are not logged in";
+    fok(); // should include die() but
+    die(); // better double check on that one
+}
+
+function CodeSnippet($code)
+{
+    $colors = [
+        "0" => "#aaaaaa",
+        "0;30" => "color:black",
+        "0;31" => "color:red",
+        "0;32" => "color:green",
+        "0;33" => "color:yellow",
+        "0;34" => "color:blue",
+        "0;35" => "color:purple",
+        "0;36" => "color:cyan",
+        "0;37" => "color:white",
+
+        "1;30" => "color:black;font-weight: bold",
+        "1;31" => "color:red;font-weight: bold",
+        "1;32" => "color:green;font-weight: bold",
+        "1;33" => "color:yellow;font-weight: bold",
+        "1;34" => "color:blue;font-weight: bold",
+        "1;35" => "color:purple;font-weight: bold",
+        "1;36" => "color:cyan;font-weight: bold",
+        "1;37" => "color:white;font-weight: bold",
+
+        "4;30" => "color:black;text-decoration: underline",
+        "4;31" => "color:red;text-decoration: underline",
+        "4;32" => "color:green;text-decoration: underline",
+        "4;33" => "color:yellow;text-decoration: underline",
+        "4;34" => "color:blue;text-decoration: underline",
+        "4;35" => "color:purple;text-decoration: underline",
+        "4;36" => "color:cyan;text-decoration: underline",
+        "4;37" => "color:white;text-decoration: underline",
+
+        "40" => "background-color:black",
+        "41" => "background-color:red",
+        "42" => "background-color:green",
+        "43" => "background-color:yellow",
+        "44" => "background-color:blue",
+        "45" => "background-color:purple",
+        "46" => "background-color:cyan",
+        "47" => "background-color:white",
+    ];
+    $code = '<span>' . $code;
+    foreach ($colors as $color_shell => $color_css)
+    {
+        $code = str_replace("[" . $color_shell . "m", '</span><span style="' . $color_css . '">', $code);
+    }
+    $code = $code . '</span>';
+    echo '<div class="code-snippet"><pre><code>';
+    echo "$code";
+    echo '</code></pre></div>';
 }
 
 function PageStatus()
@@ -233,13 +284,11 @@ if ($rows)
         if ($action === "start_github")
         {
             $cmd = "cd " . SCRIPTS_PATH . ";sudo -u " . DDPP_USER . " " . SCRIPTS_PATH . "/github_update.sh";
-            echo "cmd: <br/>$cmd<br/>";
             $out = shell_exec($cmd);
         }
         else if ($action === "update_ddpp_scripts")
         {
             $cmd = "sudo -u " . DDPP_USER . " " . UPDATE_SCRIPTS_SCRIPT_PATH;
-            echo "cmd: <br/>$cmd<br/>";
             $out = shell_exec($cmd);
         }
 
@@ -297,8 +346,11 @@ if ($rows)
             $out = shell_exec($cmd);
         }
         */
-        $out = nl2br($out);
-        echo "Output:<br/>$out";
+        // $out = nl2br($out);
+        echo "<br/>"; // YEs I dEsIgN wIth bReAks! and it works...
+        CodeSnippet("$ " . $cmd);
+        echo "<br/>";
+        CodeSnippet($out);
         LogServerPanelAction($action);
     }
 ?>

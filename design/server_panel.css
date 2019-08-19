@@ -5,6 +5,14 @@
  *
  */
 
+.code-snippet {
+    background-color: #424242;
+    border-radius: 3px;
+    color: #aaaaaa;
+    display: block; /* scroll */
+    overflow: auto; /* scroll */
+}
+
 #panel-list li a:hover {
     background-color: lightgrey;
 }
