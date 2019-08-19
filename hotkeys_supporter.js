@@ -1,4 +1,4 @@
-document.addEventListener("keydown", keyDownHandler, false);
+// document.addEventListener("keydown", keyDownHandler, false);
 function keyDownHandler(e)
 {
     if (e.keyCode == 49) // 1
