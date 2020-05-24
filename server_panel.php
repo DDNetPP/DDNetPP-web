@@ -85,7 +85,6 @@ function PageStatus()
   # echo "cmd: <br/>$cmd<br/>";
   $out = shell_exec($cmd);
   echo $out;
-  echo "<br>";
   $r = json_decode(file_get_contents('https://api.mcsrvstat.us/2/zillyhuhn.com'));
     if ($r->online) {
         echo "<div>[<span style=\"color: green\">RUNNING</span>] Lasergurkenland " . $r->players->online . " / " . $r->players->max . "</div>";
