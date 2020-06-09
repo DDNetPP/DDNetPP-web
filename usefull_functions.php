@@ -73,7 +73,6 @@ function HtmlHeader($page, $style = "js_clouds.css", $style2 = "")
 <!DOCTYPE html>
 <html>
 	<head>
-		<link href="http://fonts.googleapis.com/css?family=Comfortaa" rel="stylesheet" type="text/css">
         <link rel="stylesheet" href="design/style.css"></style>
 		<link rel="stylesheet" href="<?php echo "design/$style"; ?>"></style>
 <?php

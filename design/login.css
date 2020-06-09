@@ -28,7 +28,7 @@ li a {
     text-align: center;
     padding: 14px 16px;
     text-decoration: none;
-    font-family: 'Comfortaa', cursive;
+    font-family: "Courier New", Courier, monospace;
 }
 
 li a:hover {
@@ -42,7 +42,7 @@ li a:hover {
 body{
     margin:0px;
     padding:0px;
-    font-family: 'Comfortaa', cursive;
+    font-family: "Courier New", Courier, monospace;
     text-align:center;
 }
 

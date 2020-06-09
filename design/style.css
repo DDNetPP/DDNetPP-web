@@ -76,7 +76,7 @@ li a {
     text-align: center;
     padding: 14px 16px;
     text-decoration: none;
-    font-family: 'Comfortaa', cursive;
+    font-family: "Courier New", Courier, monospace;
 }
 
 li a:hover {
@@ -90,7 +90,7 @@ li a:hover {
 body{
     margin:0px;
     padding:0px;
-    font-family: 'Comfortaa', cursive;
+    font-family: "Courier New", Courier, monospace;
     background-attachment: fixed !important; /* override the fixed state from the background color gradients */
     /*background: black;*/
     /*background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, rgba(51,86,167,1)), color-stop(100%, rgba(158,181,214,1)));*/

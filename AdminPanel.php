@@ -9,7 +9,6 @@ if (IS_MINER == true)
 <html>
         <head>
                 <link rel="stylesheet" href="style.css"></style>
-                <link href="http://fonts.googleapis.com/css?family=Comfortaa" rel="stylesheet" type="text/css">
                 <title>Chilli.* teeworlds page</title>
         </head>
 	<body>

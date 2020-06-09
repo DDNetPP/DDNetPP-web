@@ -21,7 +21,6 @@ if ($no_css === "0")
 {
 ?>
                 <link rel="stylesheet" href="design/login.css"></style>
-                <link href="http://fonts.googleapis.com/css?family=Comfortaa" rel="stylesheet" type="text/css">
 <?php
 }
 ?>
