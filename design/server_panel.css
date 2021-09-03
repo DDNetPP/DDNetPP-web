@@ -37,3 +37,8 @@
     /*position: fixed;*/
     width: 100%;
 }
+
+input:disabled {
+    background-color: rgb(194, 93, 93);
+    cursor: not-allowed;
+}
