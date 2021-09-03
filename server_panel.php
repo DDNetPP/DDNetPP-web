@@ -181,7 +181,7 @@ function PageTest()
 
 function ShowLogs()
 {
-    $db = new PDO(WEB_DATABASE_PATH);
+    $db = new PDO($_ENV['UPDATE_SCRIPTS_SCRIPT_PATH']);
     $db->setAttribute( PDO::ATTR_ERRMODE, PDO::ERRMODE_WARNING );
     $rows = $db->query('SELECT * FROM ServerPanel ORDER BY ID DESC LIMIT 10');
 
@@ -229,7 +229,7 @@ function LogServerPanelAction($action)
         
         //Add login to login history
         $db = NULL;
-	    $db = new PDO(WEB_DATABASE_PATH);
+	    $db = new PDO($_ENV['UPDATE_SCRIPTS_SCRIPT_PATH']);
 	    $db->setAttribute( PDO::ATTR_ERRMODE, PDO::ERRMODE_WARNING );
 	    $stmt = $db->prepare('INSERT INTO ServerPanel (Username, Action, TimeStamp, IP, Location, Browser, OS, OtherDetails) VALUES (?, ?, ?, ?, ?, ?, ?, ?)');
 	    $stmt->execute(array($_SESSION['Username'], $action, $current_date_str, $_SERVER['REMOTE_ADDR'], $details->city, $user_browser, $user_os, $_SERVER['HTTP_USER_AGENT']));

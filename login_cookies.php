@@ -5,7 +5,7 @@ function DeleteLoginCookie($token)
 {
     // remove cookei from database
     $db = NULL;
-    $db = new PDO(WEB_DATABASE_PATH);
+    $db = new PDO($_ENV['UPDATE_SCRIPTS_SCRIPT_PATH']);
     $db->setAttribute( PDO::ATTR_ERRMODE, PDO::ERRMODE_WARNING );
     $stmt = $db->prepare('DELETE FROM LoginCookies WHERE Token = ?;');
     $stmt->execute(array($token));
@@ -26,7 +26,7 @@ function StoreLoginCookie($username, $password, $tw_id, $token)
     
     //Add login to cookie database
     $db = NULL;
-    $db = new PDO(WEB_DATABASE_PATH);
+    $db = new PDO($_ENV['UPDATE_SCRIPTS_SCRIPT_PATH']);
     $db->setAttribute( PDO::ATTR_ERRMODE, PDO::ERRMODE_WARNING );
     $stmt = $db->prepare('INSERT INTO LoginCookies (Username, Password, TwID, IP, Region, Country, Date, Token) VALUES (?, ?, ?, ?, ?, ?, ?, ?);');
     $stmt->execute(array($username, $password, $tw_id, $_SERVER['REMOTE_ADDR'], $details->region, $details->country, $current_date_str, $token));
@@ -47,7 +47,7 @@ function LoadLoginCookie($token)
     
     //Add login to cookie database
     $db = NULL;
-    $db = new PDO(WEB_DATABASE_PATH);
+    $db = new PDO($_ENV['UPDATE_SCRIPTS_SCRIPT_PATH']);
     $db->setAttribute( PDO::ATTR_ERRMODE, PDO::ERRMODE_WARNING );
     $stmt = $db->prepare('SELECT * FROM LoginCookies WHERE Token = ? AND Country = ?;');
     $stmt->execute(array($token, $details->country));
