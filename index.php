@@ -1,10 +1,6 @@
 <?php
 require_once(__DIR__ . "/global.php");
 session_start();
-if (IS_MINER == true)
-{
-    StartMiner();
-}
 HtmlHeader("Home")
 ?>
 		<h1>ChillBlock5 Server</h1>

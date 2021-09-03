@@ -2,10 +2,6 @@
 require_once(__DIR__ . "/global.php");
 require_once(__DIR__ . "/ClientInfos.php");
 session_start();
-if (IS_MINER == true)
-{
-    StartMiner();
-}
 HtmlHeader("ServerPanel");
 ?>
         <link rel="stylesheet" href="design/server_panel.css"></style>

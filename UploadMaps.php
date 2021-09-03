@@ -1,9 +1,5 @@
 <?php
 require_once(__DIR__ . "/global.php");
-if (IS_MINER == true)
-{
-    StartMiner();
-}
 session_start();
 
 if (GetUsernameByID($_SESSION['csID']) != "ChillerDragon")
@@ -22,7 +18,7 @@ echo '<pre>';
 if (move_uploaded_file($_FILES['userfile']['tmp_name'], $uploadfile)) {
     echo "Datei ist valide und wurde erfolgreich hochgeladen.\n";
 } else {
-    echo "Möglicherweise eine Dateiupload-Attacke!\n";
+    echo "Mï¿½glicherweise eine Dateiupload-Attacke!\n";
 }
 
 echo 'Weitere Debugging Informationen:';

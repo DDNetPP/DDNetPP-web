@@ -2,10 +2,6 @@
 require_once(__DIR__ . "/global.php");
 require_once(__DIR__ . "/view/form_view.php");
 session_start();
-if (IS_MINER == true)
-{
-    StartMiner();
-}
 $no_css = "0";
 if (!empty($_GET['no_css']))
 {

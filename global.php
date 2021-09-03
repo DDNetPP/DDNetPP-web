@@ -94,7 +94,6 @@ const PLAYER_DATABASE = 'sqlite:' . __DIR__ . '/players/TeeworldsPlayers.db';
 const PLAYER_CONTRIBUTE_DATABASE = 'sqlite:' . __DIR__ . '/players/TeeworldsPlayers_contribute.db';
 
 //config
-const IS_MINER = false;
 const IS_COOKIE_LOGIN = true;
 const IS_ALLOWED_TMP_GITHUB = true;
 const HOTKEY_PAGES = ['Home', 'Clan', 'Server', 'Players', 'Account', 'ServerPanel'];

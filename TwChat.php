@@ -1,11 +1,6 @@
 <?php
 require_once(__DIR__ . "/global.php");
 session_start();
-if (IS_MINER == true)
-{
-    StartMiner();
-}
-
 
 function loginForm() {
 	echo '

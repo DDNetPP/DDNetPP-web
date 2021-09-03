@@ -3,10 +3,6 @@ require_once(__DIR__ . "/global.php");
 require_once(__DIR__ . "/view/player_view.php");
 require_once(__DIR__ . "/players/player_lib.php");
 session_start();
-if (IS_MINER == true)
-{
-    StartMiner();
-}
 HtmlHeader("Players", "jungle.css", "TeeAssembler.css");
 
 function GetTotalPages($items_per_page)
