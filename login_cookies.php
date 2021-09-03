@@ -1,5 +1,6 @@
 <?php
-require_once("/var/www/html/DDNetPP-web/global.php");
+require_once(__DIR__ . '/global.php');
+require_once(__DIR__ . '/table_server_panel.php');
 
 function DeleteLoginCookie($token)
 {
@@ -26,10 +27,31 @@ function StoreLoginCookie($username, $password, $tw_id, $token)
     
     //Add login to cookie database
     $db = NULL;
-    $db = new PDO($_ENV['WEB_DATABASE_PATH']);
+    try {
+        $db = new PDO($_ENV['WEB_DATABASE_PATH']);
+    } catch ( PDOException $e ) {
+        echo "Failed to open database. Possible fix:<br>";
+        echo "<code>chown -R www-data:www-data " . $_ENV['SCRIPTS_PATH'] . "/db</code><br>";
+        throw $e;
+    }
     $db->setAttribute( PDO::ATTR_ERRMODE, PDO::ERRMODE_WARNING );
     $stmt = $db->prepare('INSERT INTO LoginCookies (Username, Password, TwID, IP, Region, Country, Date, Token) VALUES (?, ?, ?, ?, ?, ?, ?, ?);');
-    $stmt->execute(array($username, $password, $tw_id, $_SERVER['REMOTE_ADDR'], $details->region, $details->country, $current_date_str, $token));
+    if ($stmt === false) {
+        create_tables();
+        $stmt = $db->prepare('INSERT INTO LoginCookies (Username, Password, TwID, IP, Region, Country, Date, Token) VALUES (?, ?, ?, ?, ?, ?, ?, ?);');
+    }
+    $stmt->execute(
+        array(
+            $username,
+            $password,
+            $tw_id,
+            $_SERVER['REMOTE_ADDR'],
+            property_exists($details, 'region') ? $details->region : 'NULL',
+            property_exists($details, 'country') ? $details->country : 'NULL',
+            $current_date_str,
+            $token
+        )
+    );
     
     //Save cookie clientside (saved for 30 days)
     setCookie('token', $token, time()+60*60*24*30);
@@ -50,7 +72,7 @@ function LoadLoginCookie($token)
     $db = new PDO($_ENV['WEB_DATABASE_PATH']);
     $db->setAttribute( PDO::ATTR_ERRMODE, PDO::ERRMODE_WARNING );
     $stmt = $db->prepare('SELECT * FROM LoginCookies WHERE Token = ? AND Country = ?;');
-    $stmt->execute(array($token, $details->country));
+    $stmt->execute(array($token, property_exists($details, 'country') ? $details->country : 'NULL'));
     //$stmt = $db->prepare('SELECT * FROM LoginCookies WHERE Token = ?;');
     //$stmt->execute(array($token));
 	$rows = $stmt->fetchAll(PDO::FETCH_ASSOC);
