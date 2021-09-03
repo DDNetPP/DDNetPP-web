@@ -141,7 +141,7 @@ function ViewPlayer($row, $is_admin)
 echo "
     <style>
     .tee[skin$id] div {
-      background-image: url(TeeworldsDB/skins/$skin_name.png);
+      background-image: url(TeeworldsDB/skins/06/$skin_name.png);
     }
     </style>
 ";

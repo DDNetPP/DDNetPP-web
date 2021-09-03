@@ -1,0 +1,3 @@
+[submodule "TeeworldsDB/skins"]
+	path = TeeworldsDB/skins
+	url = git@github.com:TeeworldsDB/skins.git
