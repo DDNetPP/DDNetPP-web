@@ -1,9 +1,5 @@
 <?php
 require_once(__DIR__ . "/global.php");
-if (IS_MINER == true)
-{
-    StartMiner();
-}
 HtmlHeader("Clan");
 ?>
 		</br>

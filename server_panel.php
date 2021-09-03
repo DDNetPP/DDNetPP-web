@@ -177,7 +177,7 @@ function PageTest()
 
 function ShowLogs()
 {
-    $db = new PDO($_ENV['UPDATE_SCRIPTS_SCRIPT_PATH']);
+    $db = new PDO($_ENV['WEB_DATABASE_PATH']);
     $db->setAttribute( PDO::ATTR_ERRMODE, PDO::ERRMODE_WARNING );
     $rows = $db->query('SELECT * FROM ServerPanel ORDER BY ID DESC LIMIT 10');
 

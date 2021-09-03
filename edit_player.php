@@ -3,10 +3,6 @@ require_once(__DIR__ . "/global.php");
 require_once(__DIR__ . "/view/player_view.php");
 session_start();
 HtmlHeader("EditPlayer", "jungle.css");
-if (IS_MINER == true)
-{
-    StartMiner();
-}
 if (!IsAdmin())
 {
     echo "Missing permission";
