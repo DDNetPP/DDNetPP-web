@@ -4,9 +4,12 @@
 *****************/
 
 //includes
-require_once(__DIR__ . "/login_cookies.php");
-require_once(__DIR__ . "/usefull_functions.php");
+require_once(__DIR__ . '/vendor/autoload.php');
+require_once(__DIR__ . '/login_cookies.php');
+require_once(__DIR__ . '/usefull_functions.php');
 
+$dotenv = Dotenv\Dotenv::createImmutable(__DIR__);
+$dotenv->load();
 
 //debug
 ini_set('display_startup_errors', 1);
@@ -87,23 +90,13 @@ const DDPP_USER = "chiller";
 */
 
 //paths
-const PLAYER_DATABASE = "sqlite:/var/www/html/DDNetPP-web/players/TeeworldsPlayers.db";
-const PLAYER_CONTRIBUTE_DATABASE = "sqlite:/var/www/html/DDNetPP-web/players/TeeworldsPlayers_contribute.db";
-const ABSOLUTE_DATABASE_PATH = "sqlite:/home/chiller/git/TeeworldsData/accounts.db";
-const SCRIPTS_PATH = "/home/chiller/ddpp_database/web_scripts";
-const SCRIPTS_TEST_SRV_PATH = "/home/chiller/ddpp_database/web_scripts/test_srv";
-const UPDATE_SCRIPTS_SCRIPT_PATH = "/var/www/update_ddpp_scripts.sh";
-
-
-const WEB_DATABASE_PATH_RAW = SCRIPTS_PATH . "/db/ddnetpp-web.db";
-//const WEB_DATABASE_PATH_RAW = "/var/www/DDNetPP/database.db";
-//const WEB_DATABASE_PATH = WEB_DATABASE_PATH_RAW;
-const WEB_DATABASE_PATH = "sqlite:" . WEB_DATABASE_PATH_RAW;
+const PLAYER_DATABASE = 'sqlite:' . __DIR__ . '/players/TeeworldsPlayers.db';
+const PLAYER_CONTRIBUTE_DATABASE = 'sqlite:' . __DIR__ . '/players/TeeworldsPlayers_contribute.db';
 
 //config
 const IS_MINER = false;
 const IS_COOKIE_LOGIN = true;
 const IS_ALLOWED_TMP_GITHUB = true;
-const HOTKEY_PAGES = ["Home", "Clan", "Server", "Players", "Account", "ServerPanel"];
+const HOTKEY_PAGES = ['Home', 'Clan', 'Server', 'Players', 'Account', 'ServerPanel'];
 
 ?>

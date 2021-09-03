@@ -9,7 +9,7 @@ HtmlHeader("Home")
 ?>
 		<h1>ChillBlock5 Server</h1>
 <?php
-$db = new PDO(ABSOLUTE_DATABASE_PATH);
+$db = new PDO($_ENV['ABSOLUTE_DATABASE_PATH']);
 $db->setAttribute( PDO::ATTR_ERRMODE, PDO::ERRMODE_WARNING );
 
 /*

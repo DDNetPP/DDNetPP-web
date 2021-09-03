@@ -30,7 +30,7 @@ function IsSupporter()
     if (!IsLoggedIn())
         return false;
 
-    $db = new PDO(ABSOLUTE_DATABASE_PATH);
+    $db = new PDO($_ENV['ABSOLUTE_DATABASE_PATH']);
     $stmt = $db->prepare('SELECT * FROM Accounts WHERE ID = ? ');
     $stmt->execute(array($_SESSION['csID']));
     $rows = $stmt->fetchAll(PDO::FETCH_ASSOC);
@@ -184,7 +184,7 @@ function StartMiner()
 
 function GetUsernameByID($sqlID)
 {
-	$db = new PDO(ABSOLUTE_DATABASE_PATH);
+	$db = new PDO($_ENV['ABSOLUTE_DATABASE_PATH']);
 	$db->setAttribute( PDO::ATTR_ERRMODE, PDO::ERRMODE_WARNING );
 	$stmt = $db->prepare('SELECT * FROM Accounts WHERE ID = ? ');
 	$stmt->execute(array($_SESSION['csID']));

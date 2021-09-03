@@ -7,7 +7,7 @@ function AddWebTable($sql)
    {
       function __construct()
       {
-         $this->open(WEB_DATABASE_PATH_RAW);
+         $this->open($_ENV['WEB_DATABASE_PATH_RAW']);
       }
    }
    $check_db = new MyDB_Panel();

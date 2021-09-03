@@ -80,7 +80,7 @@ if (!empty($_POST['username']) and !empty($_POST['password']))
 	$username = isset($_POST['username'])? $_POST['username'] : '';
 	$password = isset($_POST['password'])? $_POST['password'] : '';
 
-	$db = new PDO(ABSOLUTE_DATABASE_PATH);
+	$db = new PDO($_ENV['ABSOLUTE_DATABASE_PATH']);
 	$db->setAttribute( PDO::ATTR_ERRMODE, PDO::ERRMODE_WARNING );
 	$stmt = $db->prepare('SELECT * FROM Accounts WHERE Username = ? and Password = ?');
 	$stmt->execute(array($username, $password));

@@ -81,7 +81,7 @@ function CodeSnippet($code)
 function PageStatus()
 {
   echo "<h1>Status</h1>";
-  $cmd = "cd " . SCRIPTS_PATH . ";./status_chiller.sh html";
+  $cmd = "cd " . $_ENV['SCRIPTS_PATH'] . ";./status_chiller.sh html";
   # echo "cmd: <br/>$cmd<br/>";
   $out = shell_exec($cmd);
   echo $out;
@@ -96,7 +96,7 @@ function PageStatus()
 function PageDonors()
 {
   echo "<h1>Donors</h1>";
-  $db = new PDO(ABSOLUTE_DATABASE_PATH);
+  $db = new PDO($_ENV['ABSOLUTE_DATABASE_PATH']);
   $db->setAttribute( PDO::ATTR_ERRMODE, PDO::ERRMODE_WARNING );
   $rowsVIP = $db->query('SELECT LastLogoutIGN1, Username FROM Accounts WHERE IsModerator = 1');
   if ($rowsVIP)
@@ -134,30 +134,30 @@ function PageTest()
         $out = "error: action not found";
         if ($action === "github_update")
         {
-            $cmd = "cd " . SCRIPTS_TEST_SRV_PATH . ";sudo -u " . DDPP_USER . " " . SCRIPTS_TEST_SRV_PATH . "/github_update.sh";
+            $cmd = "cd " . $_ENV['SCRIPTS_TEST_SRV_PATH'] . ";sudo -u " . DDPP_USER . " " . $_ENV['SCRIPTS_TEST_SRV_PATH'] . "/github_update.sh";
             //echo "cmd: <br/>$cmd<br/>";
             // $out = shell_exec($cmd);
             $out = "command deactivated";
         }
         else if ($action === "start")
         {
-            $cmd = "cd " . SCRIPTS_TEST_SRV_PATH . ";sudo -u " . DDPP_USER . " " . SCRIPTS_TEST_SRV_PATH . "/start.sh";
+            $cmd = "cd " . $_ENV['SCRIPTS_TEST_SRV_PATH'] . ";sudo -u " . DDPP_USER . " " . $_ENV['SCRIPTS_TEST_SRV_PATH'] . "/start.sh";
             echo "cmd: <br/>$cmd<br/>";
             // $out = shell_exec($cmd);
             $out = "command deactivated";
         }
         else if ($action === "stop")
         {
-            $cmd = "cd " . SCRIPTS_TEST_SRV_PATH . ";sudo -u " . DDPP_USER . " " . SCRIPTS_TEST_SRV_PATH . "/stop.sh";
-            //$cmd = "cd " . SCRIPTS_TEST_SRV_PATH . ";sudo " . SCRIPTS_TEST_SRV_PATH . "/stop.sh";
+            $cmd = "cd " . $_ENV['SCRIPTS_TEST_SRV_PATH'] . ";sudo -u " . DDPP_USER . " " . $_ENV['SCRIPTS_TEST_SRV_PATH'] . "/stop.sh";
+            //$cmd = "cd " . $_ENV['SCRIPTS_TEST_SRV_PATH'] . ";sudo " . $_ENV['SCRIPTS_TEST_SRV_PATH'] . "/stop.sh";
             //echo "cmd: <br/>$cmd<br/>";
             // $out = shell_exec($cmd);
             $out = "command deactivated";
         }
         else if ($action === "log")
         {
-            $cmd = "cat " . SCRIPTS_TEST_SRV_PATH . "/logs/test.log";
-            //$cmd = "cd " . SCRIPTS_TEST_SRV_PATH . ";sudo " . SCRIPTS_TEST_SRV_PATH . "/stop.sh";
+            $cmd = "cat " . $_ENV['SCRIPTS_TEST_SRV_PATH'] . "/logs/test.log";
+            //$cmd = "cd " . $_ENV['SCRIPTS_TEST_SRV_PATH'] . ";sudo " . $_ENV['SCRIPTS_TEST_SRV_PATH'] . "/stop.sh";
             echo "cmd: <br/>$cmd<br/>";
             // $out = shell_exec($cmd);
             $out = "command deactivated";
@@ -235,7 +235,7 @@ function LogServerPanelAction($action)
 	    $stmt->execute(array($_SESSION['Username'], $action, $current_date_str, $_SERVER['REMOTE_ADDR'], $details->city, $user_browser, $user_os, $_SERVER['HTTP_USER_AGENT']));
 }
 
-$db = new PDO(ABSOLUTE_DATABASE_PATH);
+$db = new PDO($_ENV['ABSOLUTE_DATABASE_PATH']);
 $db->setAttribute( PDO::ATTR_ERRMODE, PDO::ERRMODE_WARNING );
 $stmt = $db->prepare('SELECT * FROM Accounts WHERE ID = ? ');
 $stmt->execute(array($_SESSION['csID']));
@@ -293,13 +293,13 @@ if ($rows)
 
         if ($action === "start_github")
         {
-            // $cmd = "cd " . SCRIPTS_PATH . ";sudo -u " . DDPP_USER . " " . SCRIPTS_PATH . "/github_update.sh";
+            // $cmd = "cd " . $_ENV['SCRIPTS_PATH'] . ";sudo -u " . DDPP_USER . " " . $_ENV['SCRIPTS_PATH'] . "/github_update.sh";
             // $out = shell_exec($cmd);
             $out = "command deactivated";
         }
         else if ($action === "update_ddpp_scripts")
         {
-            // $cmd = "sudo -u " . DDPP_USER . " " . UPDATE_SCRIPTS_SCRIPT_PATH;
+            // $cmd = "sudo -u " . DDPP_USER . " " . $_ENV['UPDATE_SCRIPTS_SCRIPT_PATH'];
             // $out = shell_exec($cmd);
             $out = "command deactivated";
         }
@@ -307,53 +307,53 @@ if ($rows)
         /*
         if ($action === "start_restart")
         {
-            $cmd = "cd " . SCRIPTS_PATH . ";sudo -u " . DDPP_USER . " " . SCRIPTS_PATH . "/init_restart.sh";
+            $cmd = "cd " . $_ENV['SCRIPTS_PATH'] . ";sudo -u " . DDPP_USER . " " . $_ENV['SCRIPTS_PATH'] . "/init_restart.sh";
             //echo "cmd: <br/>$cmd<br/>";
             $out = shell_exec($cmd);
         }
         else if ($action === "stop_restart")
         {
-            $cmd = "cd " . SCRIPTS_PATH . ";sudo -u " . DDPP_USER . " " . SCRIPTS_PATH . "/cancle_restart.sh";
+            $cmd = "cd " . $_ENV['SCRIPTS_PATH'] . ";sudo -u " . DDPP_USER . " " . $_ENV['SCRIPTS_PATH'] . "/cancle_restart.sh";
             //echo "cmd: <br/>$cmd<br/>";
             $out = shell_exec($cmd);
         }
         else if ($action === "status_restart")
         {
-            $out = shell_exec("cat " . SCRIPTS_PATH . "/status_restart_*.log");
+            $out = shell_exec("cat " . $_ENV['SCRIPTS_PATH'] . "/status_restart_*.log");
         }
         else if ($action === "restart_chillerbot_bl")
         {
-            $cmd = "cd " . SCRIPTS_PATH . ";sudo -u " . DDPP_USER . " " . SCRIPTS_PATH . "/restart_bot_bl.sh";
+            $cmd = "cd " . $_ENV['SCRIPTS_PATH'] . ";sudo -u " . DDPP_USER . " " . $_ENV['SCRIPTS_PATH'] . "/restart_bot_bl.sh";
             echo "cmd: <br/>$cmd<br/>";
             $out = shell_exec($cmd);
         }
         else if ($action === "restart_chillerbot_cb")
         {
-            $cmd = "cd " . SCRIPTS_PATH . ";sudo -u " . DDPP_USER . " " . SCRIPTS_PATH . "/restart_bot_cb.sh";
+            $cmd = "cd " . $_ENV['SCRIPTS_PATH'] . ";sudo -u " . DDPP_USER . " " . $_ENV['SCRIPTS_PATH'] . "/restart_bot_cb.sh";
             echo "cmd: <br/>$cmd<br/>";
             $out = shell_exec($cmd);
         }
         else if ($action === "ddpp_shutdown_cb_on")
         {
-            $cmd = "cd " . SCRIPTS_PATH . ";sudo -u " . DDPP_USER . " " . SCRIPTS_PATH . "/ddpp_shutdown_chillblock.sh 2 1";
+            $cmd = "cd " . $_ENV['SCRIPTS_PATH'] . ";sudo -u " . DDPP_USER . " " . $_ENV['SCRIPTS_PATH'] . "/ddpp_shutdown_chillblock.sh 2 1";
             echo "cmd: <br/>$cmd<br/>";
             $out = shell_exec($cmd);
         }
         else if ($action === "ddpp_shutdown_bl_on")
         {
-            $cmd = "cd " . SCRIPTS_PATH . ";sudo -u " . DDPP_USER . " " . SCRIPTS_PATH . "/ddpp_shutdown_BlmapChill.sh 2 1";
+            $cmd = "cd " . $_ENV['SCRIPTS_PATH'] . ";sudo -u " . DDPP_USER . " " . $_ENV['SCRIPTS_PATH'] . "/ddpp_shutdown_BlmapChill.sh 2 1";
             echo "cmd: <br/>$cmd<br/>";
             $out = shell_exec($cmd);
         }
         else if ($action === "ddpp_shutdown_cb_off")
         {
-            $cmd = "cd " . SCRIPTS_PATH . ";sudo -u " . DDPP_USER . " " . SCRIPTS_PATH . "/ddpp_shutdown_chillblock.sh 2 0";
+            $cmd = "cd " . $_ENV['SCRIPTS_PATH'] . ";sudo -u " . DDPP_USER . " " . $_ENV['SCRIPTS_PATH'] . "/ddpp_shutdown_chillblock.sh 2 0";
             echo "cmd: <br/>$cmd<br/>";
             $out = shell_exec($cmd);
         }
         else if ($action === "ddpp_shutdown_bl_off")
         {
-            $cmd = "cd " . SCRIPTS_PATH . ";sudo -u " . DDPP_USER . " " . SCRIPTS_PATH . "/ddpp_shutdown_BlmapChill.sh 2 0";
+            $cmd = "cd " . $_ENV['SCRIPTS_PATH'] . ";sudo -u " . DDPP_USER . " " . $_ENV['SCRIPTS_PATH'] . "/ddpp_shutdown_BlmapChill.sh 2 0";
             echo "cmd: <br/>$cmd<br/>";
             $out = shell_exec($cmd);
         }
