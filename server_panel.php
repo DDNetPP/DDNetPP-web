@@ -136,27 +136,31 @@ function PageTest()
         {
             $cmd = "cd " . SCRIPTS_TEST_SRV_PATH . ";sudo -u " . DDPP_USER . " " . SCRIPTS_TEST_SRV_PATH . "/github_update.sh";
             //echo "cmd: <br/>$cmd<br/>";
-            $out = shell_exec($cmd);
+            // $out = shell_exec($cmd);
+            $out = "command deactivated";
         }
         else if ($action === "start")
         {
             $cmd = "cd " . SCRIPTS_TEST_SRV_PATH . ";sudo -u " . DDPP_USER . " " . SCRIPTS_TEST_SRV_PATH . "/start.sh";
             echo "cmd: <br/>$cmd<br/>";
-            $out = shell_exec($cmd);
+            // $out = shell_exec($cmd);
+            $out = "command deactivated";
         }
         else if ($action === "stop")
         {
             $cmd = "cd " . SCRIPTS_TEST_SRV_PATH . ";sudo -u " . DDPP_USER . " " . SCRIPTS_TEST_SRV_PATH . "/stop.sh";
             //$cmd = "cd " . SCRIPTS_TEST_SRV_PATH . ";sudo " . SCRIPTS_TEST_SRV_PATH . "/stop.sh";
             //echo "cmd: <br/>$cmd<br/>";
-            $out = shell_exec($cmd);
+            // $out = shell_exec($cmd);
+            $out = "command deactivated";
         }
         else if ($action === "log")
         {
             $cmd = "cat " . SCRIPTS_TEST_SRV_PATH . "/logs/test.log";
             //$cmd = "cd " . SCRIPTS_TEST_SRV_PATH . ";sudo " . SCRIPTS_TEST_SRV_PATH . "/stop.sh";
             echo "cmd: <br/>$cmd<br/>";
-            $out = shell_exec($cmd);
+            // $out = shell_exec($cmd);
+            $out = "command deactivated";
         }
         $out = nl2br($out);
         echo "<br/>out:<br/> $out";
@@ -167,10 +171,10 @@ function PageTest()
     }
 ?>
     <form method="get">
-    <br/><input type="button" value="start" onclick="window.location.href='server_panel.php?p=test&action=start'"/>
-    <br/><input type="button" value="stop" onclick="window.location.href='server_panel.php?p=test&action=stop'"/>
-    <br/><input type="button" value="show log" onclick="window.location.href='server_panel.php?p=test&action=log'"/>
-    <br/><input type="button" value="github_update" onclick="window.location.href='server_panel.php?p=test&action=github_update'"/>
+    <br/><input type="button" value="start" onclick="window.location.href='server_panel.php?p=test&action=start'" disabled />
+    <br/><input type="button" value="stop" onclick="window.location.href='server_panel.php?p=test&action=stop'" disabled />
+    <br/><input type="button" value="show log" onclick="window.location.href='server_panel.php?p=test&action=log'" disabled />
+    <br/><input type="button" value="github_update" onclick="window.location.href='server_panel.php?p=test&action=github_update'" disabled />
     </form>
 <?php
 }
@@ -289,13 +293,15 @@ if ($rows)
 
         if ($action === "start_github")
         {
-            $cmd = "cd " . SCRIPTS_PATH . ";sudo -u " . DDPP_USER . " " . SCRIPTS_PATH . "/github_update.sh";
-            $out = shell_exec($cmd);
+            // $cmd = "cd " . SCRIPTS_PATH . ";sudo -u " . DDPP_USER . " " . SCRIPTS_PATH . "/github_update.sh";
+            // $out = shell_exec($cmd);
+            $out = "command deactivated";
         }
         else if ($action === "update_ddpp_scripts")
         {
-            $cmd = "sudo -u " . DDPP_USER . " " . UPDATE_SCRIPTS_SCRIPT_PATH;
-            $out = shell_exec($cmd);
+            // $cmd = "sudo -u " . DDPP_USER . " " . UPDATE_SCRIPTS_SCRIPT_PATH;
+            // $out = shell_exec($cmd);
+            $out = "command deactivated";
         }
 
         /*
@@ -362,8 +368,8 @@ if ($rows)
 ?>
     <form method="get">
     <h1 id="zone-github">Github updates</h1>
-    <br/><input type="button" value="start github_update.sh" onclick="window.location.href='server_panel.php?action=start_github'"/>
-    <br/><input type="button" value="update scripts/cfgs" onclick="window.location.href='server_panel.php?action=update_ddpp_scripts'"/>
+    <br/><input type="button" value="start github_update.sh" onclick="window.location.href='server_panel.php?action=start_github'" disabled />
+    <br/><input type="button" value="update scripts/cfgs" onclick="window.location.href='server_panel.php?action=update_ddpp_scripts'" disabled />
     <!--
     <h1 id="zone-night">Night restart (FORCE)</h1>
     <br/><input type="button" value="start restart.sh" onclick="window.location.href='server_panel.php?action=start_restart'"/>
