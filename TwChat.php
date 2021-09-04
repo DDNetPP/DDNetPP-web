@@ -24,8 +24,8 @@ function check_logfile_permissions($fp) {
 	return $fp;
 }
 
-if (isset ( $_POST ['enter'] )) {
-	if ($_POST ['name'] != "") {
+if (isset($_POST['enter'])) {
+	if ($_POST['name'] != "") {
 		$_SESSION ['name'] = stripslashes(htmlspecialchars($_POST ['name']));
 		$fp = fopen('log.html', 'a');
 		check_logfile_permissions($fp);
@@ -36,7 +36,7 @@ if (isset ( $_POST ['enter'] )) {
 	}
 }
 
-if (isset ( $_GET ['logout'] )) {
+if (isset($_GET['logout'])) {
 	// Simple exit message
 	$fp = fopen("log.html", 'a');
 	check_logfile_permissions($fp);
@@ -52,38 +52,38 @@ if (isset ( $_GET ['logout'] )) {
 <html xmlns="http://www.w3.org/1999/xhtml">
     <head>
             <link type="text/css" rel="stylesheet" href="style.css" />
-            <title>Chat - Customer Module</title>
+            <title>Teeworlds chat</title>
     </head>
 <body>
 	<?php
-	if (! isset ( $_SESSION ['name'] )) {
+	if (!isset($_SESSION['name'])) {
 		loginForm ();
 	} else {
 		?>
 <div id="wrapper">
 		<div id="menu">
 			<p class="welcome">
-				Welcome, <b><?php echo $_SESSION['name']; ?></b>
+				Welcome, <b><?php echo htmlspecialchars($_SESSION['name']); ?></b>
 			</p>
 			<p class="logout">
-				<a id="exit" href="#">Exit Chat</a>
+				<button id="exit" onclick="window.location = 'TwChat.php?logout=true'">Exit Chat</button>
 			</p>
 			<div style="clear: both"></div>
 		</div>
 		<div id="chatbox"><?php
-		if (file_exists ('log.html') && filesize('log.html') > 0) {
+		if (file_exists('log.html') && filesize('log.html') > 0) {
 			$handle = fopen('log.html', 'r' );
 			check_logfile_permissions($handle);
-			$contents = fread($handle, filesize('log.html') );
-			fclose ($handle);
+			$contents = fread($handle, filesize('log.html'));
+			fclose($handle);
 
 			echo $contents;
 		}
 		?></div>
 
-		<form name="message" action="">
-			<input name="usermsg" type="text" id="usermsg" size="63" /> <input
-				name="submitmsg" type="submit" id="submitmsg" value="Send" />
+		<form name="chat-form" id="chat-form" action="">
+			<input name="message" type="text" id="message" size="63" />
+			<input name="send" type="submit" id="send" value="Send" />
 		</form>
 	</div>
 	<script type="text/javascript"
@@ -91,24 +91,6 @@ if (isset ( $_GET ['logout'] )) {
 	<script type="text/javascript">
 // jQuery Document
 $(document).ready(function(){
-});
-
-//jQuery Document
-$(document).ready(function(){
-	//If user wants to end session
-	$("#exit").click(function(){
-		var exit = confirm("Are you sure you want to end the session?");
-		if(exit==true){window.location = 'TwChat.php?logout=true';}		
-	});
-});
-
-//If user submits the form
-$("#submitmsg").click(function(){
-		var clientmsg = $("#usermsg").val();
-		$.post("post.php", {text: clientmsg});				
-		$("#usermsg").attr("value", "");
-		loadLog;
-	return false;
 });
 
 function loadLog(){		
@@ -128,11 +110,12 @@ function loadLog(){
 	});
 }
 
-setInterval (loadLog, 100);
+setInterval(loadLog, 1000);
 </script>
 <?php
 	}
 	?>
+	<script src="js/tw_chat.js"></script>
 	<script type="text/javascript"
 		src="http://ajax.googleapis.com/ajax/libs/jquery/1.3/jquery.min.js"></script>
 	<script type="text/javascript">
