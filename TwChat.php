@@ -15,26 +15,36 @@ function loginForm() {
     ';
 }
 
+function check_logfile_permissions($fp) {
+	if (!$fp) {
+		echo '<br/><span>Error: failed to open log. Try this permissions fix:</span><br/>';
+		echo '<code>cd ' . __DIR__ . ' && touch log.html && chown www-data:www-data log.html</code><br/>';
+		fok();
+	}
+	return $fp;
+}
+
 if (isset ( $_POST ['enter'] )) {
 	if ($_POST ['name'] != "") {
-		$_SESSION ['name'] = stripslashes ( htmlspecialchars ( $_POST ['name'] ) );
-		$fp = fopen ( "log.html", 'a' );
-		fwrite ( $fp, "<div class='msgln'><i>User " . $_SESSION ['name'] . " has joined the chat session.</i><br></div>" );
-		fclose ( $fp );
+		$_SESSION ['name'] = stripslashes(htmlspecialchars($_POST ['name']));
+		$fp = fopen('log.html', 'a');
+		check_logfile_permissions($fp);
+		fwrite($fp, "<div class='msgln'><i>User " . htmlspecialchars($_SESSION ['name']) . " has joined the chat session.</i><br></div>" );
+		fclose($fp);
 	} else {
 		echo '<span class="error">Please type in a name</span>';
 	}
 }
 
 if (isset ( $_GET ['logout'] )) {
-	
 	// Simple exit message
-	$fp = fopen ( "log.html", 'a' );
-	fwrite ( $fp, "<div class='msgln'><i>User " . $_SESSION ['name'] . " has left the chat session.</i><br></div>" );
-	fclose ( $fp );
+	$fp = fopen("log.html", 'a');
+	check_logfile_permissions($fp);
+	fwrite ($fp, "<div class='msgln'><i>User " . htmlspecialchars($_SESSION ['name']) . " has left the chat session.</i><br></div>" );
+	fclose ($fp);
 	
 	session_destroy ();
-	header ( "Location: TwChat.php" ); // Redirect the user
+	header("Location: TwChat.php"); // Redirect the user
 }
 
 ?>
@@ -61,11 +71,12 @@ if (isset ( $_GET ['logout'] )) {
 			<div style="clear: both"></div>
 		</div>
 		<div id="chatbox"><?php
-		if (file_exists ( "log.html" ) && filesize ( "log.html" ) > 0) {
-			$handle = fopen ( "log.html", "r" );
-			$contents = fread ( $handle, filesize ( "log.html" ) );
-			fclose ( $handle );
-			
+		if (file_exists ('log.html') && filesize('log.html') > 0) {
+			$handle = fopen('log.html', 'r' );
+			check_logfile_permissions($handle);
+			$contents = fread($handle, filesize('log.html') );
+			fclose ($handle);
+
 			echo $contents;
 		}
 		?></div>
