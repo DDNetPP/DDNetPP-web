@@ -49,6 +49,12 @@ if ($rowsLEVEL)
         $rowsLEVEL = $rowsLEVEL->fetchAll();
         for ($i = 0;$i < 20;$i++)
         {
+                if(!isset($rowsLEVEL[$i])) {
+                        if($i == 0) {
+                                echo "There are no users yet</br>";
+                        }
+                        break;
+                }
                 $username = htmlspecialchars($rowsLEVEL[$i]['LastLogoutIGN1']);
                 $level = $rowsLEVEL[$i]['Level'];
                 echo $i+1 . ". $username - $level </br>";
@@ -62,6 +68,12 @@ if ($rowsPOINTS)
         $rowsPOINTS = $rowsPOINTS->fetchAll();
         for ($i = 0;$i < 20; $i++)
         {
+                if(!isset($rowsPOINTS[$i])) {
+                        if($i == 0) {
+                                echo "There are no users yet</br>";
+                        }
+                        break;
+                }
                 $username = htmlspecialchars($rowsPOINTS[$i]['LastLogoutIGN1']);
                 $points = $rowsPOINTS[$i]['BlockPoints'];
                 echo $i+1 . ". $username - $points </br>";

@@ -2,5 +2,7 @@
 vendor/
 log.html
 passwords.php
+*.db
 Thumbs.db
+db/
 TeeworldsPlayers_contribute.db

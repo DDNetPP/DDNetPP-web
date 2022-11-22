@@ -31,7 +31,7 @@ function StoreLoginCookie($username, $password, $tw_id, $token)
         $db = new PDO($_ENV['WEB_DATABASE_PATH']);
     } catch ( PDOException $e ) {
         echo "Failed to open database. Possible fix:<br>";
-        echo "<code>chown -R www-data:www-data " . $_ENV['SCRIPTS_PATH'] . "/db</code><br>";
+        echo "<code>chown -R www-data:www-data " . dirname($_ENV['WEB_DATABASE_PATH_RAW']) . "</code><br>";
         throw $e;
     }
     $db->setAttribute( PDO::ATTR_ERRMODE, PDO::ERRMODE_WARNING );
