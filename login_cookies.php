@@ -31,7 +31,10 @@ function StoreLoginCookie($username, $password, $tw_id, $token)
         $db = new PDO($_ENV['WEB_DATABASE_PATH']);
     } catch ( PDOException $e ) {
         echo "Failed to open database. Possible fix:<br>";
-        echo "<code>chown -R www-data:www-data " . dirname($_ENV['WEB_DATABASE_PATH_RAW']) . "</code><br>";
+	echo "<code>chown -R www-data:www-data " . dirname($_ENV['WEB_DATABASE_PATH_RAW']) . "</code><br>";
+	echo "Also make sure every folder from root to the db folder is at least group owner by www-data";
+	echo "and grant the group x access on those folders";
+	echo "Also www-data needs write access on the parent folder of where the db is located"
         throw $e;
     }
     $db->setAttribute( PDO::ATTR_ERRMODE, PDO::ERRMODE_WARNING );
