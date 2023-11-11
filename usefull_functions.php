@@ -40,7 +40,7 @@ function IsSupporter()
         //$username = $rows[0]['Username'];
         //$IsSuperMod = $rows[0]['IsSuperModerator'];
         $IsSupporter = $rows[0]['IsSupporter'];
-        if ($IsSupporter === "1")
+        if ($IsSupporter === 1)
         {
             return true;
         }
